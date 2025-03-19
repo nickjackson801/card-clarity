@@ -51,7 +51,7 @@ const questions: Question[] = [
     type: 'slider',
     min: 0,
     max: 30000,
-    step: 5000
+    step: 100
   },
   {
     id: 3,
@@ -318,7 +318,7 @@ const Quiz = () => {
     if (question.type === 'radio') {
       return (
         <FormControl component="fieldset" sx={{ width: '100%' }}>
-          <FormLabel component="legend" sx={{ mb: 2, fontSize: '1.1rem', fontWeight: 500 }}>
+          <FormLabel component="legend" sx={{ mb: 2, fontSize: { xs: '1rem', md: '1.1rem' }, fontWeight: 500 }}>
             {question.text}
           </FormLabel>
           <RadioGroup
@@ -331,7 +331,7 @@ const Quiz = () => {
                 value={option}
                 control={<Radio />}
                 label={option}
-                sx={{ mb: 1 }}
+                sx={{ mb: 1, '& .MuiFormControlLabel-label': { fontSize: { xs: '0.9rem', md: '1rem' } } }}
               />
             ))}
           </RadioGroup>
@@ -342,7 +342,7 @@ const Quiz = () => {
     if (question.type === 'slider') {
       return (
         <Box sx={{ width: '100%', mt: 4 }}>
-          <Typography gutterBottom sx={{ mb: 2, fontSize: '1.1rem', fontWeight: 500 }}>
+          <Typography gutterBottom sx={{ mb: 2, fontSize: { xs: '1rem', md: '1.1rem' }, fontWeight: 500 }}>
             {question.text}
           </Typography>
           <Slider
@@ -350,7 +350,7 @@ const Quiz = () => {
             onChange={(_, value) => handleAnswer(question.id, value as number)}
             min={0}
             max={30000}
-            step={5000}
+            step={100}
             valueLabelDisplay="on"
             valueLabelFormat={(value) => `$${value.toLocaleString()}`}
             marks={[
@@ -381,21 +381,21 @@ const Quiz = () => {
   };
 
   return (
-    <Container maxWidth="md" sx={{ py: 8 }}>
+    <Container maxWidth="md" sx={{ py: { xs: 4, md: 8 } }}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 700 }}>
+        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 700, fontSize: { xs: '2rem', md: '2.5rem' } }}>
           Find Your Perfect Card
         </Typography>
-        <Typography variant="h6" color="text.secondary" paragraph>
+        <Typography variant="h6" color="text.secondary" paragraph sx={{ fontSize: { xs: '1rem', md: '1.25rem' } }}>
           Answer a few questions to get personalized credit card recommendations.
         </Typography>
 
         {!showResults ? (
-          <Paper sx={{ p: 4, mt: 4 }}>
+          <Paper sx={{ p: { xs: 2, md: 4 }, mt: 4 }}>
             <Stepper activeStep={activeStep} sx={{ mb: 4 }}>
               {questions.map((_, index) => (
                 <Step key={index}>
@@ -430,7 +430,7 @@ const Quiz = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <Typography variant="h4" gutterBottom sx={{ mt: 6, mb: 4 }}>
+            <Typography variant="h4" gutterBottom sx={{ mt: 6, mb: 4, fontSize: { xs: '1.75rem', md: '2rem' } }}>
               Your Recommended Cards
             </Typography>
             <Grid container spacing={3}>
