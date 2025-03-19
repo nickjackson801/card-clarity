@@ -139,20 +139,6 @@ const Home = () => {
                 <Typography
                   variant="h6"
                   gutterBottom
-                  sx={{ fontWeight: 600, color: 'secondary.main' }}
-                >
-                  Points Optimization
-                </Typography>
-                <Typography paragraph>
-                  We bridge the gap in credit card rewards by helping you discover the true value of your points. 
-                  Our expert system matches your travel goals and interests with the best redemption opportunities, 
-                  ensuring you get maximum value from every point earned.
-                </Typography>
-              </Grid>
-              <Grid item xs={12} md={4}>
-                <Typography
-                  variant="h6"
-                  gutterBottom
                   sx={{ fontWeight: 600, color: '#059669' }}
                 >
                   Smart Card Selection
@@ -161,6 +147,20 @@ const Home = () => {
                   Finding the right credit card shouldn't be overwhelming. We analyze your spending patterns 
                   and preferences to recommend cards that align with your lifestyle, helping you earn more 
                   rewards on purchases you already make.
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Typography
+                  variant="h6"
+                  gutterBottom
+                  sx={{ fontWeight: 600, color: 'secondary.main' }}
+                >
+                  Points Optimization
+                </Typography>
+                <Typography paragraph>
+                  We bridge the gap in credit card rewards by helping you discover the true value of your points. 
+                  Our expert system matches your travel goals and interests with the best redemption opportunities, 
+                  ensuring you get maximum value from every point earned.
                 </Typography>
               </Grid>
               <Grid item xs={12} md={4}>
