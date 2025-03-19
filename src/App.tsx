@@ -31,7 +31,7 @@ import PointsOptimizer from './pages/PointsOptimizer';
 import DebtManagement from './pages/DebtManagement';
 import Auth from './pages/Auth';
 
-const theme = createTheme({
+const appTheme = createTheme({
   palette: {
     primary: {
       main: '#2563eb',
@@ -80,172 +80,109 @@ function App() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
   const menuItems = [
     { text: 'Home', icon: <HomeIcon />, path: '/' },
     { text: 'Compare Cards', icon: <CompareArrows />, path: '/compare' },
     { text: 'Points Optimizer', icon: <Stars />, path: '/points' },
     { text: 'Debt Management', icon: <AccountBalance />, path: '/debt' },
+    { text: 'Login', icon: <Login />, path: '/auth' },
   ];
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
 
   const drawer = (
     <Box sx={{ width: 250 }}>
       <List>
         {menuItems.map((item) => (
           <ListItem
+            key={item.text}
             component={Link}
             to={item.path}
-            key={item.text}
             onClick={handleDrawerToggle}
             sx={{
+              color: 'inherit',
+              textDecoration: 'none',
               '&:hover': {
-                bgcolor: 'rgba(37, 99, 235, 0.1)',
+                backgroundColor: 'rgba(0, 0, 0, 0.04)',
               },
             }}
           >
-            <ListItemIcon sx={{ color: 'primary.main' }}>{item.icon}</ListItemIcon>
+            <ListItemIcon>{item.icon}</ListItemIcon>
             <ListItemText primary={item.text} />
           </ListItem>
         ))}
-        <ListItem
-          component={Link}
-          to="/auth"
-          onClick={handleDrawerToggle}
-          sx={{
-            mt: 2,
-            bgcolor: 'primary.main',
-            color: 'white',
-            '&:hover': {
-              bgcolor: 'primary.dark',
-            },
-          }}
-        >
-          <ListItemIcon sx={{ color: 'white' }}>
-            <Login />
-          </ListItemIcon>
-          <ListItemText primary="Login / Signup" />
-        </ListItem>
       </List>
     </Box>
   );
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={appTheme}>
       <CssBaseline />
-      <Router basename="/card-clarity">
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static" elevation={0} sx={{ bgcolor: 'background.paper' }}>
+      <Router>
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+          <AppBar position="static">
             <Toolbar>
-              <Typography
-                variant="h6"
-                component={Link}
-                to="/"
-                sx={{
-                  flexGrow: 1,
-                  textDecoration: 'none',
-                  color: 'primary.main',
-                  fontWeight: 700,
-                }}
-              >
-                Card Clarity
-              </Typography>
-              
-              {isMobile ? (
+              {isMobile && (
                 <IconButton
                   color="inherit"
                   aria-label="open drawer"
-                  edge="end"
+                  edge="start"
                   onClick={handleDrawerToggle}
-                  sx={{ color: 'text.primary' }}
+                  sx={{ mr: 2 }}
                 >
                   <MenuIcon />
                 </IconButton>
-              ) : (
-                <>
-                  <IconButton
-                    component={Link}
-                    to="/"
-                    sx={{
-                      color: 'text.primary',
-                      mr: 1,
-                      '&:hover': {
-                        color: 'primary.main',
-                      },
-                    }}
-                  >
-                    <HomeIcon />
-                  </IconButton>
-                  <Button
-                    component={Link}
-                    to="/compare"
-                    color="inherit"
-                    sx={{ color: 'text.primary', mx: 1 }}
-                  >
-                    Compare Cards
-                  </Button>
-                  <Button
-                    component={Link}
-                    to="/points"
-                    color="inherit"
-                    sx={{ color: 'text.primary', mx: 1 }}
-                  >
-                    Points Optimizer
-                  </Button>
-                  <Button
-                    component={Link}
-                    to="/debt"
-                    color="inherit"
-                    sx={{ color: 'text.primary', mx: 1 }}
-                  >
-                    Debt Management
-                  </Button>
-                  <Button
-                    component={Link}
-                    to="/auth"
-                    variant="contained"
-                    sx={{
-                      ml: 2,
-                      background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-                      color: 'white',
-                      '&:hover': {
-                        background: 'linear-gradient(45deg, #1976D2 30%, #1CB5E0 90%)',
-                      }
-                    }}
-                  >
-                    Login / Signup
-                  </Button>
-                </>
+              )}
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                Card Clarity
+              </Typography>
+              {!isMobile && (
+                <Box sx={{ display: 'flex', gap: 2 }}>
+                  {menuItems.map((item) => (
+                    <Button
+                      key={item.text}
+                      component={Link}
+                      to={item.path}
+                      color="inherit"
+                      startIcon={item.icon}
+                    >
+                      {item.text}
+                    </Button>
+                  ))}
+                </Box>
               )}
             </Toolbar>
           </AppBar>
 
-          <Drawer
-            variant="temporary"
-            anchor="right"
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            ModalProps={{
-              keepMounted: true, // Better mobile performance
-            }}
-            sx={{
-              display: { xs: 'block', md: 'none' },
-              '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 250 },
-            }}
-          >
-            {drawer}
-          </Drawer>
+          {isMobile && (
+            <Drawer
+              variant="temporary"
+              anchor="left"
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              ModalProps={{
+                keepMounted: true, // Better mobile performance
+              }}
+              sx={{
+                '& .MuiDrawer-paper': { width: 250 },
+              }}
+            >
+              {drawer}
+            </Drawer>
+          )}
 
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/compare" element={<CardComparison />} />
-            <Route path="/points" element={<PointsOptimizer />} />
-            <Route path="/debt" element={<DebtManagement />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
+          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/compare" element={<CardComparison />} />
+              <Route path="/points" element={<PointsOptimizer />} />
+              <Route path="/debt" element={<DebtManagement />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Box>
         </Box>
       </Router>
     </ThemeProvider>
