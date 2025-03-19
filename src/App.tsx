@@ -138,7 +138,26 @@ function App() {
                   <MenuIcon />
                 </IconButton>
               )}
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <Typography
+                variant="h5"
+                component={Link}
+                to="/"
+                sx={{
+                  flexGrow: 1,
+                  fontWeight: 800,
+                  fontSize: { xs: '1.5rem', md: '1.75rem' },
+                  textDecoration: 'none',
+                  background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #059669 100%)',
+                  backgroundClip: 'text',
+                  WebkitBackgroundClip: 'text',
+                  color: 'transparent',
+                  WebkitTextFillColor: 'transparent',
+                  letterSpacing: '-0.5px',
+                  '&:hover': {
+                    opacity: 0.9,
+                  },
+                }}
+              >
                 Card Clarity
               </Typography>
               {!isMobile && (
