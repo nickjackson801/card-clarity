@@ -87,11 +87,29 @@ const Auth = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 700, textAlign: 'center' }}>
+        <Typography
+          variant="h4"
+          component="h1"
+          gutterBottom
+          sx={{
+            fontWeight: 700,
+            mb: 2,
+            background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #059669 100%)',
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            color: 'transparent',
+            WebkitTextFillColor: 'transparent',
+          }}
+        >
           Welcome to Card Clarity
         </Typography>
-        <Typography variant="h6" color="text.secondary" paragraph sx={{ textAlign: 'center', mb: 4 }}>
-          Join us to find your perfect credit card match
+        <Typography
+          variant="body1"
+          color="text.secondary"
+          paragraph
+          sx={{ mb: 4, fontSize: '1.1rem' }}
+        >
+          Your all-in-one platform for smart credit card management. Compare cards, optimize your points, and take control of your debt.
         </Typography>
 
         {showSuccess && (
