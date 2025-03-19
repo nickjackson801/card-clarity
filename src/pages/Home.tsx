@@ -1,127 +1,174 @@
-import { Container, Typography, Button, Grid, Box, Paper, Chip } from '@mui/material';
+import { Container, Typography, Grid, Paper, Box, Button } from '@mui/material';
+import { CompareArrows, Stars, AccountBalance } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-  const navigate = useNavigate();
+  const services = [
+    {
+      title: 'Compare Cards',
+      description: 'Find the perfect credit card by comparing rewards, benefits, and fees. Our smart comparison tool helps you make informed decisions based on your spending habits.',
+      icon: <CompareArrows sx={{ fontSize: 40 }} />,
+      link: '/compare',
+      color: '#2563eb',
+    },
+    {
+      title: 'Points Optimizer',
+      description: 'Maximize your credit card rewards with our points optimization tool. Track your points across multiple cards and discover the best redemption options.',
+      icon: <Stars sx={{ fontSize: 40 }} />,
+      link: '/points',
+      color: '#7c3aed',
+    },
+    {
+      title: 'Debt Management',
+      description: 'Take control of your credit card debt with personalized payoff strategies. Compare different methods and create a plan that works for your financial goals.',
+      icon: <AccountBalance sx={{ fontSize: 40 }} />,
+      link: '/debt',
+      color: '#059669',
+    },
+  ];
 
   return (
-    <Container maxWidth="lg" sx={{ py: 8 }}>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+    <Box>
+      {/* Hero Section */}
+      <Box
+        sx={{
+          background: 'linear-gradient(45deg, #2563eb 30%, #60a5fa 90%)',
+          color: 'white',
+          py: { xs: 8, md: 12 },
+          mb: 6,
+        }}
       >
-        <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography variant="h2" component="h1" gutterBottom sx={{ fontWeight: 700 }}>
-            Card Clarity
-          </Typography>
-          <Typography variant="h5" color="text.secondary" paragraph>
-            Find the perfect credit card for your lifestyle
-          </Typography>
-          <Chip
-            label="Free During Beta"
-            color="primary"
-            sx={{
-              fontSize: '1rem',
-              py: 2,
-              px: 3,
-              mb: 4,
-              background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-              color: 'white',
-            }}
-          />
-        </Box>
-
-        <Grid container spacing={4} justifyContent="center">
-          <Grid item xs={12} md={6}>
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <Paper
-                sx={{
-                  p: 4,
-                  height: '100%',
-                  background: 'linear-gradient(to bottom right, #ffffff, #f8fafc)',
-                  boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  textAlign: 'center',
-                }}
-              >
-                <Typography variant="h4" component="h2" gutterBottom>
-                  Find Your Perfect Card
-                </Typography>
-                <Typography paragraph>
-                  Take our quick quiz to get personalized credit card recommendations based on your spending habits and preferences.
-                </Typography>
-                <Button
-                  variant="contained"
-                  size="large"
-                  onClick={() => navigate('/quiz')}
+        <Container maxWidth="lg">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Grid container spacing={4} alignItems="center">
+              <Grid item xs={12} md={7}>
+                <Typography
+                  variant="h2"
+                  component="h1"
+                  gutterBottom
                   sx={{
-                    mt: 2,
-                    background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-                    color: 'white',
-                    '&:hover': {
-                      background: 'linear-gradient(45deg, #1976D2 30%, #1CB5E0 90%)',
-                    }
+                    fontWeight: 700,
+                    fontSize: { xs: '2.5rem', md: '3.5rem' },
                   }}
                 >
-                  Take the Quiz
-                </Button>
-              </Paper>
-            </motion.div>
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <Paper
-                sx={{
-                  p: 4,
-                  height: '100%',
-                  background: 'linear-gradient(to bottom right, #ffffff, #f8fafc)',
-                  boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  textAlign: 'center',
-                }}
-              >
-                <Typography variant="h4" component="h2" gutterBottom>
-                  Compare Cards
+                  Make Smarter Credit Card Decisions
                 </Typography>
-                <Typography paragraph>
-                  Browse and compare different credit cards side by side to find the best match for your needs.
+                <Typography
+                  variant="h5"
+                  paragraph
+                  sx={{
+                    mb: 4,
+                    opacity: 0.9,
+                    fontWeight: 400,
+                  }}
+                >
+                  Compare cards, optimize rewards, and manage debt all in one place.
                 </Typography>
                 <Button
+                  component={Link}
+                  to="/compare"
                   variant="contained"
                   size="large"
-                  onClick={() => navigate('/compare')}
                   sx={{
-                    mt: 2,
-                    background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
-                    color: 'white',
+                    bgcolor: 'white',
+                    color: 'primary.main',
                     '&:hover': {
-                      background: 'linear-gradient(45deg, #1976D2 30%, #1CB5E0 90%)',
-                    }
+                      bgcolor: 'grey.100',
+                    },
+                    mr: 2,
                   }}
                 >
                   Compare Cards
                 </Button>
-              </Paper>
-            </motion.div>
-          </Grid>
+                <Button
+                  component={Link}
+                  to="/auth"
+                  variant="outlined"
+                  size="large"
+                  sx={{
+                    color: 'white',
+                    borderColor: 'white',
+                    '&:hover': {
+                      borderColor: 'grey.100',
+                      bgcolor: 'rgba(255, 255, 255, 0.1)',
+                    },
+                  }}
+                >
+                  Get Started
+                </Button>
+              </Grid>
+            </Grid>
+          </motion.div>
+        </Container>
+      </Box>
+
+      {/* Services Section */}
+      <Container maxWidth="lg" sx={{ mb: 8 }}>
+        <Grid container spacing={4}>
+          {services.map((service, index) => (
+            <Grid item xs={12} md={4} key={service.title}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Paper
+                  sx={{
+                    p: 4,
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    '&:hover': {
+                      transform: 'translateY(-4px)',
+                      transition: 'transform 0.3s ease-in-out',
+                      boxShadow: (theme) => theme.shadows[4],
+                    },
+                  }}
+                >
+                  <Box
+                    sx={{
+                      mb: 2,
+                      color: service.color,
+                    }}
+                  >
+                    {service.icon}
+                  </Box>
+                  <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 600 }}>
+                    {service.title}
+                  </Typography>
+                  <Typography color="text.secondary" paragraph sx={{ mb: 3, flexGrow: 1 }}>
+                    {service.description}
+                  </Typography>
+                  <Button
+                    component={Link}
+                    to={service.link}
+                    variant="outlined"
+                    sx={{
+                      alignSelf: 'flex-start',
+                      color: service.color,
+                      borderColor: service.color,
+                      '&:hover': {
+                        borderColor: service.color,
+                        bgcolor: `${service.color}10`,
+                      },
+                    }}
+                  >
+                    Learn More
+                  </Button>
+                </Paper>
+              </motion.div>
+            </Grid>
+          ))}
         </Grid>
-      </motion.div>
-    </Container>
+      </Container>
+    </Box>
   );
 };
 
