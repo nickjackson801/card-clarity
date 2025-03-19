@@ -125,7 +125,7 @@ function App() {
       <CssBaseline />
       <Router>
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-          <AppBar position="static">
+          <AppBar position="static" sx={{ bgcolor: 'primary.main' }}>
             <Toolbar>
               {isMobile && (
                 <IconButton
@@ -133,7 +133,7 @@ function App() {
                   aria-label="open drawer"
                   edge="start"
                   onClick={handleDrawerToggle}
-                  sx={{ mr: 2 }}
+                  sx={{ mr: 2, color: 'white' }}
                 >
                   <MenuIcon />
                 </IconButton>
@@ -147,11 +147,7 @@ function App() {
                   fontWeight: 800,
                   fontSize: { xs: '1.5rem', md: '1.75rem' },
                   textDecoration: 'none',
-                  background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #059669 100%)',
-                  backgroundClip: 'text',
-                  WebkitBackgroundClip: 'text',
-                  color: 'transparent',
-                  WebkitTextFillColor: 'transparent',
+                  color: 'white',
                   letterSpacing: '-0.5px',
                   '&:hover': {
                     opacity: 0.9,
@@ -169,6 +165,7 @@ function App() {
                       to={item.path}
                       color="inherit"
                       startIcon={item.icon}
+                      sx={{ color: 'white' }}
                     >
                       {item.text}
                     </Button>
