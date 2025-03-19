@@ -8,103 +8,66 @@ import {
   Card,
   CardContent,
   Button,
-  TextField,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  IconButton,
-  Chip,
+  LinearProgress,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
 } from '@mui/material';
-import { Add as AddIcon, Delete as DeleteIcon } from '@mui/icons-material';
+import {
+  FlightTakeoff,
+  Hotel,
+  Restaurant,
+  ShoppingCart,
+  TrendingUp,
+  Add,
+} from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
-interface PointsCard {
-  id: string;
-  name: string;
-  pointsBalance: number;
-  pointType: string;
-  transferPartners: string[];
-}
-
 const PointsOptimizer = () => {
-  const [cards, setCards] = useState<PointsCard[]>([]);
-  const [newCard, setNewCard] = useState<Partial<PointsCard>>({
-    name: '',
-    pointsBalance: 0,
-    pointType: '',
-    transferPartners: [],
-  });
+  const [linkedCards] = useState([
+    {
+      name: 'Chase Sapphire Reserve',
+      points: 54320,
+      lastUpdate: '2024-03-20',
+      redemptionOptions: [
+        { type: 'Travel', value: 1.5, icon: <FlightTakeoff /> },
+        { type: 'Dining', value: 1.25, icon: <Restaurant /> },
+        { type: 'Shopping', value: 1.0, icon: <ShoppingCart /> },
+      ],
+    },
+    {
+      name: 'Amex Platinum',
+      points: 89750,
+      lastUpdate: '2024-03-19',
+      redemptionOptions: [
+        { type: 'Flights', value: 2.0, icon: <FlightTakeoff /> },
+        { type: 'Hotels', value: 1.75, icon: <Hotel /> },
+        { type: 'Shopping', value: 1.0, icon: <ShoppingCart /> },
+      ],
+    },
+  ]);
 
-  const pointTypes = [
-    'Chase Ultimate Rewards',
-    'American Express Membership Rewards',
-    'Capital One Miles',
-    'Citi ThankYou Points',
-    'Airline Miles',
-    'Hotel Points',
+  const recommendations = [
+    {
+      title: 'Book International Flight',
+      description: 'Transfer 50,000 points to United Airlines for best value',
+      value: '2.2cpp',
+      icon: <FlightTakeoff />,
+    },
+    {
+      title: 'Luxury Hotel Booking',
+      description: 'Use Amex points through Fine Hotels & Resorts',
+      value: '2.0cpp',
+      icon: <Hotel />,
+    },
+    {
+      title: 'Dining Rewards',
+      description: 'Use Chase points for dining purchases',
+      value: '1.5cpp',
+      icon: <Restaurant />,
+    },
   ];
-
-  const transferPartners = {
-    'Chase Ultimate Rewards': [
-      'United Airlines',
-      'Southwest Airlines',
-      'British Airways',
-      'Air France/KLM',
-      'Hyatt',
-      'Marriott',
-    ],
-    'American Express Membership Rewards': [
-      'Delta Airlines',
-      'British Airways',
-      'Air France/KLM',
-      'Emirates',
-      'Hilton',
-      'Marriott',
-    ],
-    'Capital One Miles': [
-      'Air Canada',
-      'Emirates',
-      'British Airways',
-      'Air France/KLM',
-      'Wyndham',
-    ],
-    'Citi ThankYou Points': [
-      'Air France/KLM',
-      'Emirates',
-      'JetBlue',
-      'Singapore Airlines',
-    ],
-    'Airline Miles': [],
-    'Hotel Points': [],
-  };
-
-  const handleAddCard = () => {
-    if (newCard.name && newCard.pointsBalance && newCard.pointType) {
-      setCards([
-        ...cards,
-        {
-          id: Date.now().toString(),
-          name: newCard.name,
-          pointsBalance: newCard.pointsBalance,
-          pointType: newCard.pointType,
-          transferPartners: transferPartners[newCard.pointType as keyof typeof transferPartners] || [],
-        },
-      ]);
-      setNewCard({
-        name: '',
-        pointsBalance: 0,
-        pointType: '',
-        transferPartners: [],
-      });
-    }
-  };
-
-  const handleDeleteCard = (id: string) => {
-    setCards(cards.filter((card) => card.id !== id));
-  };
-
-  const totalPoints = cards.reduce((sum, card) => sum + card.pointsBalance, 0);
 
   return (
     <Container maxWidth="lg" sx={{ py: 8 }}>
@@ -117,138 +80,123 @@ const PointsOptimizer = () => {
           Points Optimizer
         </Typography>
         <Typography variant="h6" color="text.secondary" paragraph>
-          Track and optimize your rewards points across different programs
+          Track and optimize your credit card rewards across all your accounts.
         </Typography>
 
         <Grid container spacing={4}>
           <Grid item xs={12} md={8}>
-            <Paper sx={{ p: 4, mb: 4 }}>
-              <Typography variant="h5" gutterBottom>
-                Add Points Balance
-              </Typography>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    label="Card Name"
-                    value={newCard.name}
-                    onChange={(e) => setNewCard({ ...newCard, name: e.target.value })}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    label="Points Balance"
-                    type="number"
-                    value={newCard.pointsBalance}
-                    onChange={(e) => setNewCard({ ...newCard, pointsBalance: Number(e.target.value) })}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControl fullWidth>
-                    <InputLabel>Points Type</InputLabel>
-                    <Select
-                      value={newCard.pointType}
-                      label="Points Type"
-                      onChange={(e) => setNewCard({ ...newCard, pointType: e.target.value })}
-                    >
-                      {pointTypes.map((type) => (
-                        <MenuItem key={type} value={type}>
-                          {type}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                  <Button
-                    variant="contained"
-                    onClick={handleAddCard}
-                    startIcon={<AddIcon />}
-                    disabled={!newCard.name || !newCard.pointsBalance || !newCard.pointType}
-                  >
-                    Add Card
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <Paper sx={{ p: 3, mb: 4 }} elevation={2}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+                  <Typography variant="h6">Your Linked Cards</Typography>
+                  <Button startIcon={<Add />} variant="outlined">
+                    Link New Card
                   </Button>
-                </Grid>
-              </Grid>
-            </Paper>
-
-            {cards.map((card) => (
-              <Card key={card.id} sx={{ mb: 2 }}>
-                <CardContent>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Typography variant="h6">{card.name}</Typography>
-                    <IconButton onClick={() => handleDeleteCard(card.id)} color="error">
-                      <DeleteIcon />
-                    </IconButton>
-                  </Box>
-                  <Grid container spacing={2} sx={{ mt: 1 }}>
-                    <Grid item xs={12} sm={6}>
-                      <Typography color="text.secondary">Points Balance</Typography>
-                      <Typography variant="h6">{card.pointsBalance.toLocaleString()} points</Typography>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <Typography color="text.secondary">Points Type</Typography>
-                      <Typography variant="h6">{card.pointType}</Typography>
-                    </Grid>
-                  </Grid>
-                  {card.transferPartners.length > 0 && (
-                    <Box sx={{ mt: 2 }}>
-                      <Typography color="text.secondary" gutterBottom>
-                        Transfer Partners
-                      </Typography>
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                        {card.transferPartners.map((partner) => (
-                          <Chip
-                            key={partner}
-                            label={partner}
-                            size="small"
-                            sx={{ mr: 1, mb: 1 }}
+                </Box>
+                <Grid container spacing={3}>
+                  {linkedCards.map((card) => (
+                    <Grid item xs={12} key={card.name}>
+                      <Card>
+                        <CardContent>
+                          <Typography variant="h6" gutterBottom>
+                            {card.name}
+                          </Typography>
+                          <Typography color="text.secondary" gutterBottom>
+                            {card.points.toLocaleString()} points available
+                          </Typography>
+                          <LinearProgress
+                            variant="determinate"
+                            value={70}
+                            sx={{ mb: 2, height: 8, borderRadius: 4 }}
                           />
-                        ))}
-                      </Box>
-                    </Box>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
+                          <Typography variant="body2" color="text.secondary">
+                            Last updated: {card.lastUpdate}
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                    </Grid>
+                  ))}
+                </Grid>
+              </Paper>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <Paper sx={{ p: 3 }} elevation={2}>
+                <Typography variant="h6" gutterBottom>
+                  Best Redemption Options
+                </Typography>
+                <List>
+                  {recommendations.map((rec, index) => (
+                    <div key={rec.title}>
+                      {index > 0 && <Box sx={{ my: 2, borderTop: 1, borderColor: 'divider' }} />}
+                      <ListItem>
+                        <ListItemIcon>
+                          {rec.icon}
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={rec.title}
+                          secondary={rec.description}
+                        />
+                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                          <TrendingUp color="success" sx={{ mr: 1 }} />
+                          <Typography color="success.main">
+                            {rec.value}
+                          </Typography>
+                        </Box>
+                      </ListItem>
+                    </div>
+                  ))}
+                </List>
+              </Paper>
+            </motion.div>
           </Grid>
 
           <Grid item xs={12} md={4}>
-            <Paper sx={{ p: 4, position: 'sticky', top: 24 }}>
-              <Typography variant="h5" gutterBottom>
-                Points Summary
-              </Typography>
-              <Box sx={{ mb: 4 }}>
-                <Typography color="text.secondary" gutterBottom>
-                  Total Points
-                </Typography>
-                <Typography variant="h4" color="primary" gutterBottom>
-                  {totalPoints.toLocaleString()}
-                </Typography>
-              </Box>
-
-              <Box sx={{ mb: 4 }}>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <Paper sx={{ p: 3 }} elevation={2}>
                 <Typography variant="h6" gutterBottom>
-                  Estimated Value
+                  Points Value Calculator
                 </Typography>
-                <Typography variant="h5" color="success.main">
-                  ${(totalPoints * 0.015).toLocaleString()}
+                <Typography variant="body2" color="text.secondary" paragraph>
+                  See how much your points are worth across different redemption options.
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Based on average value of 1.5¢ per point
-                </Typography>
-              </Box>
-
-              <Button
-                fullWidth
-                variant="contained"
-                sx={{ mt: 2 }}
-                disabled={cards.length === 0}
-              >
-                Find Best Redemption Options
-              </Button>
-            </Paper>
+                {linkedCards.map((card) => (
+                  <Box key={card.name} sx={{ mb: 3 }}>
+                    <Typography variant="subtitle1" gutterBottom>
+                      {card.name}
+                    </Typography>
+                    <List dense>
+                      {card.redemptionOptions.map((option) => (
+                        <ListItem key={option.type}>
+                          <ListItemIcon>
+                            {option.icon}
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={option.type}
+                            secondary={`${option.value}x value`}
+                          />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </Box>
+                ))}
+                <Button variant="contained" fullWidth>
+                  Calculate Total Value
+                </Button>
+              </Paper>
+            </motion.div>
           </Grid>
         </Grid>
       </motion.div>
