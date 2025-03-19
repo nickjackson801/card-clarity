@@ -103,7 +103,7 @@ const CardComparison = () => {
                   onChange={(_, value) => setSpendingAmount(value as number)}
                   min={0}
                   max={30000}
-                  step={5000}
+                  step={100}
                   valueLabelDisplay="on"
                   valueLabelFormat={(value) => `$${value.toLocaleString()}`}
                   marks={[
@@ -126,6 +126,9 @@ const CardComparison = () => {
                     }
                   }}
                 />
+                <Typography sx={{ mt: 2, textAlign: 'center', fontWeight: 500 }}>
+                  Selected Amount: ${spendingAmount.toLocaleString()}
+                </Typography>
               </Box>
 
               <Box sx={{ mt: 4 }}>
