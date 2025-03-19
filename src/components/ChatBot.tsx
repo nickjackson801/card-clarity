@@ -11,6 +11,7 @@ import {
   ListItem,
   Divider,
   Link,
+  Tooltip,
 } from '@mui/material';
 import {
   Chat as ChatIcon,
@@ -140,22 +141,47 @@ const ChatBot = () => {
 
   return (
     <>
-      <Fab
-        color="primary"
-        aria-label="chat"
-        onClick={() => setIsOpen(true)}
-        sx={{
-          position: 'fixed',
-          bottom: 24,
-          right: 24,
-          background: 'linear-gradient(45deg, #2563eb 30%, #60a5fa 90%)',
-          '&:hover': {
-            background: 'linear-gradient(45deg, #1d4ed8 30%, #3b82f6 90%)',
-          },
-        }}
-      >
-        <ChatIcon />
-      </Fab>
+      <Box sx={{ position: 'fixed', bottom: 24, right: 24, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+        <Paper
+          elevation={3}
+          sx={{
+            p: 1.5,
+            background: 'linear-gradient(45deg, #2563eb 30%, #60a5fa 90%)',
+            color: 'white',
+            borderRadius: 2,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1,
+            mb: 1,
+            animation: 'bounce 2s infinite',
+            '@keyframes bounce': {
+              '0%, 100%': {
+                transform: 'translateY(0)',
+              },
+              '50%': {
+                transform: 'translateY(-5px)',
+              },
+            },
+          }}
+        >
+          <Typography variant="body2" sx={{ fontWeight: 500 }}>
+            Ask me anything about credit cards!
+          </Typography>
+        </Paper>
+        <Fab
+          color="primary"
+          aria-label="chat"
+          onClick={() => setIsOpen(true)}
+          sx={{
+            background: 'linear-gradient(45deg, #2563eb 30%, #60a5fa 90%)',
+            '&:hover': {
+              background: 'linear-gradient(45deg, #1d4ed8 30%, #3b82f6 90%)',
+            },
+          }}
+        >
+          <ChatIcon />
+        </Fab>
+      </Box>
 
       <Drawer
         anchor="right"
