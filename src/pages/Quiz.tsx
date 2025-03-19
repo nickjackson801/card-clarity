@@ -400,7 +400,7 @@ const Quiz = () => {
               display: 'flex', 
               alignItems: 'center', 
               mb: 4,
-              justifyContent: { xs: 'center', md: 'flex-start' }
+              justifyContent: 'center'
             }}>
               <Typography variant="body2" color="text.secondary" sx={{ mr: 2 }}>
                 Question {activeStep + 1} of {questions.length}
@@ -410,23 +410,21 @@ const Quiz = () => {
                 sx={{ 
                   flex: 1,
                   '& .MuiStep-root': {
-                    minWidth: { xs: 'auto', md: '100px' },
+                    minWidth: 'auto',
                     '& .MuiStepLabel-root': {
-                      padding: { xs: '0 4px', md: '0 8px' },
+                      padding: '0 4px',
                     }
                   }
                 }}
                 alternativeLabel
               >
                 {questions.map((_, index) => {
-                  // On mobile, only show current step and adjacent steps
-                  const isVisible = window.innerWidth < 900 ? 
-                    Math.abs(index - activeStep) <= 1 : true;
+                  // Show only current step and adjacent steps
+                  const isVisible = Math.abs(index - activeStep) <= 1;
                   
                   return (
                     <Step key={index} sx={{ display: isVisible ? 'block' : 'none' }}>
-                      <StepLabel sx={{ display: { xs: 'none', md: 'block' } }}></StepLabel>
-                      <StepLabel sx={{ display: { xs: 'block', md: 'none' } }}>
+                      <StepLabel>
                         {index + 1}
                       </StepLabel>
                     </Step>
