@@ -1,81 +1,9 @@
-import { useState } from 'react';
-import { Container, Typography, Button, Grid, Box, Paper, TextField, Tab, Tabs, Chip } from '@mui/material';
-import { CompareRounded, StarRounded, AccountBalanceRounded, Security, Timeline, TrendingUp } from '@mui/icons-material';
+import { Container, Typography, Button, Grid, Box, Paper, Chip } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
-
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`auth-tabpanel-${index}`}
-      aria-labelledby={`auth-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          {children}
-        </Box>
-      )}
-    </div>
-  );
-}
-
 const Home = () => {
   const navigate = useNavigate();
-  const [tabValue, setTabValue] = useState(0);
-
-  const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
-    setTabValue(newValue);
-  };
-
-  const features = [
-    {
-      icon: <CompareRounded sx={{ fontSize: 40 }} />,
-      title: 'Compare Credit Cards',
-      description: 'Find the perfect credit card tailored to your spending habits and lifestyle.',
-      link: '/compare'
-    },
-    {
-      icon: <StarRounded sx={{ fontSize: 40 }} />,
-      title: 'Optimize Rewards',
-      description: 'Maximize your credit card rewards by tracking and optimizing your points.',
-      link: '/points'
-    },
-    {
-      icon: <AccountBalanceRounded sx={{ fontSize: 40 }} />,
-      title: 'Manage Debt',
-      description: 'Get personalized strategies to manage and reduce your credit card debt.',
-      link: '/debt'
-    }
-  ];
-
-  const benefits = [
-    {
-      icon: <Security sx={{ fontSize: 40, color: 'primary.main' }} />,
-      title: 'Smart Recommendations',
-      description: 'Our AI-powered system analyzes your spending patterns to recommend the best cards for your lifestyle.'
-    },
-    {
-      icon: <Timeline sx={{ fontSize: 40, color: 'primary.main' }} />,
-      title: 'Track Your Progress',
-      description: 'Monitor your rewards, spending, and debt payoff progress all in one place.'
-    },
-    {
-      icon: <TrendingUp sx={{ fontSize: 40, color: 'primary.main' }} />,
-      title: 'Maximize Value',
-      description: 'Get the most out of your credit cards with our points optimization strategies.'
-    }
-  ];
 
   return (
     <Container maxWidth="lg" sx={{ py: 8 }}>
