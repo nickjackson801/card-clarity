@@ -28,6 +28,7 @@ interface Question {
   options?: string[];
   min?: number;
   max?: number;
+  step?: number;
 }
 
 const questions: Question[] = [
@@ -37,9 +38,10 @@ const questions: Question[] = [
     type: 'radio',
     options: [
       'Earn travel rewards',
-      'Get cash back',
-      'Build credit',
-      'Balance transfer',
+      'Get cash back on purchases',
+      'Build or rebuild credit',
+      'Transfer existing card balance',
+      'Finance a large purchase',
       'Business expenses'
     ]
   },
@@ -48,33 +50,25 @@ const questions: Question[] = [
     text: 'What is your average monthly spending?',
     type: 'slider',
     min: 0,
-    max: 50000
+    max: 30000,
+    step: 5000
   },
   {
     id: 3,
-    text: 'Which category do you spend the most on?',
+    text: 'Which category do you spend the most on monthly?',
     type: 'radio',
     options: [
-      'Travel',
-      'Dining',
-      'Groceries',
-      'Gas',
-      'Online Shopping',
-      'Entertainment'
+      'Travel (flights, hotels, car rentals)',
+      'Dining and restaurants',
+      'Groceries and supermarkets',
+      'Gas and transportation',
+      'Online shopping',
+      'Entertainment',
+      'Business services'
     ]
   },
   {
     id: 4,
-    text: 'Are you willing to pay an annual fee for better rewards?',
-    type: 'radio',
-    options: [
-      'Yes, if the benefits outweigh the cost',
-      'No, I prefer no annual fee',
-      'Maybe, depending on the amount'
-    ]
-  },
-  {
-    id: 5,
     text: 'What is your credit score range?',
     type: 'radio',
     options: [
@@ -82,7 +76,116 @@ const questions: Question[] = [
       'Good (700-749)',
       'Fair (650-699)',
       'Poor (Below 650)',
-      'I don\'t know'
+      'I don\'t know my credit score'
+    ]
+  },
+  {
+    id: 5,
+    text: 'How much are you willing to pay for an annual fee?',
+    type: 'radio',
+    options: [
+      'No annual fee',
+      'Up to $95',
+      'Up to $250',
+      'Up to $550',
+      'Any amount if the benefits justify it'
+    ]
+  },
+  {
+    id: 6,
+    text: 'How often do you travel internationally?',
+    type: 'radio',
+    options: [
+      'Never',
+      '1-2 times per year',
+      '3-5 times per year',
+      'More than 5 times per year',
+      'I live or work internationally'
+    ]
+  },
+  {
+    id: 7,
+    text: 'What type of rewards do you prefer?',
+    type: 'radio',
+    options: [
+      'Cash back - direct deposit or statement credit',
+      'Travel points/miles for specific airline or hotel',
+      'Flexible points transferable to partners',
+      'Store-specific rewards',
+      'Simple flat-rate rewards'
+    ]
+  },
+  {
+    id: 8,
+    text: 'Do you currently carry a balance on any credit cards?',
+    type: 'radio',
+    options: [
+      'No, I pay in full each month',
+      'Yes, less than $1,000',
+      'Yes, $1,000 - $5,000',
+      'Yes, $5,000 - $10,000',
+      'Yes, more than $10,000'
+    ]
+  },
+  {
+    id: 9,
+    text: 'Which additional benefits are most important to you?',
+    type: 'radio',
+    options: [
+      'Travel insurance and protections',
+      'Purchase protection and extended warranty',
+      'Airport lounge access',
+      'Cell phone insurance',
+      'Rental car insurance',
+      'None - I just want basic rewards'
+    ]
+  },
+  {
+    id: 10,
+    text: 'How do you primarily use your credit card?',
+    type: 'radio',
+    options: [
+      'Everyday purchases (groceries, gas, etc.)',
+      'Large purchases and bills',
+      'Travel bookings',
+      'Online shopping',
+      'Business expenses',
+      'Emergency backup only'
+    ]
+  },
+  {
+    id: 11,
+    text: 'Are you interested in earning a welcome bonus?',
+    type: 'radio',
+    options: [
+      'Yes, willing to spend more to earn it',
+      'Yes, but only with normal spending',
+      'No, I prefer consistent rewards',
+      'Not sure what this means'
+    ]
+  },
+  {
+    id: 12,
+    text: 'How many credit cards do you currently have?',
+    type: 'radio',
+    options: [
+      'None',
+      '1-2 cards',
+      '3-5 cards',
+      'More than 5 cards'
+    ]
+  },
+  {
+    id: 13,
+    text: 'What is your employment status?',
+    type: 'radio',
+    options: [
+      'Full-time employed',
+      'Part-time employed',
+      'Self-employed/Business owner',
+      'Student',
+      'Retired',
+      'Other'
     ]
   }
 ];
@@ -90,27 +193,103 @@ const questions: Question[] = [
 const recommendedCards = [
   {
     name: 'Premium Travel Rewards',
-    annualFee: 95,
-    rewards: '5x on Travel, 3x on Dining',
-    welcomeBonus: '75,000 points',
+    annualFee: 550,
+    rewards: '5x on Travel, 3x on Dining, 1x on other purchases',
+    welcomeBonus: '100,000 points ($1,500+ value)',
     creditScore: 'Excellent',
-    features: ['No foreign transaction fees', 'Airport lounge access', 'Travel insurance']
+    features: [
+      'Priority airport lounge access',
+      'Global Entry/TSA PreCheck credit',
+      'Annual travel credit',
+      'Trip cancellation insurance',
+      'No foreign transaction fees',
+      'Premium concierge service'
+    ]
   },
   {
-    name: 'Cash Back Plus',
+    name: 'Everyday Cash Back',
     annualFee: 0,
-    rewards: '2% on all purchases',
+    rewards: '3% groceries, 2% online shopping, 1% everything else',
     welcomeBonus: '$200 cash back',
     creditScore: 'Good',
-    features: ['No annual fee', '0% intro APR', 'Cell phone protection']
+    features: [
+      'No annual fee',
+      '0% intro APR for 15 months',
+      'Cell phone protection',
+      'Extended warranty',
+      'Purchase protection'
+    ]
   },
   {
-    name: 'Secured Builder Card',
+    name: 'Balance Transfer Plus',
+    annualFee: 0,
+    rewards: '1.5% on all purchases',
+    welcomeBonus: '0% APR for 21 months on balance transfers',
+    creditScore: 'Good',
+    features: [
+      'No annual fee',
+      'Long 0% APR period',
+      'Balance transfer fee waived',
+      'Free FICO score',
+      'Zero liability protection'
+    ]
+  },
+  {
+    name: 'Business Rewards Elite',
+    annualFee: 295,
+    rewards: '4x on business categories, 2x on travel',
+    welcomeBonus: '120,000 points',
+    creditScore: 'Good to Excellent',
+    features: [
+      'Free employee cards',
+      'Travel insurance',
+      'Purchase protection',
+      'Expense management tools',
+      'No foreign transaction fees'
+    ]
+  },
+  {
+    name: 'Student Builder',
+    annualFee: 0,
+    rewards: '2% on groceries and gas, 1% on other purchases',
+    welcomeBonus: '$50 after first purchase',
+    creditScore: 'Fair or Limited History',
+    features: [
+      'No annual fee',
+      'Good grades reward',
+      'Free credit score',
+      'Credit building tools',
+      'ID theft protection'
+    ]
+  },
+  {
+    name: 'Secured Rebuilder',
     annualFee: 0,
     rewards: '1% on all purchases',
     welcomeBonus: 'None',
-    creditScore: 'Fair',
-    features: ['No credit check', 'Reports to all credit bureaus', 'Graduate to unsecured card']
+    creditScore: 'Poor or Limited History',
+    features: [
+      'No credit check required',
+      'Reports to all credit bureaus',
+      'Graduate to unsecured card',
+      'Free credit score access',
+      'Automatic credit line reviews'
+    ]
+  },
+  {
+    name: 'Luxury Travel Elite',
+    annualFee: 695,
+    rewards: '10x on hotels, 5x on flights, 1x on other purchases',
+    welcomeBonus: '150,000 points',
+    creditScore: 'Excellent',
+    features: [
+      'Global lounge collection',
+      'Hotel elite status',
+      'Airline fee credits',
+      'Fine hotels & resorts benefits',
+      'Premium concierge',
+      'Travel insurance suite'
+    ]
   }
 ];
 
@@ -138,8 +317,10 @@ const Quiz = () => {
   const renderQuestion = (question: Question) => {
     if (question.type === 'radio') {
       return (
-        <FormControl component="fieldset">
-          <FormLabel component="legend">{question.text}</FormLabel>
+        <FormControl component="fieldset" sx={{ width: '100%' }}>
+          <FormLabel component="legend" sx={{ mb: 2, fontSize: '1.1rem', fontWeight: 500 }}>
+            {question.text}
+          </FormLabel>
           <RadioGroup
             value={answers[question.id] || ''}
             onChange={(e) => handleAnswer(question.id, e.target.value)}
@@ -150,6 +331,7 @@ const Quiz = () => {
                 value={option}
                 control={<Radio />}
                 label={option}
+                sx={{ mb: 1 }}
               />
             ))}
           </RadioGroup>
@@ -160,20 +342,33 @@ const Quiz = () => {
     if (question.type === 'slider') {
       return (
         <Box sx={{ width: '100%', mt: 4 }}>
-          <Typography gutterBottom>{question.text}</Typography>
+          <Typography gutterBottom sx={{ mb: 2, fontSize: '1.1rem', fontWeight: 500 }}>
+            {question.text}
+          </Typography>
           <Slider
             value={answers[question.id] as number || 0}
             onChange={(_, value) => handleAnswer(question.id, value as number)}
             min={question.min}
             max={question.max}
-            step={1000}
+            step={question.step || 5000}
             valueLabelDisplay="on"
             valueLabelFormat={(value) => `$${value.toLocaleString()}`}
             marks={[
-              { value: question.min || 0, label: '$0' },
-              { value: (question.max || 0) / 2, label: `$${((question.max || 0) / 2).toLocaleString()}` },
-              { value: question.max || 0, label: `$${(question.max || 0).toLocaleString()}` },
+              { value: 0, label: '$0' },
+              { value: 10000, label: '$10K' },
+              { value: 20000, label: '$20K' },
+              { value: 30000, label: '$30K' },
             ]}
+            sx={{
+              '& .MuiSlider-markLabel': {
+                mt: 2,
+              },
+              '& .MuiSlider-valueLabel': {
+                backgroundColor: 'primary.main',
+                fontSize: '0.875rem',
+                padding: '4px 8px',
+              }
+            }}
           />
         </Box>
       );
