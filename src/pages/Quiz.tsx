@@ -348,15 +348,18 @@ const Quiz = () => {
           <Slider
             value={answers[question.id] as number || 0}
             onChange={(_, value) => handleAnswer(question.id, value as number)}
-            min={question.min}
-            max={question.max}
-            step={question.step || 5000}
+            min={0}
+            max={30000}
+            step={5000}
             valueLabelDisplay="on"
             valueLabelFormat={(value) => `$${value.toLocaleString()}`}
             marks={[
               { value: 0, label: '$0' },
+              { value: 5000, label: '$5K' },
               { value: 10000, label: '$10K' },
+              { value: 15000, label: '$15K' },
               { value: 20000, label: '$20K' },
+              { value: 25000, label: '$25K' },
               { value: 30000, label: '$30K' },
             ]}
             sx={{
