@@ -162,16 +162,17 @@ const Home = () => {
                     sx={{
                       fontWeight: 700,
                       color: '#059669',
-                      display: 'flex',
-                      alignItems: 'center',
-                      '&::before': {
+                      mb: 2,
+                      position: 'relative',
+                      display: 'inline-block',
+                      '&::after': {
                         content: '""',
-                        display: 'block',
-                        width: '4px',
-                        height: '24px',
-                        backgroundColor: '#059669',
-                        marginRight: 2,
-                        borderRadius: 2,
+                        position: 'absolute',
+                        bottom: '-4px',
+                        left: 0,
+                        width: '40%',
+                        height: '2px',
+                        background: 'linear-gradient(to right, #059669, transparent)',
                       },
                     }}
                   >
@@ -183,6 +184,7 @@ const Home = () => {
                       fontSize: '1.1rem',
                       lineHeight: 1.7,
                       color: 'text.secondary',
+                      mt: 2,
                     }}
                   >
                     Finding the right credit card shouldn't be overwhelming. We analyze your spending patterns 
@@ -200,16 +202,17 @@ const Home = () => {
                     sx={{
                       fontWeight: 700,
                       color: 'secondary.main',
-                      display: 'flex',
-                      alignItems: 'center',
-                      '&::before': {
+                      mb: 2,
+                      position: 'relative',
+                      display: 'inline-block',
+                      '&::after': {
                         content: '""',
-                        display: 'block',
-                        width: '4px',
-                        height: '24px',
-                        backgroundColor: 'secondary.main',
-                        marginRight: 2,
-                        borderRadius: 2,
+                        position: 'absolute',
+                        bottom: '-4px',
+                        left: 0,
+                        width: '40%',
+                        height: '2px',
+                        background: 'linear-gradient(to right, #db2777, transparent)',
                       },
                     }}
                   >
@@ -221,6 +224,7 @@ const Home = () => {
                       fontSize: '1.1rem',
                       lineHeight: 1.7,
                       color: 'text.secondary',
+                      mt: 2,
                     }}
                   >
                     We bridge the gap in credit card rewards by helping you discover the true value of your points. 
@@ -238,16 +242,17 @@ const Home = () => {
                     sx={{
                       fontWeight: 700,
                       color: '#7c3aed',
-                      display: 'flex',
-                      alignItems: 'center',
-                      '&::before': {
+                      mb: 2,
+                      position: 'relative',
+                      display: 'inline-block',
+                      '&::after': {
                         content: '""',
-                        display: 'block',
-                        width: '4px',
-                        height: '24px',
-                        backgroundColor: '#7c3aed',
-                        marginRight: 2,
-                        borderRadius: 2,
+                        position: 'absolute',
+                        bottom: '-4px',
+                        left: 0,
+                        width: '40%',
+                        height: '2px',
+                        background: 'linear-gradient(to right, #7c3aed, transparent)',
                       },
                     }}
                   >
@@ -259,6 +264,7 @@ const Home = () => {
                       fontSize: '1.1rem',
                       lineHeight: 1.7,
                       color: 'text.secondary',
+                      mt: 2,
                     }}
                   >
                     With credit card debt becoming a growing global concern, we're committed to helping you stay 
