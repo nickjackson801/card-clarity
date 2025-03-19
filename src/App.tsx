@@ -55,7 +55,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router>
+      <Router basename="/card-clarity">
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static" elevation={0} sx={{ bgcolor: 'background.paper' }}>
             <Toolbar>
