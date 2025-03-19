@@ -396,10 +396,25 @@ const Quiz = () => {
 
         {!showResults ? (
           <Paper sx={{ p: { xs: 2, md: 4 }, mt: 4 }}>
-            <Stepper activeStep={activeStep} sx={{ mb: 4 }}>
+            <Stepper 
+              activeStep={activeStep} 
+              sx={{ 
+                mb: 4,
+                '& .MuiStep-root': {
+                  minWidth: { xs: 'auto', md: '100px' },
+                  '& .MuiStepLabel-root': {
+                    padding: { xs: '0 4px', md: '0 8px' },
+                  }
+                }
+              }}
+              alternativeLabel
+            >
               {questions.map((_, index) => (
                 <Step key={index}>
-                  <StepLabel></StepLabel>
+                  <StepLabel sx={{ display: { xs: 'none', md: 'block' } }}></StepLabel>
+                  <StepLabel sx={{ display: { xs: 'block', md: 'none' } }}>
+                    {index + 1}
+                  </StepLabel>
                 </Step>
               ))}
             </Stepper>
@@ -407,7 +422,17 @@ const Quiz = () => {
             <Box sx={{ mt: 4 }}>
               {renderQuestion(questions[activeStep])}
 
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 4 }}>
+              <Box sx={{ 
+                display: 'flex', 
+                justifyContent: 'space-between', 
+                mt: 4,
+                position: 'sticky',
+                bottom: 0,
+                bgcolor: 'background.paper',
+                py: 2,
+                borderTop: '1px solid',
+                borderColor: 'divider'
+              }}>
                 <Button
                   disabled={activeStep === 0}
                   onClick={handleBack}
