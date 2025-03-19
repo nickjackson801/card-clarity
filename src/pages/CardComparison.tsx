@@ -94,19 +94,26 @@ const CardComparison = () => {
               <Typography variant="h6" gutterBottom sx={{ mb: 6 }}>
                 Monthly Spending
               </Typography>
-              <Box sx={{ px: 2, mt: 4, mb: 2 }}>
+              <Box sx={{ mt: 6, mb: 4 }}>
+                <Typography variant="h6" gutterBottom sx={{ mb: 3 }}>
+                  Monthly Spending
+                </Typography>
                 <Slider
                   value={spendingAmount}
                   onChange={(_, value) => setSpendingAmount(value as number)}
                   min={0}
-                  max={50000}
-                  step={1000}
+                  max={30000}
+                  step={5000}
                   valueLabelDisplay="on"
                   valueLabelFormat={(value) => `$${value.toLocaleString()}`}
                   marks={[
                     { value: 0, label: '$0' },
+                    { value: 5000, label: '$5K' },
+                    { value: 10000, label: '$10K' },
+                    { value: 15000, label: '$15K' },
+                    { value: 20000, label: '$20K' },
                     { value: 25000, label: '$25K' },
-                    { value: 50000, label: '$50K' },
+                    { value: 30000, label: '$30K' },
                   ]}
                   sx={{
                     '& .MuiSlider-markLabel': {
