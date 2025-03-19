@@ -10,24 +10,24 @@ interface Slide {
 
 const slides: Slide[] = [
   {
-    image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&q=80',
-    title: 'Compare Credit Cards',
-    description: 'Find the perfect card that matches your spending habits and goals'
+    image: 'https://images.unsplash.com/photo-1563986768609-322da59675a5?auto=format&fit=crop&q=80',
+    title: 'Smart Card Recommendations',
+    description: 'Get personalized credit card suggestions based on your spending habits and financial goals.'
   },
   {
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&q=80',
     title: 'Points Optimization',
-    description: 'Maximize your rewards with our smart points calculator'
+    description: 'Maximize your rewards with our intelligent points optimization system.'
   },
   {
-    image: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&q=80',
     title: 'Debt Management',
-    description: 'Create a personalized debt payoff plan that works for you'
+    description: 'Take control of your credit card debt with personalized payoff strategies.'
   },
   {
-    image: 'https://images.unsplash.com/photo-1556742396-9c8a0a7232a3?auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&q=80',
     title: 'Smart Recommendations',
-    description: 'Get personalized card recommendations based on your needs'
+    description: 'Get personalized credit card suggestions based on your spending habits and financial goals.'
   }
 ];
 
