@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { AppBar, Toolbar, Typography, Button, Box, CssBaseline } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Box, CssBaseline, IconButton } from '@mui/material';
+import { Home as HomeIcon } from '@mui/icons-material';
 import Home from './pages/Home';
 import CardComparison from './pages/CardComparison';
 import PointsOptimizer from './pages/PointsOptimizer';
@@ -72,6 +73,19 @@ function App() {
               >
                 Card Clarity
               </Typography>
+              <IconButton
+                component={Link}
+                to="/"
+                sx={{
+                  color: 'text.primary',
+                  mr: 1,
+                  '&:hover': {
+                    color: 'primary.main',
+                  },
+                }}
+              >
+                <HomeIcon />
+              </IconButton>
               <Button
                 component={Link}
                 to="/compare"
