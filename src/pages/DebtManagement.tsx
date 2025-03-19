@@ -2,35 +2,21 @@ import { useState } from 'react';
 import {
   Container,
   Typography,
-  Box,
-  Grid,
   Paper,
+  Box,
+  TextField,
   Button,
-  LinearProgress,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  Divider,
+  Grid,
   Card,
   CardContent,
-  TextField,
+  LinearProgress,
   Select,
   MenuItem,
   FormControl,
   InputLabel,
   IconButton,
-  Tooltip,
 } from '@mui/material';
-import {
-  TrendingDown,
-  AccountBalance,
-  Timeline,
-  SwapHoriz,
-  CreditCard,
-  Add as AddIcon,
-  Delete as DeleteIcon,
-} from '@mui/icons-material';
+import { Delete as DeleteIcon, Add as AddIcon } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
 interface DebtCard {
@@ -93,34 +79,6 @@ const DebtManagement = () => {
     return Math.ceil(totalDebt / effectivePayment);
   };
 
-  const strategies = [
-    {
-      title: 'Debt Avalanche',
-      description: 'Pay highest interest rate first',
-      savings: '$523',
-      timeToDebtFree: '18 months',
-      icon: <TrendingDown />,
-    },
-    {
-      title: 'Debt Snowball',
-      description: 'Pay smallest balance first',
-      savings: '$486',
-      timeToDebtFree: '19 months',
-      icon: <Timeline />,
-    },
-    {
-      title: 'Balance Transfer',
-      description: 'Transfer to 0% APR card',
-      savings: '$892',
-      timeToDebtFree: '15 months',
-      icon: <SwapHoriz />,
-    },
-  ];
-
-  const calculateUtilization = (balance: number, limit: number) => {
-    return (balance / limit) * 100;
-  };
-
   return (
     <Container maxWidth="lg" sx={{ py: 8 }}>
       <motion.div
@@ -134,159 +92,159 @@ const DebtManagement = () => {
         <Typography variant="h6" color="text.secondary" paragraph>
           Track your credit card debt and create a payoff strategy
         </Typography>
-      </motion.div>
 
-      <Grid container spacing={4}>
-        <Grid item xs={12} md={8}>
-          <Paper sx={{ p: 4, mb: 4 }}>
-            <Typography variant="h5" gutterBottom>
-              Add New Card
-            </Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Card Name"
-                  value={newCard.name}
-                  onChange={(e) => setNewCard({ ...newCard, name: e.target.value })}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Current Balance"
-                  type="number"
-                  value={newCard.balance}
-                  onChange={(e) => setNewCard({ ...newCard, balance: Number(e.target.value) })}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Interest Rate (%)"
-                  type="number"
-                  value={newCard.interestRate}
-                  onChange={(e) => setNewCard({ ...newCard, interestRate: Number(e.target.value) })}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Minimum Payment"
-                  type="number"
-                  value={newCard.minimumPayment}
-                  onChange={(e) => setNewCard({ ...newCard, minimumPayment: Number(e.target.value) })}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControl fullWidth>
-                  <InputLabel>Payment Strategy</InputLabel>
-                  <Select
-                    value={newCard.paymentStrategy || 'avalanche'}
-                    label="Payment Strategy"
-                    onChange={(e) => setNewCard({ ...newCard, paymentStrategy: e.target.value as 'avalanche' | 'snowball' })}
-                  >
-                    <MenuItem value="avalanche">Debt Avalanche (Highest Interest First)</MenuItem>
-                    <MenuItem value="snowball">Debt Snowball (Lowest Balance First)</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12}>
-                <Button
-                  variant="contained"
-                  onClick={handleAddCard}
-                  startIcon={<AddIcon />}
-                  disabled={!newCard.name || !newCard.balance}
-                >
-                  Add Card
-                </Button>
-              </Grid>
-            </Grid>
-          </Paper>
-
-          {debtCards.map((card) => (
-            <Card key={card.id} sx={{ mb: 2 }}>
-              <CardContent>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <Typography variant="h6">{card.name}</Typography>
-                  <IconButton onClick={() => handleDeleteCard(card.id)} color="error">
-                    <DeleteIcon />
-                  </IconButton>
-                </Box>
-                <Grid container spacing={2} sx={{ mt: 1 }}>
-                  <Grid item xs={12} sm={4}>
-                    <Typography color="text.secondary">Balance</Typography>
-                    <Typography variant="h6">${card.balance.toLocaleString()}</Typography>
-                  </Grid>
-                  <Grid item xs={12} sm={4}>
-                    <Typography color="text.secondary">Interest Rate</Typography>
-                    <Typography variant="h6">{card.interestRate}%</Typography>
-                  </Grid>
-                  <Grid item xs={12} sm={4}>
-                    <Typography color="text.secondary">Minimum Payment</Typography>
-                    <Typography variant="h6">${card.minimumPayment.toLocaleString()}</Typography>
-                  </Grid>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={8}>
+            <Paper sx={{ p: 4, mb: 4 }}>
+              <Typography variant="h5" gutterBottom>
+                Add New Card
+              </Typography>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    fullWidth
+                    label="Card Name"
+                    value={newCard.name}
+                    onChange={(e) => setNewCard({ ...newCard, name: e.target.value })}
+                  />
                 </Grid>
-              </CardContent>
-            </Card>
-          ))}
-        </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    fullWidth
+                    label="Current Balance"
+                    type="number"
+                    value={newCard.balance}
+                    onChange={(e) => setNewCard({ ...newCard, balance: Number(e.target.value) })}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    fullWidth
+                    label="Interest Rate (%)"
+                    type="number"
+                    value={newCard.interestRate}
+                    onChange={(e) => setNewCard({ ...newCard, interestRate: Number(e.target.value) })}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    fullWidth
+                    label="Minimum Payment"
+                    type="number"
+                    value={newCard.minimumPayment}
+                    onChange={(e) => setNewCard({ ...newCard, minimumPayment: Number(e.target.value) })}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControl fullWidth>
+                    <InputLabel>Payment Strategy</InputLabel>
+                    <Select
+                      value={newCard.paymentStrategy || 'avalanche'}
+                      label="Payment Strategy"
+                      onChange={(e) => setNewCard({ ...newCard, paymentStrategy: e.target.value as 'avalanche' | 'snowball' })}
+                    >
+                      <MenuItem value="avalanche">Debt Avalanche (Highest Interest First)</MenuItem>
+                      <MenuItem value="snowball">Debt Snowball (Lowest Balance First)</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
+                  <Button
+                    variant="contained"
+                    onClick={handleAddCard}
+                    startIcon={<AddIcon />}
+                    disabled={!newCard.name || !newCard.balance}
+                  >
+                    Add Card
+                  </Button>
+                </Grid>
+              </Grid>
+            </Paper>
 
-        <Grid item xs={12} md={4}>
-          <Paper sx={{ p: 4, position: 'sticky', top: 24 }}>
-            <Typography variant="h5" gutterBottom>
-              Debt Summary
-            </Typography>
-            <Box sx={{ mb: 4 }}>
-              <Typography color="text.secondary" gutterBottom>
-                Total Debt
-              </Typography>
-              <Typography variant="h4" color="error" gutterBottom>
-                ${totalDebt.toLocaleString()}
-              </Typography>
-              <LinearProgress
-                variant="determinate"
-                value={Math.min((monthlyPayment / totalMinPayment) * 100, 100)}
-                sx={{ mt: 2 }}
-              />
-            </Box>
+            {debtCards.map((card) => (
+              <Card key={card.id} sx={{ mb: 2 }}>
+                <CardContent>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Typography variant="h6">{card.name}</Typography>
+                    <IconButton onClick={() => handleDeleteCard(card.id)} color="error">
+                      <DeleteIcon />
+                    </IconButton>
+                  </Box>
+                  <Grid container spacing={2} sx={{ mt: 1 }}>
+                    <Grid item xs={12} sm={4}>
+                      <Typography color="text.secondary">Balance</Typography>
+                      <Typography variant="h6">${card.balance.toLocaleString()}</Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <Typography color="text.secondary">Interest Rate</Typography>
+                      <Typography variant="h6">{card.interestRate}%</Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <Typography color="text.secondary">Minimum Payment</Typography>
+                      <Typography variant="h6">${card.minimumPayment.toLocaleString()}</Typography>
+                    </Grid>
+                  </Grid>
+                </CardContent>
+              </Card>
+            ))}
+          </Grid>
 
-            <Box sx={{ mb: 4 }}>
-              <Typography color="text.secondary" gutterBottom>
-                Monthly Payment
+          <Grid item xs={12} md={4}>
+            <Paper sx={{ p: 4, position: 'sticky', top: 24 }}>
+              <Typography variant="h5" gutterBottom>
+                Debt Summary
               </Typography>
-              <TextField
+              <Box sx={{ mb: 4 }}>
+                <Typography color="text.secondary" gutterBottom>
+                  Total Debt
+                </Typography>
+                <Typography variant="h4" color="error" gutterBottom>
+                  ${totalDebt.toLocaleString()}
+                </Typography>
+                <LinearProgress
+                  variant="determinate"
+                  value={Math.min((monthlyPayment / totalMinPayment) * 100, 100)}
+                  sx={{ mt: 2 }}
+                />
+              </Box>
+
+              <Box sx={{ mb: 4 }}>
+                <Typography color="text.secondary" gutterBottom>
+                  Monthly Payment
+                </Typography>
+                <TextField
+                  fullWidth
+                  type="number"
+                  value={monthlyPayment}
+                  onChange={(e) => setMonthlyPayment(Number(e.target.value))}
+                  sx={{ mb: 2 }}
+                />
+                <Typography variant="body2" color="text.secondary">
+                  Minimum required: ${totalMinPayment.toLocaleString()}
+                </Typography>
+              </Box>
+
+              <Box>
+                <Typography color="text.secondary" gutterBottom>
+                  Estimated Payoff Time
+                </Typography>
+                <Typography variant="h6">
+                  {getPayoffTime()} months
+                </Typography>
+              </Box>
+
+              <Button
                 fullWidth
-                type="number"
-                value={monthlyPayment}
-                onChange={(e) => setMonthlyPayment(Number(e.target.value))}
-                sx={{ mb: 2 }}
-              />
-              <Typography variant="body2" color="text.secondary">
-                Minimum required: ${totalMinPayment.toLocaleString()}
-              </Typography>
-            </Box>
-
-            <Box>
-              <Typography color="text.secondary" gutterBottom>
-                Estimated Payoff Time
-              </Typography>
-              <Typography variant="h6">
-                {getPayoffTime()} months
-              </Typography>
-            </Box>
-
-            <Button
-              fullWidth
-              variant="contained"
-              sx={{ mt: 4 }}
-              disabled={debtCards.length === 0}
-            >
-              Generate Payoff Plan
-            </Button>
-          </Paper>
+                variant="contained"
+                sx={{ mt: 4 }}
+                disabled={debtCards.length === 0}
+              >
+                Generate Payoff Plan
+              </Button>
+            </Paper>
+          </Grid>
         </Grid>
-      </Grid>
+      </motion.div>
     </Container>
   );
 };
