@@ -396,28 +396,44 @@ const Quiz = () => {
 
         {!showResults ? (
           <Paper sx={{ p: { xs: 2, md: 4 }, mt: 4 }}>
-            <Stepper 
-              activeStep={activeStep} 
-              sx={{ 
-                mb: 4,
-                '& .MuiStep-root': {
-                  minWidth: { xs: 'auto', md: '100px' },
-                  '& .MuiStepLabel-root': {
-                    padding: { xs: '0 4px', md: '0 8px' },
+            <Box sx={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              mb: 4,
+              justifyContent: { xs: 'center', md: 'flex-start' }
+            }}>
+              <Typography variant="body2" color="text.secondary" sx={{ mr: 2 }}>
+                Question {activeStep + 1} of {questions.length}
+              </Typography>
+              <Stepper 
+                activeStep={activeStep} 
+                sx={{ 
+                  flex: 1,
+                  '& .MuiStep-root': {
+                    minWidth: { xs: 'auto', md: '100px' },
+                    '& .MuiStepLabel-root': {
+                      padding: { xs: '0 4px', md: '0 8px' },
+                    }
                   }
-                }
-              }}
-              alternativeLabel
-            >
-              {questions.map((_, index) => (
-                <Step key={index}>
-                  <StepLabel sx={{ display: { xs: 'none', md: 'block' } }}></StepLabel>
-                  <StepLabel sx={{ display: { xs: 'block', md: 'none' } }}>
-                    {index + 1}
-                  </StepLabel>
-                </Step>
-              ))}
-            </Stepper>
+                }}
+                alternativeLabel
+              >
+                {questions.map((_, index) => {
+                  // On mobile, only show current step and adjacent steps
+                  const isVisible = window.innerWidth < 900 ? 
+                    Math.abs(index - activeStep) <= 1 : true;
+                  
+                  return (
+                    <Step key={index} sx={{ display: isVisible ? 'block' : 'none' }}>
+                      <StepLabel sx={{ display: { xs: 'none', md: 'block' } }}></StepLabel>
+                      <StepLabel sx={{ display: { xs: 'block', md: 'none' } }}>
+                        {index + 1}
+                      </StepLabel>
+                    </Step>
+                  );
+                })}
+              </Stepper>
+            </Box>
 
             <Box sx={{ mt: 4 }}>
               {renderQuestion(questions[activeStep])}
@@ -431,7 +447,8 @@ const Quiz = () => {
                 bgcolor: 'background.paper',
                 py: 2,
                 borderTop: '1px solid',
-                borderColor: 'divider'
+                borderColor: 'divider',
+                zIndex: 1
               }}>
                 <Button
                   disabled={activeStep === 0}
