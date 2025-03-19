@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import {
   Box,
   IconButton,
@@ -32,6 +32,15 @@ const ChatBot = () => {
     },
   ]);
   const [input, setInput] = useState('');
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const handleSend = () => {
     if (!input.trim()) return;
@@ -169,6 +178,7 @@ const ChatBot = () => {
                 </motion.div>
               ))}
             </AnimatePresence>
+            <div ref={messagesEndRef} />
           </List>
 
           <Divider />
