@@ -2,18 +2,12 @@ import { useState } from 'react';
 import {
   Container,
   Typography,
+  Paper,
   Box,
   Grid,
-  Paper,
-  Button,
   Card,
   CardContent,
-  LinearProgress,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  Divider,
+  Button,
   TextField,
   Select,
   MenuItem,
@@ -22,15 +16,7 @@ import {
   IconButton,
   Chip,
 } from '@mui/material';
-import {
-  FlightTakeoff,
-  Hotel,
-  Restaurant,
-  ShoppingCart,
-  TrendingUp,
-  Add as AddIcon,
-  Delete as DeleteIcon,
-} from '@mui/icons-material';
+import { Add as AddIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
 interface PointsCard {
