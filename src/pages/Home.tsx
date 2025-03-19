@@ -4,27 +4,42 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const Home = () => {
+  const COLORS = {
+    cardComparison: {
+      main: '#2563eb',
+      light: '#60a5fa',
+    },
+    pointsOptimizer: {
+      main: '#7c3aed',
+      light: '#a78bfa',
+    },
+    debtManagement: {
+      main: '#059669',
+      light: '#34d399',
+    },
+  };
+
   const services = [
     {
       title: 'Compare Cards',
       description: 'Find the perfect credit card by comparing rewards, benefits, and fees. Our smart comparison tool helps you make informed decisions based on your spending habits.',
       icon: <CompareArrows sx={{ fontSize: 40 }} />,
       link: '/compare',
-      color: '#2563eb',
+      color: COLORS.cardComparison.main,
     },
     {
       title: 'Points Optimizer',
       description: 'Maximize your credit card rewards with our points optimization tool. Track your points across multiple cards and discover the best redemption options.',
       icon: <Stars sx={{ fontSize: 40 }} />,
       link: '/points',
-      color: '#7c3aed',
+      color: COLORS.pointsOptimizer.main,
     },
     {
       title: 'Debt Management',
       description: 'Take control of your credit card debt with personalized payoff strategies. Compare different methods and create a plan that works for your financial goals.',
       icon: <AccountBalance sx={{ fontSize: 40 }} />,
       link: '/debt',
-      color: '#059669',
+      color: COLORS.debtManagement.main,
     },
   ];
 
@@ -33,7 +48,7 @@ const Home = () => {
       {/* Hero Section */}
       <Box
         sx={{
-          background: 'linear-gradient(45deg, #2563eb 30%, #60a5fa 90%)',
+          background: `linear-gradient(45deg, ${COLORS.cardComparison.main} 30%, ${COLORS.cardComparison.light} 90%)`,
           color: 'white',
           py: { xs: 8, md: 12 },
           mb: 6,
@@ -128,7 +143,7 @@ const Home = () => {
                 left: '50%',
                 width: '200%',
                 height: '100%',
-                background: 'radial-gradient(circle at center, rgba(37, 99, 235, 0.08) 0%, rgba(124, 58, 237, 0.05) 50%, rgba(5, 150, 105, 0.03) 100%)',
+                background: `radial-gradient(circle at center, rgba(37, 99, 235, 0.08) 0%, rgba(124, 58, 237, 0.05) 50%, rgba(5, 150, 105, 0.03) 100%)`,
                 transform: 'translateX(-50%)',
                 zIndex: -1,
               }}
@@ -143,7 +158,7 @@ const Home = () => {
                 fontSize: { xs: '2rem', md: '2.75rem' },
                 textAlign: 'center',
                 mb: 6,
-                background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #059669 100%)',
+                background: `linear-gradient(135deg, ${COLORS.cardComparison.main} 0%, ${COLORS.pointsOptimizer.main} 50%, ${COLORS.debtManagement.main} 100%)`,
                 backgroundClip: 'text',
                 WebkitBackgroundClip: 'text',
                 color: 'transparent',
@@ -161,7 +176,7 @@ const Home = () => {
                     gutterBottom
                     sx={{
                       fontWeight: 700,
-                      color: '#059669',
+                      color: COLORS.cardComparison.main,
                       mb: 2,
                       position: 'relative',
                       display: 'inline-block',
@@ -172,7 +187,7 @@ const Home = () => {
                         left: 0,
                         width: '40%',
                         height: '2px',
-                        background: 'linear-gradient(to right, #059669, transparent)',
+                        background: `linear-gradient(to right, ${COLORS.cardComparison.main}, transparent)`,
                       },
                     }}
                   >
@@ -201,7 +216,7 @@ const Home = () => {
                     gutterBottom
                     sx={{
                       fontWeight: 700,
-                      color: 'secondary.main',
+                      color: COLORS.pointsOptimizer.main,
                       mb: 2,
                       position: 'relative',
                       display: 'inline-block',
@@ -212,7 +227,7 @@ const Home = () => {
                         left: 0,
                         width: '40%',
                         height: '2px',
-                        background: 'linear-gradient(to right, #db2777, transparent)',
+                        background: `linear-gradient(to right, ${COLORS.pointsOptimizer.main}, transparent)`,
                       },
                     }}
                   >
@@ -241,7 +256,7 @@ const Home = () => {
                     gutterBottom
                     sx={{
                       fontWeight: 700,
-                      color: '#7c3aed',
+                      color: COLORS.debtManagement.main,
                       mb: 2,
                       position: 'relative',
                       display: 'inline-block',
@@ -252,7 +267,7 @@ const Home = () => {
                         left: 0,
                         width: '40%',
                         height: '2px',
-                        background: 'linear-gradient(to right, #7c3aed, transparent)',
+                        background: `linear-gradient(to right, ${COLORS.debtManagement.main}, transparent)`,
                       },
                     }}
                   >
@@ -281,7 +296,7 @@ const Home = () => {
       {/* Customer Reviews Section */}
       <Box
         sx={{
-          background: 'linear-gradient(to bottom, rgba(37, 99, 235, 0.03), rgba(124, 58, 237, 0.05))',
+          background: `linear-gradient(to bottom, rgba(37, 99, 235, 0.03), rgba(124, 58, 237, 0.05))`,
           py: { xs: 8, md: 12 },
           mb: 8,
         }}
@@ -335,7 +350,7 @@ const Home = () => {
                         width: 48,
                         height: 48,
                         borderRadius: '50%',
-                        background: 'linear-gradient(45deg, #2563eb, #60a5fa)',
+                        background: `linear-gradient(45deg, ${COLORS.cardComparison.main}, ${COLORS.cardComparison.light})`,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -392,7 +407,7 @@ const Home = () => {
                         width: 48,
                         height: 48,
                         borderRadius: '50%',
-                        background: 'linear-gradient(45deg, #7c3aed, #a78bfa)',
+                        background: `linear-gradient(45deg, ${COLORS.pointsOptimizer.main}, ${COLORS.pointsOptimizer.light})`,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -449,7 +464,7 @@ const Home = () => {
                         width: 48,
                         height: 48,
                         borderRadius: '50%',
-                        background: 'linear-gradient(45deg, #059669, #34d399)',
+                        background: `linear-gradient(45deg, ${COLORS.debtManagement.main}, ${COLORS.debtManagement.light})`,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
