@@ -69,11 +69,15 @@ const CardComparison = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <Paper sx={{ p: 3 }} elevation={2}>
-              <Typography variant="h6" gutterBottom sx={{ mb: 4 }}>
+            <Paper sx={{ 
+              p: 3,
+              background: 'linear-gradient(to bottom right, #ffffff, #f8fafc)',
+              boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+            }} elevation={2}>
+              <Typography variant="h6" gutterBottom sx={{ mb: 3 }}>
                 Monthly Spending
               </Typography>
-              <Box sx={{ px: 2, mt: 4 }}>
+              <Box sx={{ px: 2 }}>
                 <Slider
                   value={spendingAmount}
                   onChange={(_, value) => setSpendingAmount(value as number)}
@@ -87,6 +91,11 @@ const CardComparison = () => {
                     { value: 5000, label: '$5,000' },
                     { value: 10000, label: '$10,000' },
                   ]}
+                  sx={{
+                    '& .MuiSlider-markLabel': {
+                      mt: 1,
+                    },
+                  }}
                 />
               </Box>
 
@@ -130,9 +139,12 @@ const CardComparison = () => {
                   <Paper
                     sx={{
                       p: 3,
+                      background: 'linear-gradient(to bottom right, #ffffff, #f8fafc)',
+                      boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
                       '&:hover': {
                         transform: 'translateY(-4px)',
-                        transition: 'transform 0.3s ease-in-out',
+                        transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+                        boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
                       },
                     }}
                     elevation={2}
