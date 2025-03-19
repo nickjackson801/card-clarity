@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { AppBar, Toolbar, Typography, Button, Box, CssBaseline } from '@mui/material';
 import Home from './pages/Home';
@@ -120,6 +120,7 @@ function App() {
             <Route path="/points" element={<PointsOptimizer />} />
             <Route path="/debt" element={<DebtManagement />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Box>
       </Router>
