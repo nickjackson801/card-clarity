@@ -11,7 +11,6 @@ import {
   ListItem,
   Divider,
   Link,
-  Tooltip,
 } from '@mui/material';
 import {
   Chat as ChatIcon,
