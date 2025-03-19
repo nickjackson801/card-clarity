@@ -278,6 +278,204 @@ const Home = () => {
         </motion.div>
       </Container>
 
+      {/* Customer Reviews Section */}
+      <Box
+        sx={{
+          background: 'linear-gradient(to bottom, rgba(37, 99, 235, 0.03), rgba(124, 58, 237, 0.05))',
+          py: { xs: 8, md: 12 },
+          mb: 8,
+        }}
+      >
+        <Container maxWidth="lg">
+          <Typography
+            variant="h3"
+            component="h2"
+            align="center"
+            gutterBottom
+            sx={{
+              fontWeight: 700,
+              mb: 6,
+              fontSize: { xs: '2rem', md: '2.5rem' },
+            }}
+          >
+            What Our Users Say
+          </Typography>
+          <Grid container spacing={4}>
+            <Grid item xs={12} md={4}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <Paper
+                  elevation={0}
+                  sx={{
+                    p: 4,
+                    height: '100%',
+                    background: 'rgba(255, 255, 255, 0.9)',
+                    backdropFilter: 'blur(10px)',
+                    borderRadius: 2,
+                  }}
+                >
+                  <Typography
+                    variant="body1"
+                    paragraph
+                    sx={{
+                      fontSize: '1.1rem',
+                      fontStyle: 'italic',
+                      mb: 3,
+                      color: 'text.secondary',
+                    }}
+                  >
+                    "I was overwhelmed by all the credit card options out there. This tool helped me find the perfect card that matches my spending habits. Now I'm earning twice the rewards I used to get!"
+                  </Typography>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Box
+                      sx={{
+                        width: 48,
+                        height: 48,
+                        borderRadius: '50%',
+                        background: 'linear-gradient(45deg, #2563eb, #60a5fa)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: 'white',
+                        fontWeight: 600,
+                        mr: 2,
+                      }}
+                    >
+                      SM
+                    </Box>
+                    <Box>
+                      <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                        Sarah Mitchell
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        New York, NY
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Paper>
+              </motion.div>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <Paper
+                  elevation={0}
+                  sx={{
+                    p: 4,
+                    height: '100%',
+                    background: 'rgba(255, 255, 255, 0.9)',
+                    backdropFilter: 'blur(10px)',
+                    borderRadius: 2,
+                  }}
+                >
+                  <Typography
+                    variant="body1"
+                    paragraph
+                    sx={{
+                      fontSize: '1.1rem',
+                      fontStyle: 'italic',
+                      mb: 3,
+                      color: 'text.secondary',
+                    }}
+                  >
+                    "The points optimization feature is a game-changer! It tells me exactly which card to use for different purchases, and I've already booked a free flight using the points I earned."
+                  </Typography>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Box
+                      sx={{
+                        width: 48,
+                        height: 48,
+                        borderRadius: '50%',
+                        background: 'linear-gradient(45deg, #7c3aed, #a78bfa)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: 'white',
+                        fontWeight: 600,
+                        mr: 2,
+                      }}
+                    >
+                      JR
+                    </Box>
+                    <Box>
+                      <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                        James Rodriguez
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        Austin, TX
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Paper>
+              </motion.div>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <Paper
+                  elevation={0}
+                  sx={{
+                    p: 4,
+                    height: '100%',
+                    background: 'rgba(255, 255, 255, 0.9)',
+                    backdropFilter: 'blur(10px)',
+                    borderRadius: 2,
+                  }}
+                >
+                  <Typography
+                    variant="body1"
+                    paragraph
+                    sx={{
+                      fontSize: '1.1rem',
+                      fontStyle: 'italic',
+                      mb: 3,
+                      color: 'text.secondary',
+                    }}
+                  >
+                    "The debt management tool gave me a clear path to becoming debt-free. It helped me prioritize my payments and showed me exactly how long it would take. I'm now halfway through my payoff plan!"
+                  </Typography>
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Box
+                      sx={{
+                        width: 48,
+                        height: 48,
+                        borderRadius: '50%',
+                        background: 'linear-gradient(45deg, #059669, #34d399)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: 'white',
+                        fontWeight: 600,
+                        mr: 2,
+                      }}
+                    >
+                      EW
+                    </Box>
+                    <Box>
+                      <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                        Emma Wilson
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        Seattle, WA
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Paper>
+              </motion.div>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+
       {/* Services Section */}
       <Container maxWidth="lg" sx={{ mb: 8 }}>
         <Grid container spacing={4}>
