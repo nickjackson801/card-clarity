@@ -70,18 +70,25 @@ const CardComparison = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <Paper sx={{ p: 3 }} elevation={2}>
-              <Typography variant="h6" gutterBottom>
+              <Typography variant="h6" gutterBottom sx={{ mb: 4 }}>
                 Monthly Spending
               </Typography>
-              <Slider
-                value={spendingAmount}
-                onChange={(_, value) => setSpendingAmount(value as number)}
-                min={0}
-                max={10000}
-                step={100}
-                valueLabelDisplay="on"
-                valueLabelFormat={(value) => `$${value}`}
-              />
+              <Box sx={{ px: 2, mt: 4 }}>
+                <Slider
+                  value={spendingAmount}
+                  onChange={(_, value) => setSpendingAmount(value as number)}
+                  min={0}
+                  max={10000}
+                  step={100}
+                  valueLabelDisplay="on"
+                  valueLabelFormat={(value) => `$${value}`}
+                  marks={[
+                    { value: 0, label: '$0' },
+                    { value: 5000, label: '$5,000' },
+                    { value: 10000, label: '$10,000' },
+                  ]}
+                />
+              </Box>
 
               <Box sx={{ mt: 4 }}>
                 <FormControl fullWidth>

@@ -84,6 +84,17 @@ const Home = () => {
           bgcolor: 'background.paper',
           pt: 8,
           pb: 6,
+          position: 'relative',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'linear-gradient(180deg, rgba(37,99,235,0.03) 0%, rgba(37,99,235,0) 100%)',
+            zIndex: 0,
+          },
         }}
       >
         <Container maxWidth="lg">
@@ -268,9 +279,12 @@ const Home = () => {
                       alignItems: 'center',
                       textAlign: 'center',
                       cursor: 'pointer',
+                      background: 'linear-gradient(to bottom right, #ffffff, #f8fafc)',
+                      boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
                       '&:hover': {
                         transform: 'translateY(-4px)',
-                        transition: 'transform 0.3s ease-in-out',
+                        transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+                        boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
                       },
                     }}
                     onClick={() => navigate(feature.link)}
