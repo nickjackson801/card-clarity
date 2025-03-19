@@ -10,6 +10,7 @@ import {
   List,
   ListItem,
   Divider,
+  Link,
 } from '@mui/material';
 import {
   Chat as ChatIcon,
@@ -17,10 +18,15 @@ import {
   Send as SendIcon,
 } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 interface Message {
   text: string;
   isUser: boolean;
+  link?: {
+    text: string;
+    path: string;
+  };
 }
 
 const ChatBot = () => {
@@ -33,6 +39,7 @@ const ChatBot = () => {
   ]);
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -41,6 +48,11 @@ const ChatBot = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  const handleLinkClick = (path: string) => {
+    navigate(path);
+    setIsOpen(false);
+  };
 
   const handleSend = () => {
     if (!input.trim()) return;
@@ -52,40 +64,78 @@ const ChatBot = () => {
     // Simulate AI response
     setTimeout(() => {
       const response = generateResponse(input);
-      setMessages((prev) => [...prev, { text: response, isUser: false }]);
+      setMessages((prev) => [...prev, response]);
     }, 1000);
   };
 
-  const generateResponse = (userInput: string): string => {
+  const generateResponse = (userInput: string): Message => {
     const input = userInput.toLowerCase();
     
     // Card comparison related questions
     if (input.includes('compare') || input.includes('card') || input.includes('recommend')) {
-      return "I can help you compare credit cards! We analyze your spending habits and preferences to recommend the best cards for you. Would you like to take our quick quiz to get personalized recommendations?";
+      return {
+        text: "I can help you compare credit cards! We analyze your spending habits and preferences to recommend the best cards for you.",
+        isUser: false,
+        link: {
+          text: "Take our quick quiz to get personalized recommendations",
+          path: "/quiz"
+        }
+      };
     }
     
     // Points optimization related questions
     if (input.includes('point') || input.includes('reward') || input.includes('cashback')) {
-      return "Our points optimization tool helps you maximize your rewards. You can track points across multiple cards and find the best redemption options. Would you like to learn more about how to optimize your points?";
+      return {
+        text: "Our points optimization tool helps you maximize your rewards. You can track points across multiple cards and find the best redemption options.",
+        isUser: false,
+        link: {
+          text: "Learn more about points optimization",
+          path: "/points"
+        }
+      };
     }
     
     // Debt management related questions
     if (input.includes('debt') || input.includes('payoff') || input.includes('balance')) {
-      return "We offer personalized debt management strategies. You can create a payoff plan, compare different methods, and track your progress. Would you like to explore our debt management tools?";
+      return {
+        text: "We offer personalized debt management strategies. You can create a payoff plan, compare different methods, and track your progress.",
+        isUser: false,
+        link: {
+          text: "Explore our debt management tools",
+          path: "/debt"
+        }
+      };
     }
     
     // General questions about the service
     if (input.includes('what') || input.includes('how') || input.includes('help')) {
-      return "Card Clarity is your all-in-one platform for making smarter credit card decisions. We offer card comparison, points optimization, and debt management tools. What specific aspect would you like to learn more about?";
+      return {
+        text: "Card Clarity is your all-in-one platform for making smarter credit card decisions. We offer card comparison, points optimization, and debt management tools.",
+        isUser: false,
+        link: {
+          text: "Learn more about our features",
+          path: "/"
+        }
+      };
     }
     
     // Pricing or cost related questions
     if (input.includes('cost') || input.includes('price') || input.includes('free')) {
-      return "Card Clarity is currently in beta, and all features are free to use! We want to help you make better credit card decisions without any cost. Would you like to sign up and start using our tools?";
+      return {
+        text: "Card Clarity is currently in beta, and all features are free to use! We want to help you make better credit card decisions without any cost.",
+        isUser: false,
+        link: {
+          text: "Sign up now",
+          path: "/auth"
+        }
+      };
     }
     
     // Default response
-    return "I'm here to help you with any questions about credit cards, rewards, or debt management. Feel free to ask anything specific!";
+    return {
+      text: "I'm here to help you with any questions about credit cards, rewards, or debt management. Feel free to ask anything specific!",
+      isUser: false
+    };
   };
 
   return (
@@ -173,6 +223,23 @@ const ChatBot = () => {
                       }}
                     >
                       <Typography variant="body1">{message.text}</Typography>
+                      {message.link && (
+                        <Box sx={{ mt: 1 }}>
+                          <Link
+                            component="button"
+                            onClick={() => handleLinkClick(message.link!.path)}
+                            sx={{
+                              color: message.isUser ? 'white' : 'primary.main',
+                              textDecoration: 'underline',
+                              '&:hover': {
+                                color: message.isUser ? 'white' : 'primary.dark',
+                              },
+                            }}
+                          >
+                            {message.link.text}
+                          </Link>
+                        </Box>
+                      )}
                     </Paper>
                   </ListItem>
                 </motion.div>
