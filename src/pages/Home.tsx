@@ -107,78 +107,168 @@ const Home = () => {
         </Container>
       </Box>
 
-      {/* Mission Statement Section */}
-      <Container maxWidth="lg" sx={{ mb: 8 }}>
+      {/* Purpose Statement Section */}
+      <Container maxWidth="lg" sx={{ mb: 12 }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <Paper
+          <Box
             sx={{
-              p: { xs: 4, md: 6 },
-              background: 'linear-gradient(to right bottom, #f8fafc, #f1f5f9)',
-              borderRadius: 4,
+              position: 'relative',
+              overflow: 'hidden',
+              py: { xs: 6, md: 8 },
             }}
           >
+            <Box
+              sx={{
+                position: 'absolute',
+                top: 0,
+                left: '50%',
+                width: '200%',
+                height: '100%',
+                background: 'radial-gradient(circle at center, rgba(37, 99, 235, 0.08) 0%, rgba(124, 58, 237, 0.05) 50%, rgba(5, 150, 105, 0.03) 100%)',
+                transform: 'translateX(-50%)',
+                zIndex: -1,
+              }}
+            />
+            
             <Typography
-              variant="h3"
+              variant="h2"
               component="h2"
               gutterBottom
               sx={{
-                fontWeight: 700,
-                color: 'primary.main',
+                fontWeight: 800,
+                fontSize: { xs: '2rem', md: '2.75rem' },
                 textAlign: 'center',
-                mb: 4,
+                mb: 6,
+                background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #059669 100%)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
+                WebkitTextFillColor: 'transparent',
               }}
             >
-              Our Mission
+              Empowering Your Financial Journey
             </Typography>
-            <Grid container spacing={4}>
+
+            <Grid container spacing={6} alignItems="flex-start">
               <Grid item xs={12} md={4}>
-                <Typography
-                  variant="h6"
-                  gutterBottom
-                  sx={{ fontWeight: 600, color: '#059669' }}
-                >
-                  Smart Card Selection
-                </Typography>
-                <Typography paragraph>
-                  Finding the right credit card shouldn't be overwhelming. We analyze your spending patterns 
-                  and preferences to recommend cards that align with your lifestyle, helping you earn more 
-                  rewards on purchases you already make.
-                </Typography>
+                <Box sx={{ position: 'relative' }}>
+                  <Typography
+                    variant="h5"
+                    gutterBottom
+                    sx={{
+                      fontWeight: 700,
+                      color: '#059669',
+                      display: 'flex',
+                      alignItems: 'center',
+                      '&::before': {
+                        content: '""',
+                        display: 'block',
+                        width: '4px',
+                        height: '24px',
+                        backgroundColor: '#059669',
+                        marginRight: 2,
+                        borderRadius: 2,
+                      },
+                    }}
+                  >
+                    Smart Card Selection
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontSize: '1.1rem',
+                      lineHeight: 1.7,
+                      color: 'text.secondary',
+                    }}
+                  >
+                    Finding the right credit card shouldn't be overwhelming. We analyze your spending patterns 
+                    and preferences to recommend cards that align with your lifestyle, helping you earn more 
+                    rewards on purchases you already make.
+                  </Typography>
+                </Box>
               </Grid>
+
               <Grid item xs={12} md={4}>
-                <Typography
-                  variant="h6"
-                  gutterBottom
-                  sx={{ fontWeight: 600, color: 'secondary.main' }}
-                >
-                  Points Optimization
-                </Typography>
-                <Typography paragraph>
-                  We bridge the gap in credit card rewards by helping you discover the true value of your points. 
-                  Our expert system matches your travel goals and interests with the best redemption opportunities, 
-                  ensuring you get maximum value from every point earned.
-                </Typography>
+                <Box sx={{ position: 'relative' }}>
+                  <Typography
+                    variant="h5"
+                    gutterBottom
+                    sx={{
+                      fontWeight: 700,
+                      color: 'secondary.main',
+                      display: 'flex',
+                      alignItems: 'center',
+                      '&::before': {
+                        content: '""',
+                        display: 'block',
+                        width: '4px',
+                        height: '24px',
+                        backgroundColor: 'secondary.main',
+                        marginRight: 2,
+                        borderRadius: 2,
+                      },
+                    }}
+                  >
+                    Points Optimization
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontSize: '1.1rem',
+                      lineHeight: 1.7,
+                      color: 'text.secondary',
+                    }}
+                  >
+                    We bridge the gap in credit card rewards by helping you discover the true value of your points. 
+                    Our expert system matches your travel goals and interests with the best redemption opportunities, 
+                    ensuring you get maximum value from every point earned.
+                  </Typography>
+                </Box>
               </Grid>
+
               <Grid item xs={12} md={4}>
-                <Typography
-                  variant="h6"
-                  gutterBottom
-                  sx={{ fontWeight: 600, color: '#7c3aed' }}
-                >
-                  Debt Management
-                </Typography>
-                <Typography paragraph>
-                  With credit card debt becoming a growing global concern, we're committed to helping you stay 
-                  financially healthy. Our tools and strategies empower you to manage debt effectively, make 
-                  informed decisions, and work towards a debt-free future.
-                </Typography>
+                <Box sx={{ position: 'relative' }}>
+                  <Typography
+                    variant="h5"
+                    gutterBottom
+                    sx={{
+                      fontWeight: 700,
+                      color: '#7c3aed',
+                      display: 'flex',
+                      alignItems: 'center',
+                      '&::before': {
+                        content: '""',
+                        display: 'block',
+                        width: '4px',
+                        height: '24px',
+                        backgroundColor: '#7c3aed',
+                        marginRight: 2,
+                        borderRadius: 2,
+                      },
+                    }}
+                  >
+                    Debt Management
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontSize: '1.1rem',
+                      lineHeight: 1.7,
+                      color: 'text.secondary',
+                    }}
+                  >
+                    With credit card debt becoming a growing global concern, we're committed to helping you stay 
+                    financially healthy. Our tools and strategies empower you to manage debt effectively, make 
+                    informed decisions, and work towards a debt-free future.
+                  </Typography>
+                </Box>
               </Grid>
             </Grid>
-          </Paper>
+          </Box>
         </motion.div>
       </Container>
 
