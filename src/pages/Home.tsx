@@ -80,9 +80,13 @@ const Home = () => {
                 </Typography>
                 <Typography
                   variant="h5"
-                  color="text.secondary"
+                  color="inherit"
                   paragraph
-                  sx={{ mb: 4, fontSize: { xs: '1.1rem', md: '1.25rem' } }}
+                  sx={{ 
+                    mb: 4, 
+                    fontSize: { xs: '1.1rem', md: '1.25rem' },
+                    opacity: 0.9
+                  }}
                 >
                   Compare cards, optimize points, and manage debt with our comprehensive suite of tools.
                 </Typography>
@@ -92,10 +96,10 @@ const Home = () => {
                     size="large"
                     onClick={() => navigate('/quiz')}
                     sx={{
-                      background: 'linear-gradient(45deg, #2563eb 30%, #3b82f6 90%)',
-                      color: 'white',
+                      background: 'white',
+                      color: COLORS.cardComparison.main,
                       '&:hover': {
-                        background: 'linear-gradient(45deg, #1d4ed8 30%, #2563eb 90%)',
+                        background: 'rgba(255, 255, 255, 0.9)',
                       }
                     }}
                   >
@@ -105,6 +109,14 @@ const Home = () => {
                     variant="outlined"
                     size="large"
                     onClick={() => navigate('/compare')}
+                    sx={{
+                      color: 'white',
+                      borderColor: 'white',
+                      '&:hover': {
+                        borderColor: 'rgba(255, 255, 255, 0.9)',
+                        bgcolor: 'rgba(255, 255, 255, 0.1)',
+                      }
+                    }}
                   >
                     Compare Cards
                   </Button>
