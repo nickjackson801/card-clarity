@@ -23,6 +23,7 @@ import {
   Stars,
   AccountBalance,
   Login,
+  Quiz as QuizIcon,
 } from '@mui/icons-material';
 import { useState } from 'react';
 import Home from './pages/Home';
@@ -30,6 +31,7 @@ import CardComparison from './pages/CardComparison';
 import PointsOptimizer from './pages/PointsOptimizer';
 import DebtManagement from './pages/DebtManagement';
 import Auth from './pages/Auth';
+import Quiz from './pages/Quiz';
 
 const appTheme = createTheme({
   palette: {
@@ -82,6 +84,7 @@ function App() {
 
   const menuItems = [
     { text: 'Home', icon: <HomeIcon />, path: '/' },
+    { text: 'Take Quiz', icon: <QuizIcon />, path: '/quiz' },
     { text: 'Compare Cards', icon: <CompareArrows />, path: '/compare' },
     { text: 'Points Optimizer', icon: <Stars />, path: '/points' },
     { text: 'Debt Management', icon: <AccountBalance />, path: '/debt' },
@@ -176,6 +179,7 @@ function App() {
           <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/quiz" element={<Quiz />} />
               <Route path="/compare" element={<CardComparison />} />
               <Route path="/points" element={<PointsOptimizer />} />
               <Route path="/debt" element={<DebtManagement />} />
