@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import CardComparison from './pages/CardComparison';
 import PointsOptimizer from './pages/PointsOptimizer';
 import DebtManagement from './pages/DebtManagement';
+import Quiz from './pages/Quiz';
 
 const theme = createTheme({
   palette: {
@@ -135,6 +136,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/compare" element={<CardComparison />} />
+            <Route path="/quiz" element={<Quiz />} />
             <Route path="/points" element={<PointsOptimizer />} />
             <Route path="/debt" element={<DebtManagement />} />
           </Routes>

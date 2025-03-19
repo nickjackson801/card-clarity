@@ -14,10 +14,12 @@ import {
   Button,
 } from '@mui/material';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const CardComparison = () => {
   const [spendingAmount, setSpendingAmount] = useState<number>(1000);
   const [category, setCategory] = useState<string>('');
+  const navigate = useNavigate();
 
   const categories = [
     'Travel',
@@ -60,6 +62,21 @@ const CardComparison = () => {
         <Typography variant="h6" color="text.secondary" paragraph>
           Tell us about your spending habits and we'll help you find the best card for your needs.
         </Typography>
+        <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
+          <Button
+            variant="contained"
+            onClick={() => navigate('/quiz')}
+            sx={{
+              background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+              color: 'white',
+              '&:hover': {
+                background: 'linear-gradient(45deg, #1976D2 30%, #1CB5E0 90%)',
+              }
+            }}
+          >
+            Take Our Quiz
+          </Button>
+        </Box>
       </motion.div>
 
       <Grid container spacing={4}>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, Typography, Button, Grid, Box, Paper, TextField, Tab, Tabs } from '@mui/material';
+import { Container, Typography, Button, Grid, Box, Paper, TextField, Tab, Tabs, Chip } from '@mui/material';
 import { CompareRounded, StarRounded, AccountBalanceRounded, Security, Timeline, TrendingUp } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -78,233 +78,122 @@ const Home = () => {
   ];
 
   return (
-    <Box>
-      <Box
-        sx={{
-          bgcolor: 'background.paper',
-          pt: 8,
-          pb: 6,
-          position: 'relative',
-          '&::before': {
-            content: '""',
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'linear-gradient(180deg, rgba(37,99,235,0.03) 0%, rgba(37,99,235,0) 100%)',
-            zIndex: 0,
-          },
-        }}
+    <Container maxWidth="lg" sx={{ py: 8 }}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
       >
-        <Container maxWidth="lg">
-          <Grid container spacing={4} alignItems="center">
-            <Grid item xs={12} md={7}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <Typography
-                  variant="h2"
-                  color="text.primary"
-                  gutterBottom
-                  sx={{ fontWeight: 700 }}
-                >
-                  Make Smarter Credit Card Decisions
-                </Typography>
-                <Typography
-                  variant="h5"
-                  color="text.secondary"
-                  paragraph
-                  sx={{ mb: 4 }}
-                >
-                  CardClarity helps you navigate the complex world of credit cards. Compare options,
-                  optimize rewards, and manage debt with our intelligent platform.
-                </Typography>
-                <Grid container spacing={2}>
-                  <Grid item>
-                    <Button
-                      variant="contained"
-                      size="large"
-                      onClick={() => navigate('/compare')}
-                    >
-                      Compare Cards
-                    </Button>
-                  </Grid>
-                  <Grid item>
-                    <Button
-                      variant="outlined"
-                      size="large"
-                      onClick={() => navigate('/points')}
-                    >
-                      Optimize Points
-                    </Button>
-                  </Grid>
-                </Grid>
-              </motion.div>
-            </Grid>
-            <Grid item xs={12} md={5}>
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <Paper elevation={2} sx={{ p: 3 }}>
-                  <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                    <Tabs value={tabValue} onChange={handleTabChange} centered>
-                      <Tab label="Login" />
-                      <Tab label="Sign Up" />
-                    </Tabs>
-                  </Box>
-                  <TabPanel value={tabValue} index={0}>
-                    <form>
-                      <TextField
-                        fullWidth
-                        label="Email"
-                        variant="outlined"
-                        margin="normal"
-                      />
-                      <TextField
-                        fullWidth
-                        label="Password"
-                        type="password"
-                        variant="outlined"
-                        margin="normal"
-                      />
-                      <Button
-                        fullWidth
-                        variant="contained"
-                        size="large"
-                        sx={{ mt: 2 }}
-                      >
-                        Login
-                      </Button>
-                    </form>
-                  </TabPanel>
-                  <TabPanel value={tabValue} index={1}>
-                    <form>
-                      <TextField
-                        fullWidth
-                        label="Full Name"
-                        variant="outlined"
-                        margin="normal"
-                      />
-                      <TextField
-                        fullWidth
-                        label="Email"
-                        variant="outlined"
-                        margin="normal"
-                      />
-                      <TextField
-                        fullWidth
-                        label="Password"
-                        type="password"
-                        variant="outlined"
-                        margin="normal"
-                      />
-                      <Button
-                        fullWidth
-                        variant="contained"
-                        size="large"
-                        sx={{ mt: 2 }}
-                      >
-                        Sign Up
-                      </Button>
-                    </form>
-                  </TabPanel>
-                </Paper>
-              </motion.div>
-            </Grid>
-          </Grid>
-        </Container>
-      </Box>
-
-      <Container sx={{ py: 8 }} maxWidth="lg">
-        <Typography
-          variant="h3"
-          align="center"
-          gutterBottom
-          sx={{ fontWeight: 700, mb: 6 }}
-        >
-          Why Choose CardClarity?
-        </Typography>
-        <Grid container spacing={4}>
-          {benefits.map((benefit, index) => (
-            <Grid item key={benefit.title} xs={12} md={4}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 * (index + 1) }}
-              >
-                <Box sx={{ textAlign: 'center', px: 2 }}>
-                  {benefit.icon}
-                  <Typography variant="h5" sx={{ mt: 2, mb: 1, fontWeight: 600 }}>
-                    {benefit.title}
-                  </Typography>
-                  <Typography color="text.secondary">
-                    {benefit.description}
-                  </Typography>
-                </Box>
-              </motion.div>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-
-      <Box sx={{ bgcolor: 'background.paper', py: 8 }}>
-        <Container maxWidth="lg">
-          <Typography
-            variant="h3"
-            align="center"
-            gutterBottom
-            sx={{ fontWeight: 700, mb: 6 }}
-          >
-            Our Services
+        <Box sx={{ textAlign: 'center', mb: 6 }}>
+          <Typography variant="h2" component="h1" gutterBottom sx={{ fontWeight: 700 }}>
+            Card Clarity
           </Typography>
-          <Grid container spacing={4}>
-            {features.map((feature, index) => (
-              <Grid item key={feature.title} xs={12} sm={6} md={4}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 * (index + 2) }}
+          <Typography variant="h5" color="text.secondary" paragraph>
+            Find the perfect credit card for your lifestyle
+          </Typography>
+          <Chip
+            label="Free During Beta"
+            color="primary"
+            sx={{
+              fontSize: '1rem',
+              py: 2,
+              px: 3,
+              mb: 4,
+              background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+              color: 'white',
+            }}
+          />
+        </Box>
+
+        <Grid container spacing={4} justifyContent="center">
+          <Grid item xs={12} md={6}>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <Paper
+                sx={{
+                  p: 4,
+                  height: '100%',
+                  background: 'linear-gradient(to bottom right, #ffffff, #f8fafc)',
+                  boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  textAlign: 'center',
+                }}
+              >
+                <Typography variant="h4" component="h2" gutterBottom>
+                  Find Your Perfect Card
+                </Typography>
+                <Typography paragraph>
+                  Take our quick quiz to get personalized credit card recommendations based on your spending habits and preferences.
+                </Typography>
+                <Button
+                  variant="contained"
+                  size="large"
+                  onClick={() => navigate('/quiz')}
+                  sx={{
+                    mt: 2,
+                    background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+                    color: 'white',
+                    '&:hover': {
+                      background: 'linear-gradient(45deg, #1976D2 30%, #1CB5E0 90%)',
+                    }
+                  }}
                 >
-                  <Paper
-                    sx={{
-                      p: 4,
-                      height: '100%',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      textAlign: 'center',
-                      cursor: 'pointer',
-                      background: 'linear-gradient(to bottom right, #ffffff, #f8fafc)',
-                      boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-                      '&:hover': {
-                        transform: 'translateY(-4px)',
-                        transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
-                        boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-                      },
-                    }}
-                    onClick={() => navigate(feature.link)}
-                    elevation={2}
-                  >
-                    {feature.icon}
-                    <Typography variant="h5" component="h2" sx={{ mt: 2, mb: 1, fontWeight: 600 }}>
-                      {feature.title}
-                    </Typography>
-                    <Typography color="text.secondary">
-                      {feature.description}
-                    </Typography>
-                  </Paper>
-                </motion.div>
-              </Grid>
-            ))}
+                  Take the Quiz
+                </Button>
+              </Paper>
+            </motion.div>
           </Grid>
-        </Container>
-      </Box>
-    </Box>
+
+          <Grid item xs={12} md={6}>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <Paper
+                sx={{
+                  p: 4,
+                  height: '100%',
+                  background: 'linear-gradient(to bottom right, #ffffff, #f8fafc)',
+                  boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  textAlign: 'center',
+                }}
+              >
+                <Typography variant="h4" component="h2" gutterBottom>
+                  Compare Cards
+                </Typography>
+                <Typography paragraph>
+                  Browse and compare different credit cards side by side to find the best match for your needs.
+                </Typography>
+                <Button
+                  variant="contained"
+                  size="large"
+                  onClick={() => navigate('/compare')}
+                  sx={{
+                    mt: 2,
+                    background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+                    color: 'white',
+                    '&:hover': {
+                      background: 'linear-gradient(45deg, #1976D2 30%, #1CB5E0 90%)',
+                    }
+                  }}
+                >
+                  Compare Cards
+                </Button>
+              </Paper>
+            </motion.div>
+          </Grid>
+        </Grid>
+      </motion.div>
+    </Container>
   );
 };
 
