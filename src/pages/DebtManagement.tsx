@@ -28,8 +28,8 @@ import {
   Timeline,
   SwapHoriz,
   CreditCard,
-  Add,
-  Delete,
+  Add as AddIcon,
+  Delete as DeleteIcon,
 } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 
@@ -195,7 +195,7 @@ const DebtManagement = () => {
                 <Button
                   variant="contained"
                   onClick={handleAddCard}
-                  startIcon={<Add />}
+                  startIcon={<AddIcon />}
                   disabled={!newCard.name || !newCard.balance}
                 >
                   Add Card
@@ -210,7 +210,7 @@ const DebtManagement = () => {
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <Typography variant="h6">{card.name}</Typography>
                   <IconButton onClick={() => handleDeleteCard(card.id)} color="error">
-                    <Delete />
+                    <DeleteIcon />
                   </IconButton>
                 </Box>
                 <Grid container spacing={2} sx={{ mt: 1 }}>
