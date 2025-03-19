@@ -1,9 +1,12 @@
 import { Container, Typography, Grid, Paper, Box, Button } from '@mui/material';
 import { CompareArrows, Stars, AccountBalance } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import FeatureSlideshow from '../components/FeatureSlideshow';
 
 const Home = () => {
+  const navigate = useNavigate();
+
   const COLORS = {
     cardComparison: {
       main: '#2563eb',
@@ -61,7 +64,7 @@ const Home = () => {
             transition={{ duration: 0.5 }}
           >
             <Grid container spacing={4} alignItems="center">
-              <Grid item xs={12} md={7}>
+              <Grid item xs={12} md={6}>
                 <Typography
                   variant="h2"
                   component="h1"
@@ -69,53 +72,52 @@ const Home = () => {
                   sx={{
                     fontWeight: 700,
                     fontSize: { xs: '2.5rem', md: '3.5rem' },
+                    lineHeight: 1.2,
+                    mb: 3,
                   }}
                 >
                   Make Smarter Credit Card Decisions
                 </Typography>
                 <Typography
                   variant="h5"
+                  color="text.secondary"
                   paragraph
-                  sx={{
-                    mb: 4,
-                    opacity: 0.9,
-                    fontWeight: 400,
-                  }}
+                  sx={{ mb: 4, fontSize: { xs: '1.1rem', md: '1.25rem' } }}
                 >
-                  Compare cards, optimize rewards, and manage debt all in one place.
+                  Compare cards, optimize points, and manage debt with our comprehensive suite of tools.
                 </Typography>
-                <Button
-                  component={Link}
-                  to="/compare"
-                  variant="contained"
-                  size="large"
-                  sx={{
-                    bgcolor: 'white',
-                    color: 'primary.main',
-                    '&:hover': {
-                      bgcolor: 'grey.100',
-                    },
-                    mr: 2,
-                  }}
+                <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    onClick={() => navigate('/quiz')}
+                    sx={{
+                      background: 'linear-gradient(45deg, #2563eb 30%, #3b82f6 90%)',
+                      color: 'white',
+                      '&:hover': {
+                        background: 'linear-gradient(45deg, #1d4ed8 30%, #2563eb 90%)',
+                      }
+                    }}
+                  >
+                    Take Our Quiz
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    size="large"
+                    onClick={() => navigate('/compare')}
+                  >
+                    Compare Cards
+                  </Button>
+                </Box>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  Compare Cards
-                </Button>
-                <Button
-                  component={Link}
-                  to="/auth"
-                  variant="outlined"
-                  size="large"
-                  sx={{
-                    color: 'white',
-                    borderColor: 'white',
-                    '&:hover': {
-                      borderColor: 'grey.100',
-                      bgcolor: 'rgba(255, 255, 255, 0.1)',
-                    },
-                  }}
-                >
-                  Get Started
-                </Button>
+                  <FeatureSlideshow />
+                </motion.div>
               </Grid>
             </Grid>
           </motion.div>
