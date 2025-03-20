@@ -33,6 +33,15 @@ import DebtManagement from './pages/DebtManagement';
 import Auth from './pages/Auth';
 import Quiz from './pages/Quiz';
 
+declare module '@mui/material/styles' {
+  interface Palette {
+    gold: Palette['primary'];
+  }
+  interface PaletteOptions {
+    gold?: PaletteOptions['primary'];
+  }
+}
+
 const appTheme = createTheme({
   palette: {
     primary: {

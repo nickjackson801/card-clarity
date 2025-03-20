@@ -1,11 +1,8 @@
 import { Box, Typography, Button } from '@mui/material';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const BetaBanner = () => {
-  const navigate = useNavigate();
-
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
