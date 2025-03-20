@@ -35,6 +35,16 @@ const slides: Slide[] = [
           <animate attributeName="strokeDashoffset" from="0" to="10" dur="1s" repeatCount="indefinite" />
         </path>
         <path d="M 180 20 L 200 40 L 220 20" stroke="#4CAF50" strokeWidth="4" fill="none" />
+        {/* Decorative elements */}
+        <motion.path
+          d="M150,50 L200,80 L250,50"
+          stroke="#FFD700"
+          strokeWidth="3"
+          fill="none"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        />
       </svg>
     ),
     title: 'Smart Card Recommendations',
