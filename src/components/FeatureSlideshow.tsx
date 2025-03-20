@@ -10,7 +10,7 @@ interface Slide {
 
 const slides: Slide[] = [
   {
-    image: 'https://images.unsplash.com/photo-1563986768609-322da59675a5?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&q=80&w=1200',
     title: 'Smart Card Recommendations',
     description: 'Get personalized credit card suggestions based on your spending habits and financial goals.'
   },
@@ -33,6 +33,7 @@ const slides: Slide[] = [
 
 const FeatureSlideshow = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -41,6 +42,10 @@ const FeatureSlideshow = () => {
 
     return () => clearInterval(timer);
   }, []);
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
 
   return (
     <Box sx={{ 
@@ -62,9 +67,10 @@ const FeatureSlideshow = () => {
             position: 'absolute',
             width: '100%',
             height: '100%',
-            backgroundImage: `url(${slides[currentSlide].image})`,
+            backgroundImage: imageError ? 'none' : `url(${slides[currentSlide].image})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
+            backgroundColor: imageError ? '#f5f5f5' : 'transparent',
           }}
         >
           <Box
