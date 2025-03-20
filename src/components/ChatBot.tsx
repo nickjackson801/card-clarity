@@ -174,7 +174,7 @@ const ChatBot = () => {
             borderRadius: '8px',
             boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
             zIndex: 1000,
-            animation: 'float 3s ease-in-out infinite'
+            animation: 'float 2.5s ease-in-out infinite'
           }}
         >
           <Typography
