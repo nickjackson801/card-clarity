@@ -24,7 +24,9 @@ const BetaBanner = () => {
           gap: 2,
           position: 'relative',
           overflow: 'hidden',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          margin: 0,
+          borderRadius: 0
         }}
       >
         <Typography variant="body2" sx={{ fontWeight: 500 }}>
