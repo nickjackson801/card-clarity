@@ -5,7 +5,6 @@ import {
   Paper,
   TextField,
   Typography,
-  Fab,
   Drawer,
   List,
   ListItem,
@@ -13,7 +12,6 @@ import {
   Link,
 } from '@mui/material';
 import {
-  Chat as ChatIcon,
   Close as CloseIcon,
   Send as SendIcon,
 } from '@mui/icons-material';
