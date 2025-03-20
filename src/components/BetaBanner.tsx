@@ -12,7 +12,7 @@ const BetaBanner = () => {
       <Box
         sx={{
           width: '100%',
-          background: 'linear-gradient(135deg, #FFD700 0%, #B8860B 100%)',
+          background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
           color: '#1a237e',
           py: 1,
           px: 2,
