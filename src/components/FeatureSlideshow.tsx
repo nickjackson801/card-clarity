@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Slide {
-  svg: JSX.Element;
+  svg: React.ReactNode;
   title: string;
   description: string;
 }
