@@ -53,29 +53,86 @@ const slides: Slide[] = [
           </filter>
         </defs>
         {/* Animated Points Circles */}
-        <circle cx="200" cy="200" r="80" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
-          <animate attributeName="strokeDashoffset" from="0" to="10" dur="2s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="200" cy="200" r="60" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
-          <animate attributeName="strokeDashoffset" from="10" to="0" dur="2s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="200" cy="200" r="40" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
-          <animate attributeName="strokeDashoffset" from="0" to="10" dur="2s" repeatCount="indefinite" />
-        </circle>
-        {/* Points Text with Shadow */}
-        <text x="200" y="210" textAnchor="middle" fill="#1a237e" fontSize="24" fontFamily="Arial" filter="url(#shadow)">
-          10,000
-        </text>
-        <text x="200" y="240" textAnchor="middle" fill="#1a237e" fontSize="16" fontFamily="Arial" filter="url(#shadow)">
+        <motion.circle
+          cx="200"
+          cy="100"
+          r="100"
+          fill="none"
+          stroke="#FFD700"
+          strokeWidth="2"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        />
+        <motion.circle
+          cx="200"
+          cy="100"
+          r="80"
+          fill="none"
+          stroke="#FFD700"
+          strokeWidth="2"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        />
+        <motion.circle
+          cx="200"
+          cy="100"
+          r="60"
+          fill="none"
+          stroke="#FFD700"
+          strokeWidth="2"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        />
+        {/* Points text */}
+        <motion.text
+          x="200"
+          y="110"
+          textAnchor="middle"
+          fill="#1a237e"
+          fontSize="24"
+          fontWeight="bold"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+        >
+          100,000
+        </motion.text>
+        <motion.text
+          x="200"
+          y="140"
+          textAnchor="middle"
+          fill="#1a237e"
+          fontSize="16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.8 }}
+        >
           POINTS
-        </text>
-        {/* Decorative Elements */}
-        <circle cx="100" cy="150" r="10" fill="#9C27B0" opacity="0.3">
-          <animate attributeName="r" from="8" to="12" dur="1s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="300" cy="250" r="15" fill="#2196F3" opacity="0.3">
-          <animate attributeName="r" from="12" to="18" dur="1s" repeatCount="indefinite" />
-        </circle>
+        </motion.text>
+        {/* Decorative elements */}
+        <motion.circle
+          cx="150"
+          cy="50"
+          r="20"
+          fill="#FFD700"
+          opacity="0.3"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        />
+        <motion.circle
+          cx="250"
+          cy="150"
+          r="15"
+          fill="#FFD700"
+          opacity="0.3"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        />
       </svg>
     ),
     title: 'Points Optimization',
