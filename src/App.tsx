@@ -125,7 +125,16 @@ function App() {
       <CssBaseline />
       <Router>
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-          <AppBar position="static" sx={{ bgcolor: 'primary.main' }}>
+          <AppBar 
+            position="fixed" 
+            sx={{ 
+              background: 'linear-gradient(135deg, #1a237e 0%, #0d47a1 100%)',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+              borderRadius: 0,
+              margin: 0,
+              width: '100%'
+            }}
+          >
             <Toolbar>
               {isMobile && (
                 <IconButton
