@@ -161,46 +161,51 @@ const ChatBot = () => {
   return (
     <>
       {!isOpen && (
-        <>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            style={{
-              position: 'fixed',
-              bottom: 80,
-              right: 20,
-              background: '#FFD700',
-              padding: '12px 20px',
-              borderRadius: '8px',
-              boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          style={{
+            position: 'fixed',
+            bottom: 80,
+            right: 20,
+            background: '#FFD700',
+            padding: '8px 16px',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            zIndex: 1000,
+            animation: 'float 3s ease-in-out infinite'
+          }}
+        >
+          <Typography
+            variant="body2"
+            sx={{
               color: '#1a237e',
-              fontSize: '0.9rem',
               fontWeight: 500,
-              maxWidth: '300px',
-              textAlign: 'right'
+              textAlign: 'center'
             }}
           >
             Ask me anything about credit cards!
-          </motion.div>
-          <Fab
-            color="primary"
-            aria-label="chat"
-            onClick={() => setIsOpen(true)}
-            sx={{
-              position: 'fixed',
-              bottom: 20,
-              right: 20,
-              bgcolor: '#FFD700',
-              '&:hover': {
-                bgcolor: '#FFA500',
-              },
-            }}
-          >
-            <ChatIcon />
-          </Fab>
-        </>
+          </Typography>
+        </motion.div>
       )}
+
+      <Fab
+        color="primary"
+        aria-label="chat"
+        onClick={() => setIsOpen(true)}
+        sx={{
+          position: 'fixed',
+          bottom: 20,
+          right: 20,
+          bgcolor: '#FFD700',
+          '&:hover': {
+            bgcolor: '#FFA500',
+          },
+        }}
+      >
+        <ChatIcon />
+      </Fab>
 
       <Box
         sx={{
