@@ -15,17 +15,17 @@ const slides: Slide[] = [
     description: 'Get personalized credit card suggestions based on your spending habits and financial goals.'
   },
   {
-    image: 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=1200',
     title: 'Points Optimization',
     description: 'Maximize your rewards with our intelligent points optimization system.'
   },
   {
-    image: 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&q=80&w=1200',
     title: 'Debt Management',
     description: 'Take control of your credit card debt with personalized payoff strategies.'
   },
   {
-    image: 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://images.unsplash.com/photo-1556742396-9c8a0a7232a3?auto=format&fit=crop&q=80&w=1200',
     title: 'Rewards Tracking',
     description: 'Track and manage your rewards across multiple cards in one place.'
   }
