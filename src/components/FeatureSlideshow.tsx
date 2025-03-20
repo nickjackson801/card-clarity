@@ -21,30 +21,118 @@ const slides: Slide[] = [
             <feDropShadow dx="2" dy="2" stdDeviation="2" floodColor="#000" floodOpacity="0.3"/>
           </filter>
         </defs>
-        {/* Credit Card with Gradient */}
-        <rect x="50" y="30" width="300" height="180" rx="10" fill="url(#cardGradient)" filter="url(#shadow)" />
-        <rect x="70" y="70" width="260" height="100" rx="5" fill="#ffffff" />
-        {/* Card Details */}
-        <text x="70" y="110" fill="#1a237e" fontSize="16" fontFamily="Arial">**** **** **** 1234</text>
-        <text x="70" y="150" fill="#1a237e" fontSize="14" fontFamily="Arial">Expires 12/25</text>
-        {/* Decorative Elements */}
-        <circle cx="300" cy="50" r="30" fill="#ffffff" opacity="0.1" />
-        <circle cx="320" cy="70" r="20" fill="#ffffff" opacity="0.1" />
-        {/* Comparison Arrows with Animation */}
-        <path d="M 200 0 L 200 40" stroke="#4CAF50" strokeWidth="4" strokeDasharray="5,5">
-          <animate attributeName="strokeDashoffset" from="0" to="10" dur="1s" repeatCount="indefinite" />
-        </path>
-        <path d="M 180 20 L 200 40 L 220 20" stroke="#4CAF50" strokeWidth="4" fill="none" />
-        {/* Decorative elements */}
-        <motion.path
-          d="M150,50 L200,80 L250,50"
-          stroke="#FFD700"
-          strokeWidth="3"
-          fill="none"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-        />
+        {/* Smart Card Recommendations */}
+        <motion.g
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          {/* Main Card */}
+          <motion.rect
+            x="50"
+            y="50"
+            width="300"
+            height="180"
+            rx="10"
+            fill="url(#cardGradient)"
+            filter="url(#shadow)"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          />
+          {/* Card Chip */}
+          <motion.rect
+            x="70"
+            y="70"
+            width="40"
+            height="30"
+            rx="4"
+            fill="#FFD700"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          />
+          {/* Card Number */}
+          <motion.text
+            x="70"
+            y="120"
+            fill="#1a237e"
+            fontSize="16"
+            fontFamily="Arial"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            **** **** **** 1234
+          </motion.text>
+          {/* Card Holder */}
+          <motion.text
+            x="70"
+            y="150"
+            fill="#1a237e"
+            fontSize="14"
+            fontFamily="Arial"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            CARD HOLDER
+          </motion.text>
+          {/* Expiry */}
+          <motion.text
+            x="70"
+            y="170"
+            fill="#1a237e"
+            fontSize="14"
+            fontFamily="Arial"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
+            Expires 12/25
+          </motion.text>
+          {/* Decorative Elements */}
+          <motion.circle
+            cx="300"
+            cy="70"
+            r="30"
+            fill="#FFD700"
+            opacity="0.3"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          />
+          <motion.circle
+            cx="320"
+            cy="90"
+            r="20"
+            fill="#FFD700"
+            opacity="0.3"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+          />
+          {/* Smart Recommendation Icon */}
+          <motion.path
+            d="M200,20 L220,40 L200,60 L180,40 Z"
+            fill="#FFD700"
+            initial={{ scale: 0, rotate: 0 }}
+            animate={{ scale: 1, rotate: 360 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          />
+          {/* Recommendation Lines */}
+          <motion.path
+            d="M200,80 L200,120"
+            stroke="#FFD700"
+            strokeWidth="2"
+            strokeDasharray="5,5"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 1, delay: 0.9 }}
+          >
+            <animate attributeName="strokeDashoffset" from="0" to="10" dur="1s" repeatCount="indefinite" />
+          </motion.path>
+        </motion.g>
       </svg>
     ),
     title: 'Smart Card Recommendations',
