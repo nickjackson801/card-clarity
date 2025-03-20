@@ -161,22 +161,38 @@ const ChatBot = () => {
   return (
     <>
       {!isOpen && (
-        <Fab
-          color="primary"
-          aria-label="chat"
-          onClick={() => setIsOpen(true)}
-          sx={{
-            position: 'fixed',
-            bottom: 20,
-            right: 20,
-            bgcolor: '#FFD700',
-            '&:hover': {
-              bgcolor: '#FFA500',
-            },
-          }}
-        >
-          <ChatIcon />
-        </Fab>
+        <>
+          <Typography
+            sx={{
+              position: 'fixed',
+              bottom: 80,
+              right: 20,
+              color: '#1a237e',
+              fontSize: '0.9rem',
+              textAlign: 'right',
+              maxWidth: '300px',
+              fontWeight: 500
+            }}
+          >
+            Have questions about our service? Click the chat icon below to ask our AI assistant!
+          </Typography>
+          <Fab
+            color="primary"
+            aria-label="chat"
+            onClick={() => setIsOpen(true)}
+            sx={{
+              position: 'fixed',
+              bottom: 20,
+              right: 20,
+              bgcolor: '#FFD700',
+              '&:hover': {
+                bgcolor: '#FFA500',
+              },
+            }}
+          >
+            <ChatIcon />
+          </Fab>
+        </>
       )}
 
       <Box
