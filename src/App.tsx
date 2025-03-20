@@ -32,6 +32,7 @@ import PointsOptimizer from './pages/PointsOptimizer';
 import DebtManagement from './pages/DebtManagement';
 import Auth from './pages/Auth';
 import Quiz from './pages/Quiz';
+import BetaBanner from './components/BetaBanner';
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -197,6 +198,10 @@ function App() {
               )}
             </Toolbar>
           </AppBar>
+
+          <Box sx={{ pt: { xs: 8, sm: 9 } }}>
+            <BetaBanner />
+          </Box>
 
           {isMobile && (
             <Drawer
