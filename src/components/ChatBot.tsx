@@ -10,10 +10,12 @@ import {
   ListItem,
   Divider,
   Link,
+  Fab,
 } from '@mui/material';
 import {
   Close as CloseIcon,
   Send as SendIcon,
+  Chat as ChatIcon,
 } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -137,6 +139,25 @@ const ChatBot = () => {
 
   return (
     <>
+      {!isOpen && (
+        <Fab
+          color="primary"
+          aria-label="chat"
+          onClick={() => setIsOpen(true)}
+          sx={{
+            position: 'fixed',
+            bottom: 20,
+            right: 20,
+            bgcolor: '#FFD700',
+            '&:hover': {
+              bgcolor: '#FFA500',
+            },
+          }}
+        >
+          <ChatIcon />
+        </Fab>
+      )}
+
       <Box
         sx={{
           position: 'fixed',
@@ -147,7 +168,7 @@ const ChatBot = () => {
           bgcolor: 'white',
           borderRadius: 2,
           boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
-          display: 'flex',
+          display: isOpen ? 'flex' : 'none',
           flexDirection: 'column',
           overflow: 'hidden',
           zIndex: 1000,
