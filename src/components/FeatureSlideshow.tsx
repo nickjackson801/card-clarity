@@ -10,7 +10,7 @@ interface Slide {
 
 const slides: Slide[] = [
   {
-    image: 'https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&q=80&w=1200',
+    image: 'https://images.unsplash.com/photo-1563986768609-322da59675a5?auto=format&fit=crop&q=80&w=1200',
     title: 'Smart Card Recommendations',
     description: 'Get personalized credit card suggestions based on your spending habits and financial goals.'
   },
