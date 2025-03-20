@@ -23,6 +23,7 @@ import { useNavigate } from 'react-router-dom';
 interface Message {
   text: string;
   isUser: boolean;
+  timestamp: Date;
   link?: {
     text: string;
     path: string;
@@ -35,6 +36,7 @@ const ChatBot = () => {
     {
       text: "Hi! I'm your Card Clarity assistant. How can I help you today?",
       isUser: false,
+      timestamp: new Date(),
     },
   ]);
   const [input, setInput] = useState('');
@@ -57,7 +59,11 @@ const ChatBot = () => {
   const handleSendMessage = async () => {
     if (!input.trim()) return;
 
-    const userMessage = { text: input, isUser: true };
+    const userMessage: Message = {
+      text: input,
+      isUser: true,
+      timestamp: new Date(),
+    };
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
 
@@ -126,14 +132,29 @@ const ChatBot = () => {
 
         const data = await response.json();
         if (data.choices && data.choices[0]) {
-          setMessages((prev) => [...prev, { text: data.choices[0].message.content, isUser: false }]);
+          const aiResponse: Message = {
+            text: data.choices[0].message.content,
+            isUser: false,
+            timestamp: new Date(),
+          };
+          setMessages((prev) => [...prev, aiResponse]);
         }
       } catch (error) {
         console.error('Error:', error);
-        setMessages((prev) => [...prev, { text: "I apologize, but I'm having trouble connecting to the AI service right now. Please try again in a moment.", isUser: false }]);
+        const aiResponse: Message = {
+          text: "I apologize, but I'm having trouble connecting to the AI service right now. Please try again in a moment.",
+          isUser: false,
+          timestamp: new Date(),
+        };
+        setMessages((prev) => [...prev, aiResponse]);
       }
     } else {
-      setMessages((prev) => [...prev, { text: contextualResponse, isUser: false }]);
+      const aiResponse: Message = {
+        text: contextualResponse,
+        isUser: false,
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, aiResponse]);
     }
   };
 
@@ -240,6 +261,16 @@ const ChatBot = () => {
                     }}
                   >
                     <Typography variant="body1">{message.text}</Typography>
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        display: 'block',
+                        mt: 0.5,
+                        color: message.isUser ? '#1a237e' : 'text.secondary',
+                      }}
+                    >
+                      {message.timestamp.toLocaleTimeString()}
+                    </Typography>
                     {message.link && (
                       <Box sx={{ mt: 1 }}>
                         <Link
@@ -365,6 +396,16 @@ const ChatBot = () => {
                       }}
                     >
                       <Typography variant="body1">{message.text}</Typography>
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          display: 'block',
+                          mt: 0.5,
+                          color: message.isUser ? '#1a237e' : 'text.secondary',
+                        }}
+                      >
+                        {message.timestamp.toLocaleTimeString()}
+                      </Typography>
                       {message.link && (
                         <Box sx={{ mt: 1 }}>
                           <Link
