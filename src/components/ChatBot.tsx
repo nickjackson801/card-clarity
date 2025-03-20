@@ -162,8 +162,11 @@ const ChatBot = () => {
     <>
       {!isOpen && (
         <>
-          <Typography
-            sx={{
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            style={{
               position: 'fixed',
               bottom: 80,
               right: 20,
@@ -174,8 +177,8 @@ const ChatBot = () => {
               fontWeight: 500
             }}
           >
-            Have questions about our service? Click the chat icon below to ask our AI assistant!
-          </Typography>
+            Ask me anything about credit cards!
+          </motion.div>
           <Fab
             color="primary"
             aria-label="chat"
