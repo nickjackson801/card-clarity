@@ -13,7 +13,8 @@ const BetaBanner = () => {
     >
       <Box
         sx={{
-          background: 'linear-gradient(45deg, #7c3aed 30%, #a78bfa 90%)',
+          width: '100%',
+          background: 'linear-gradient(135deg, #1a237e 0%, #0d47a1 100%)',
           color: 'white',
           py: 1,
           px: 2,
@@ -21,7 +22,9 @@ const BetaBanner = () => {
           alignItems: 'center',
           justifyContent: 'center',
           gap: 2,
-          flexWrap: 'wrap',
+          position: 'relative',
+          overflow: 'hidden',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
         }}
       >
         <Typography variant="body2" sx={{ fontWeight: 500 }}>
