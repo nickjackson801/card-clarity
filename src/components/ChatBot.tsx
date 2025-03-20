@@ -151,7 +151,11 @@ const ChatBot = () => {
           flexDirection: 'column',
           overflow: 'hidden',
           zIndex: 1000,
-          border: '3px solid #FFD700'
+          border: '4px solid #FFD700',
+          '&:hover': {
+            border: '4px solid #FFA500',
+            transition: 'border-color 0.3s ease-in-out'
+          }
         }}
       >
         <Box
@@ -162,7 +166,8 @@ const ChatBot = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            borderBottom: '2px solid #FFD700'
+            borderBottom: '3px solid #FFD700',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
           }}
         >
           <Typography variant="h6" sx={{ fontWeight: 600 }}>
