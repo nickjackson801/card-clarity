@@ -53,20 +53,20 @@ const slides: Slide[] = [
           </filter>
         </defs>
         {/* Animated Points Circles */}
-        <circle cx="200" cy="150" r="100" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
+        <circle cx="200" cy="160" r="100" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
           <animate attributeName="strokeDashoffset" from="0" to="10" dur="2s" repeatCount="indefinite" />
         </circle>
-        <circle cx="200" cy="150" r="80" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
+        <circle cx="200" cy="160" r="80" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
           <animate attributeName="strokeDashoffset" from="10" to="0" dur="2s" repeatCount="indefinite" />
         </circle>
-        <circle cx="200" cy="150" r="60" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
+        <circle cx="200" cy="160" r="60" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
           <animate attributeName="strokeDashoffset" from="0" to="10" dur="2s" repeatCount="indefinite" />
         </circle>
         {/* Points Text with Shadow */}
-        <text x="200" y="160" textAnchor="middle" fill="#1a237e" fontSize="24" fontFamily="Arial" filter="url(#shadow)">
+        <text x="200" y="170" textAnchor="middle" fill="#1a237e" fontSize="24" fontFamily="Arial" filter="url(#shadow)">
           10,000
         </text>
-        <text x="200" y="190" textAnchor="middle" fill="#1a237e" fontSize="16" fontFamily="Arial" filter="url(#shadow)">
+        <text x="200" y="200" textAnchor="middle" fill="#1a237e" fontSize="16" fontFamily="Arial" filter="url(#shadow)">
           POINTS
         </text>
         {/* Decorative Elements */}
