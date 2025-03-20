@@ -170,11 +170,15 @@ const ChatBot = () => {
               position: 'fixed',
               bottom: 80,
               right: 20,
+              background: '#FFD700',
+              padding: '12px 20px',
+              borderRadius: '8px',
+              boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
               color: '#1a237e',
               fontSize: '0.9rem',
-              textAlign: 'right',
+              fontWeight: 500,
               maxWidth: '300px',
-              fontWeight: 500
+              textAlign: 'right'
             }}
           >
             Ask me anything about credit cards!
