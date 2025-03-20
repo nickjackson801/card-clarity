@@ -3,7 +3,6 @@ import { CompareArrows, Stars, AccountBalance } from '@mui/icons-material';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import FeatureSlideshow from '../components/FeatureSlideshow';
-import BetaBanner from '../components/BetaBanner';
 import ChatBot from '../components/ChatBot';
 
 const Home = () => {
@@ -50,7 +49,6 @@ const Home = () => {
 
   return (
     <Box>
-      <BetaBanner />
       {/* Hero Section */}
       <Box
         sx={{
