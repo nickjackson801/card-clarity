@@ -57,10 +57,10 @@ const CardComparison = () => {
         transition={{ duration: 0.5 }}
       >
         <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 700 }}>
-          Find Your Perfect Card
+          Compare Credit Cards
         </Typography>
         <Typography variant="h6" color="text.secondary" paragraph>
-          Tell us about your spending habits and we'll help you find the best card for your needs.
+          Discover the ideal credit card by analyzing rewards, fees, and benefits tailored to your spending style.
         </Typography>
         <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
           <Button
