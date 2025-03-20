@@ -22,19 +22,19 @@ const slides: Slide[] = [
           </filter>
         </defs>
         {/* Credit Card with Gradient */}
-        <rect x="50" y="50" width="300" height="180" rx="10" fill="url(#cardGradient)" filter="url(#shadow)" />
-        <rect x="70" y="90" width="260" height="100" rx="5" fill="#ffffff" />
+        <rect x="50" y="30" width="300" height="180" rx="10" fill="url(#cardGradient)" filter="url(#shadow)" />
+        <rect x="70" y="70" width="260" height="100" rx="5" fill="#ffffff" />
         {/* Card Details */}
-        <text x="70" y="130" fill="#1a237e" fontSize="16" fontFamily="Arial">**** **** **** 1234</text>
-        <text x="70" y="170" fill="#1a237e" fontSize="14" fontFamily="Arial">Expires 12/25</text>
+        <text x="70" y="110" fill="#1a237e" fontSize="16" fontFamily="Arial">**** **** **** 1234</text>
+        <text x="70" y="150" fill="#1a237e" fontSize="14" fontFamily="Arial">Expires 12/25</text>
         {/* Decorative Elements */}
-        <circle cx="300" cy="70" r="30" fill="#ffffff" opacity="0.1" />
-        <circle cx="320" cy="90" r="20" fill="#ffffff" opacity="0.1" />
+        <circle cx="300" cy="50" r="30" fill="#ffffff" opacity="0.1" />
+        <circle cx="320" cy="70" r="20" fill="#ffffff" opacity="0.1" />
         {/* Comparison Arrows with Animation */}
-        <path d="M 200 20 L 200 60" stroke="#4CAF50" strokeWidth="4" strokeDasharray="5,5">
+        <path d="M 200 0 L 200 40" stroke="#4CAF50" strokeWidth="4" strokeDasharray="5,5">
           <animate attributeName="strokeDashoffset" from="0" to="10" dur="1s" repeatCount="indefinite" />
         </path>
-        <path d="M 180 40 L 200 60 L 220 40" stroke="#4CAF50" strokeWidth="4" fill="none" />
+        <path d="M 180 20 L 200 40 L 220 20" stroke="#4CAF50" strokeWidth="4" fill="none" />
       </svg>
     ),
     title: 'Smart Card Recommendations',
@@ -53,27 +53,27 @@ const slides: Slide[] = [
           </filter>
         </defs>
         {/* Animated Points Circles */}
-        <circle cx="200" cy="120" r="100" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
+        <circle cx="200" cy="150" r="100" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
           <animate attributeName="strokeDashoffset" from="0" to="10" dur="2s" repeatCount="indefinite" />
         </circle>
-        <circle cx="200" cy="120" r="80" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
+        <circle cx="200" cy="150" r="80" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
           <animate attributeName="strokeDashoffset" from="10" to="0" dur="2s" repeatCount="indefinite" />
         </circle>
-        <circle cx="200" cy="120" r="60" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
+        <circle cx="200" cy="150" r="60" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
           <animate attributeName="strokeDashoffset" from="0" to="10" dur="2s" repeatCount="indefinite" />
         </circle>
         {/* Points Text with Shadow */}
-        <text x="200" y="130" textAnchor="middle" fill="#1a237e" fontSize="24" fontFamily="Arial" filter="url(#shadow)">
+        <text x="200" y="160" textAnchor="middle" fill="#1a237e" fontSize="24" fontFamily="Arial" filter="url(#shadow)">
           10,000
         </text>
-        <text x="200" y="160" textAnchor="middle" fill="#1a237e" fontSize="16" fontFamily="Arial" filter="url(#shadow)">
+        <text x="200" y="190" textAnchor="middle" fill="#1a237e" fontSize="16" fontFamily="Arial" filter="url(#shadow)">
           POINTS
         </text>
         {/* Decorative Elements */}
-        <circle cx="100" cy="70" r="10" fill="#9C27B0" opacity="0.3">
+        <circle cx="100" cy="100" r="10" fill="#9C27B0" opacity="0.3">
           <animate attributeName="r" from="8" to="12" dur="1s" repeatCount="indefinite" />
         </circle>
-        <circle cx="300" cy="170" r="15" fill="#2196F3" opacity="0.3">
+        <circle cx="300" cy="200" r="15" fill="#2196F3" opacity="0.3">
           <animate attributeName="r" from="12" to="18" dur="1s" repeatCount="indefinite" />
         </circle>
       </svg>
