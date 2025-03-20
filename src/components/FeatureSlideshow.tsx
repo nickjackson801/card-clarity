@@ -14,27 +14,27 @@ const slides: Slide[] = [
       <svg width="100%" height="100%" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style={{ stopColor: '#1a237e', stopOpacity: 1 }} />
-            <stop offset="100%" style={{ stopColor: '#3949ab', stopOpacity: 1 }} />
+            <stop offset="0%" style={{ stopColor: '#4CAF50', stopOpacity: 1 }} />
+            <stop offset="100%" style={{ stopColor: '#2196F3', stopOpacity: 1 }} />
           </linearGradient>
           <filter id="shadow">
             <feDropShadow dx="2" dy="2" stdDeviation="2" floodColor="#000" floodOpacity="0.3"/>
           </filter>
         </defs>
         {/* Credit Card with Gradient */}
-        <rect x="50" y="100" width="300" height="180" rx="10" fill="url(#cardGradient)" filter="url(#shadow)" />
-        <rect x="70" y="140" width="260" height="100" rx="5" fill="#ffffff" />
+        <rect x="50" y="50" width="300" height="180" rx="10" fill="url(#cardGradient)" filter="url(#shadow)" />
+        <rect x="70" y="90" width="260" height="100" rx="5" fill="#ffffff" />
         {/* Card Details */}
-        <text x="70" y="180" fill="#1a237e" fontSize="16" fontFamily="Arial">**** **** **** 1234</text>
-        <text x="70" y="220" fill="#1a237e" fontSize="14" fontFamily="Arial">Expires 12/25</text>
+        <text x="70" y="130" fill="#1a237e" fontSize="16" fontFamily="Arial">**** **** **** 1234</text>
+        <text x="70" y="170" fill="#1a237e" fontSize="14" fontFamily="Arial">Expires 12/25</text>
         {/* Decorative Elements */}
-        <circle cx="300" cy="120" r="30" fill="#ffffff" opacity="0.1" />
-        <circle cx="320" cy="140" r="20" fill="#ffffff" opacity="0.1" />
+        <circle cx="300" cy="70" r="30" fill="#ffffff" opacity="0.1" />
+        <circle cx="320" cy="90" r="20" fill="#ffffff" opacity="0.1" />
         {/* Comparison Arrows with Animation */}
-        <path d="M 200 50 L 200 90" stroke="#1a237e" strokeWidth="4" strokeDasharray="5,5">
+        <path d="M 200 20 L 200 60" stroke="#4CAF50" strokeWidth="4" strokeDasharray="5,5">
           <animate attributeName="strokeDashoffset" from="0" to="10" dur="1s" repeatCount="indefinite" />
         </path>
-        <path d="M 180 70 L 200 90 L 220 70" stroke="#1a237e" strokeWidth="4" fill="none" />
+        <path d="M 180 40 L 200 60 L 220 40" stroke="#4CAF50" strokeWidth="4" fill="none" />
       </svg>
     ),
     title: 'Smart Card Recommendations',
@@ -45,35 +45,35 @@ const slides: Slide[] = [
       <svg width="100%" height="100%" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="pointsGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style={{ stopColor: '#1a237e', stopOpacity: 1 }} />
-            <stop offset="100%" style={{ stopColor: '#3949ab', stopOpacity: 1 }} />
+            <stop offset="0%" style={{ stopColor: '#9C27B0', stopOpacity: 1 }} />
+            <stop offset="100%" style={{ stopColor: '#2196F3', stopOpacity: 1 }} />
           </linearGradient>
           <filter id="shadow">
             <feDropShadow dx="2" dy="2" stdDeviation="2" floodColor="#000" floodOpacity="0.3"/>
           </filter>
         </defs>
         {/* Animated Points Circles */}
-        <circle cx="200" cy="150" r="100" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
+        <circle cx="200" cy="100" r="100" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
           <animate attributeName="strokeDashoffset" from="0" to="10" dur="2s" repeatCount="indefinite" />
         </circle>
-        <circle cx="200" cy="150" r="80" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
+        <circle cx="200" cy="100" r="80" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
           <animate attributeName="strokeDashoffset" from="10" to="0" dur="2s" repeatCount="indefinite" />
         </circle>
-        <circle cx="200" cy="150" r="60" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
+        <circle cx="200" cy="100" r="60" stroke="url(#pointsGradient)" strokeWidth="8" fill="none" strokeDasharray="5,5">
           <animate attributeName="strokeDashoffset" from="0" to="10" dur="2s" repeatCount="indefinite" />
         </circle>
         {/* Points Text with Shadow */}
-        <text x="200" y="160" textAnchor="middle" fill="#1a237e" fontSize="24" fontFamily="Arial" filter="url(#shadow)">
+        <text x="200" y="110" textAnchor="middle" fill="#1a237e" fontSize="24" fontFamily="Arial" filter="url(#shadow)">
           10,000
         </text>
-        <text x="200" y="190" textAnchor="middle" fill="#1a237e" fontSize="16" fontFamily="Arial" filter="url(#shadow)">
+        <text x="200" y="140" textAnchor="middle" fill="#1a237e" fontSize="16" fontFamily="Arial" filter="url(#shadow)">
           POINTS
         </text>
         {/* Decorative Elements */}
-        <circle cx="100" cy="100" r="10" fill="#3949ab" opacity="0.3">
+        <circle cx="100" cy="50" r="10" fill="#9C27B0" opacity="0.3">
           <animate attributeName="r" from="8" to="12" dur="1s" repeatCount="indefinite" />
         </circle>
-        <circle cx="300" cy="200" r="15" fill="#3949ab" opacity="0.3">
+        <circle cx="300" cy="150" r="15" fill="#2196F3" opacity="0.3">
           <animate attributeName="r" from="12" to="18" dur="1s" repeatCount="indefinite" />
         </circle>
       </svg>
@@ -86,33 +86,33 @@ const slides: Slide[] = [
       <svg width="100%" height="100%" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="graphGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style={{ stopColor: '#1a237e', stopOpacity: 1 }} />
-            <stop offset="100%" style={{ stopColor: '#3949ab', stopOpacity: 1 }} />
+            <stop offset="0%" style={{ stopColor: '#4CAF50', stopOpacity: 1 }} />
+            <stop offset="100%" style={{ stopColor: '#9C27B0', stopOpacity: 1 }} />
           </linearGradient>
           <filter id="shadow">
             <feDropShadow dx="2" dy="2" stdDeviation="2" floodColor="#000" floodOpacity="0.3"/>
           </filter>
         </defs>
         {/* Graph Background */}
-        <rect x="40" y="40" width="320" height="220" rx="10" fill="#f5f5f5" filter="url(#shadow)" />
+        <rect x="40" y="40" width="320" height="180" rx="10" fill="#f5f5f5" filter="url(#shadow)" />
         {/* Grid Lines */}
-        <path d="M 50 250 L 350 250" stroke="#e0e0e0" strokeWidth="1" />
-        <path d="M 50 200 L 350 200" stroke="#e0e0e0" strokeWidth="1" />
-        <path d="M 50 150 L 350 150" stroke="#e0e0e0" strokeWidth="1" />
-        <path d="M 50 100 L 350 100" stroke="#e0e0e0" strokeWidth="1" />
+        <path d="M 50 210 L 350 210" stroke="#e0e0e0" strokeWidth="1" />
+        <path d="M 50 170 L 350 170" stroke="#e0e0e0" strokeWidth="1" />
+        <path d="M 50 130 L 350 130" stroke="#e0e0e0" strokeWidth="1" />
+        <path d="M 50 90 L 350 90" stroke="#e0e0e0" strokeWidth="1" />
         <path d="M 50 50 L 350 50" stroke="#e0e0e0" strokeWidth="1" />
         {/* Debt Reduction Line */}
-        <path d="M 50 250 L 100 200 L 150 180 L 200 150 L 250 120 L 300 100 L 350 80" 
+        <path d="M 50 210 L 100 170 L 150 150 L 200 130 L 250 110 L 300 90 L 350 70" 
               stroke="url(#graphGradient)" strokeWidth="4" fill="none">
           <animate attributeName="strokeDasharray" from="0,1000" to="1000,0" dur="2s" fill="freeze" />
         </path>
         {/* Data Points */}
-        <circle cx="100" cy="200" r="4" fill="#1a237e" filter="url(#shadow)" />
-        <circle cx="150" cy="180" r="4" fill="#1a237e" filter="url(#shadow)" />
-        <circle cx="200" cy="150" r="4" fill="#1a237e" filter="url(#shadow)" />
-        <circle cx="250" cy="120" r="4" fill="#1a237e" filter="url(#shadow)" />
-        <circle cx="300" cy="100" r="4" fill="#1a237e" filter="url(#shadow)" />
-        <circle cx="350" cy="80" r="4" fill="#1a237e" filter="url(#shadow)" />
+        <circle cx="100" cy="170" r="4" fill="#4CAF50" filter="url(#shadow)" />
+        <circle cx="150" cy="150" r="4" fill="#4CAF50" filter="url(#shadow)" />
+        <circle cx="200" cy="130" r="4" fill="#4CAF50" filter="url(#shadow)" />
+        <circle cx="250" cy="110" r="4" fill="#4CAF50" filter="url(#shadow)" />
+        <circle cx="300" cy="90" r="4" fill="#4CAF50" filter="url(#shadow)" />
+        <circle cx="350" cy="70" r="4" fill="#4CAF50" filter="url(#shadow)" />
       </svg>
     ),
     title: 'Debt Management',
@@ -123,34 +123,34 @@ const slides: Slide[] = [
       <svg width="100%" height="100%" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="cardGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style={{ stopColor: '#1a237e', stopOpacity: 1 }} />
-            <stop offset="100%" style={{ stopColor: '#3949ab', stopOpacity: 1 }} />
+            <stop offset="0%" style={{ stopColor: '#2196F3', stopOpacity: 1 }} />
+            <stop offset="100%" style={{ stopColor: '#4CAF50', stopOpacity: 1 }} />
           </linearGradient>
           <linearGradient id="cardGradient2" x1="100%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style={{ stopColor: '#3949ab', stopOpacity: 1 }} />
-            <stop offset="100%" style={{ stopColor: '#1a237e', stopOpacity: 1 }} />
+            <stop offset="0%" style={{ stopColor: '#9C27B0', stopOpacity: 1 }} />
+            <stop offset="100%" style={{ stopColor: '#2196F3', stopOpacity: 1 }} />
           </linearGradient>
           <filter id="shadow">
             <feDropShadow dx="2" dy="2" stdDeviation="2" floodColor="#000" floodOpacity="0.3"/>
           </filter>
         </defs>
         {/* Multiple Cards with Gradients */}
-        <rect x="50" y="100" width="200" height="120" rx="8" fill="url(#cardGradient1)" filter="url(#shadow)" />
-        <rect x="150" y="80" width="200" height="120" rx="8" fill="url(#cardGradient2)" filter="url(#shadow)" />
+        <rect x="50" y="50" width="200" height="120" rx="8" fill="url(#cardGradient1)" filter="url(#shadow)" />
+        <rect x="150" y="30" width="200" height="120" rx="8" fill="url(#cardGradient2)" filter="url(#shadow)" />
         {/* Rewards Icons with Animation */}
-        <circle cx="100" cy="160" r="20" fill="#ffffff" filter="url(#shadow)">
+        <circle cx="100" cy="110" r="20" fill="#ffffff" filter="url(#shadow)">
           <animate attributeName="r" from="18" to="22" dur="1s" repeatCount="indefinite" />
         </circle>
-        <circle cx="250" cy="140" r="20" fill="#ffffff" filter="url(#shadow)">
+        <circle cx="250" cy="90" r="20" fill="#ffffff" filter="url(#shadow)">
           <animate attributeName="r" from="22" to="18" dur="1s" repeatCount="indefinite" />
         </circle>
-        <text x="100" y="165" textAnchor="middle" fill="#1a237e" fontSize="14" fontFamily="Arial">2x</text>
-        <text x="250" y="145" textAnchor="middle" fill="#1a237e" fontSize="14" fontFamily="Arial">3x</text>
+        <text x="100" y="115" textAnchor="middle" fill="#1a237e" fontSize="14" fontFamily="Arial">2x</text>
+        <text x="250" y="95" textAnchor="middle" fill="#1a237e" fontSize="14" fontFamily="Arial">3x</text>
         {/* Decorative Elements */}
-        <circle cx="50" cy="50" r="10" fill="#3949ab" opacity="0.3">
+        <circle cx="50" cy="20" r="10" fill="#9C27B0" opacity="0.3">
           <animate attributeName="r" from="8" to="12" dur="1s" repeatCount="indefinite" />
         </circle>
-        <circle cx="350" cy="250" r="15" fill="#3949ab" opacity="0.3">
+        <circle cx="350" cy="220" r="15" fill="#4CAF50" opacity="0.3">
           <animate attributeName="r" from="12" to="18" dur="1s" repeatCount="indefinite" />
         </circle>
       </svg>
@@ -193,7 +193,7 @@ const FeatureSlideshow = () => {
             width: '100%',
             height: '100%',
             display: 'flex',
-            alignItems: 'center',
+            alignItems: 'flex-start',
             justifyContent: 'center',
             padding: '2rem',
             zIndex: 1
