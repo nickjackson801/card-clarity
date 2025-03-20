@@ -45,6 +45,11 @@ const appTheme = createTheme({
       light: '#ec4899',
       dark: '#be185d',
     },
+    gold: {
+      main: '#FFD700',
+      light: '#FFE55C',
+      dark: '#B8860B',
+    },
   },
   typography: {
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',

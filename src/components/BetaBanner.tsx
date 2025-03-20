@@ -1,6 +1,7 @@
 import { Box, Typography, Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const BetaBanner = () => {
   const navigate = useNavigate();
@@ -14,8 +15,8 @@ const BetaBanner = () => {
       <Box
         sx={{
           width: '100%',
-          background: 'linear-gradient(135deg, #1a237e 0%, #0d47a1 100%)',
-          color: 'white',
+          background: 'linear-gradient(135deg, #FFD700 0%, #B8860B 100%)',
+          color: '#1a237e',
           py: 1,
           px: 2,
           display: 'flex',
@@ -29,19 +30,20 @@ const BetaBanner = () => {
           borderRadius: 0
         }}
       >
-        <Typography variant="body2" sx={{ fontWeight: 500 }}>
-          🎉 Welcome to Card Clarity Beta! All features are free during our beta period.
+        <Typography variant="body1" sx={{ fontWeight: 500 }}>
+          🎉 Beta Access: All features are free during our beta period!
         </Typography>
         <Button
-          variant="outlined"
+          variant="contained"
+          color="primary"
           size="small"
-          onClick={() => navigate('/auth')}
+          component={Link}
+          to="/auth"
           sx={{
-            color: 'white',
-            borderColor: 'white',
+            backgroundColor: '#1a237e',
+            color: '#FFD700',
             '&:hover': {
-              borderColor: 'white',
-              bgcolor: 'rgba(255, 255, 255, 0.1)',
+              backgroundColor: '#0d47a1',
             },
           }}
         >
