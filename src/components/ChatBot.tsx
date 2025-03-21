@@ -78,9 +78,23 @@ const ChatBot = () => {
     const lowerMessage = input.toLowerCase();
     let contextualResponse = '';
 
+    // Compare cards keywords
+    if (lowerMessage.includes('compare')) {
+      const aiResponse: Message = {
+        text: "I can help you compare different credit cards side by side. Our comparison tool makes it easy to evaluate features, rewards, and benefits of multiple cards.",
+        isUser: false,
+        timestamp: new Date(),
+        link: {
+          text: "Go to Card Comparison",
+          path: "/compare"
+        }
+      };
+      setMessages((prev) => [...prev, aiResponse]);
+    }
+
     // Price/Beta related keywords
-    if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('fee') || 
-        lowerMessage.includes('subscription') || lowerMessage.includes('paid') || lowerMessage.includes('free')) {
+    else if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('fee') || 
+             lowerMessage.includes('subscription') || lowerMessage.includes('paid') || lowerMessage.includes('free')) {
       contextualResponse = "Great news! During our beta period, all features of Card Clarity are completely free. You can access our full suite of tools including card recommendations, points optimization, debt management, and rewards tracking without any cost. Take advantage of this offer while it lasts!";
     }
 
