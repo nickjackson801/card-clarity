@@ -93,7 +93,7 @@ const ChatBot = () => {
         timestamp: new Date(),
         link: {
           text: "Go to Debt Management Tool",
-          path: "/debt-management"
+          path: "/debt"
         }
       };
       setMessages((prev) => [...prev, aiResponse]);
@@ -108,7 +108,7 @@ const ChatBot = () => {
         timestamp: new Date(),
         link: {
           text: "Go to Points Optimization",
-          path: "/points-optimization"
+          path: "/points"
         }
       };
       setMessages((prev) => [...prev, aiResponse]);
@@ -123,7 +123,7 @@ const ChatBot = () => {
         timestamp: new Date(),
         link: {
           text: "Take the Card Recommendation Quiz",
-          path: "/card-comparison"
+          path: "/quiz"
         }
       };
       setMessages((prev) => [...prev, aiResponse]);
@@ -156,7 +156,7 @@ const ChatBot = () => {
           timestamp: new Date(),
           link: {
             text: "Card Recommendations",
-            path: "/card-comparison"
+            path: "/quiz"
           }
         },
         {
@@ -165,7 +165,7 @@ const ChatBot = () => {
           timestamp: new Date(),
           link: {
             text: "Points Optimization",
-            path: "/points-optimization"
+            path: "/points"
           }
         },
         {
@@ -174,7 +174,7 @@ const ChatBot = () => {
           timestamp: new Date(),
           link: {
             text: "Debt Management",
-            path: "/debt-management"
+            path: "/debt"
           }
         }
       ];
