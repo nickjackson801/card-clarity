@@ -87,30 +87,104 @@ const ChatBot = () => {
     // Debt related keywords
     else if (lowerMessage.includes('debt') || lowerMessage.includes('balance') || lowerMessage.includes('pay off') || 
              lowerMessage.includes('interest') || lowerMessage.includes('payment') || lowerMessage.includes('owe')) {
-      contextualResponse = "I can help you with debt management! Our debt management tool can help you create a personalized debt payoff strategy. Would you like me to take you to the debt management section?";
+      const aiResponse: Message = {
+        text: "I can help you with debt management! Our debt management tool can help you create a personalized debt payoff strategy.",
+        isUser: false,
+        timestamp: new Date(),
+        link: {
+          text: "Go to Debt Management Tool",
+          path: "/debt-management"
+        }
+      };
+      setMessages((prev) => [...prev, aiResponse]);
     }
 
     // Points related keywords
     else if (lowerMessage.includes('point') || lowerMessage.includes('reward') || lowerMessage.includes('cashback') || 
              lowerMessage.includes('miles') || lowerMessage.includes('travel') || lowerMessage.includes('redemption')) {
-      contextualResponse = "Our points optimization tool can help you maximize your rewards! Would you like to learn more about how to optimize your points and rewards?";
+      const aiResponse: Message = {
+        text: "Our points optimization tool can help you maximize your rewards! I can show you how to get the most value from your points and rewards.",
+        isUser: false,
+        timestamp: new Date(),
+        link: {
+          text: "Go to Points Optimization",
+          path: "/points-optimization"
+        }
+      };
+      setMessages((prev) => [...prev, aiResponse]);
     }
 
     // Card recommendation keywords
     else if (lowerMessage.includes('card') || lowerMessage.includes('recommend') || lowerMessage.includes('apply') || 
              lowerMessage.includes('credit') || lowerMessage.includes('new card') || lowerMessage.includes('best card')) {
-      contextualResponse = "I can help you find the perfect credit card! Our smart card recommendation tool analyzes your spending habits and preferences to suggest cards that match your needs. Would you like to take our card recommendation quiz?";
+      const aiResponse: Message = {
+        text: "I can help you find the perfect credit card! Our smart card recommendation tool analyzes your spending habits and preferences to suggest cards that match your needs.",
+        isUser: false,
+        timestamp: new Date(),
+        link: {
+          text: "Take the Card Recommendation Quiz",
+          path: "/card-comparison"
+        }
+      };
+      setMessages((prev) => [...prev, aiResponse]);
     }
 
     // General help keywords
     else if (lowerMessage.includes('help') || lowerMessage.includes('how') || lowerMessage.includes('what') || 
              lowerMessage.includes('explain') || lowerMessage.includes('guide') || lowerMessage.includes('tutorial')) {
-      contextualResponse = "I'm here to help! Card Clarity offers several tools to help you manage your credit cards better:\n\n" +
-        "1. Smart Card Recommendations - Find the perfect card for your needs\n" +
-        "2. Points Optimization - Maximize your rewards\n" +
-        "3. Debt Management - Create a personalized debt payoff strategy\n" +
-        "4. Rewards Tracking - Monitor and optimize your rewards\n\n" +
-        "What would you like to learn more about?";
+      const aiResponse: Message = {
+        text: "I'm here to help! Card Clarity offers several tools to help you manage your credit cards better:\n\n" +
+          "1. Smart Card Recommendations - Find the perfect card for your needs\n" +
+          "2. Points Optimization - Maximize your rewards\n" +
+          "3. Debt Management - Create a personalized debt payoff strategy\n" +
+          "4. Rewards Tracking - Monitor and optimize your rewards\n\n" +
+          "Click any of the links below to explore our tools:",
+        isUser: false,
+        timestamp: new Date(),
+        link: {
+          text: "View All Tools",
+          path: "/"
+        }
+      };
+      setMessages((prev) => [...prev, aiResponse]);
+      
+      // Add additional messages with specific links
+      const toolLinks: Message[] = [
+        {
+          text: "Find your perfect credit card with our recommendation tool.",
+          isUser: false,
+          timestamp: new Date(),
+          link: {
+            text: "Card Recommendations",
+            path: "/card-comparison"
+          }
+        },
+        {
+          text: "Optimize your rewards and points earning.",
+          isUser: false,
+          timestamp: new Date(),
+          link: {
+            text: "Points Optimization",
+            path: "/points-optimization"
+          }
+        },
+        {
+          text: "Create a personalized debt payoff strategy.",
+          isUser: false,
+          timestamp: new Date(),
+          link: {
+            text: "Debt Management",
+            path: "/debt-management"
+          }
+        }
+      ];
+      
+      // Add each tool link with a slight delay
+      toolLinks.forEach((message, index) => {
+        setTimeout(() => {
+          setMessages((prev) => [...prev, message]);
+        }, (index + 1) * 500);
+      });
     }
 
     // If no specific keywords are detected, use the default AI response
@@ -275,7 +349,34 @@ const ChatBot = () => {
                 boxShadow: 1
               }}
             >
-              <Typography variant="body2">{message.text}</Typography>
+              <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>{message.text}</Typography>
+              {message.link && (
+                <Box sx={{ mt: 1 }}>
+                  <Link
+                    component="button"
+                    onClick={() => handleLinkClick(message.link!.path)}
+                    sx={{
+                      color: message.isUser ? 'white' : '#1a237e',
+                      textDecoration: 'none',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 0.5,
+                      fontSize: '0.875rem',
+                      fontWeight: 500,
+                      bgcolor: message.isUser ? 'rgba(255,255,255,0.1)' : '#FFD700',
+                      px: 1,
+                      py: 0.5,
+                      borderRadius: 1,
+                      transition: 'all 0.2s ease',
+                      '&:hover': {
+                        bgcolor: message.isUser ? 'rgba(255,255,255,0.2)' : '#FFA500',
+                      }
+                    }}
+                  >
+                    {message.link.text}
+                  </Link>
+                </Box>
+              )}
             </Box>
           ))}
           {isTyping && (
