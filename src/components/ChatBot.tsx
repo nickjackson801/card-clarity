@@ -71,8 +71,9 @@ const ChatBot = () => {
     setInput('');
     setIsTyping(true);
 
-    // Simulate AI thinking and typing
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    // Simulate AI thinking and typing with a longer delay
+    const thinkingTime = Math.random() * 1000 + 1500; // Random delay between 1.5-2.5 seconds
+    await new Promise(resolve => setTimeout(resolve, thinkingTime));
 
     // Check for keywords and intent
     const lowerMessage = input.toLowerCase();
@@ -251,6 +252,9 @@ const ChatBot = () => {
       };
       setMessages((prev) => [...prev, aiResponse]);
     }
+    
+    // Add a small delay before hiding the typing indicator
+    await new Promise(resolve => setTimeout(resolve, 500));
     setIsTyping(false);
   };
 
