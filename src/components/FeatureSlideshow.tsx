@@ -30,7 +30,7 @@ const slides: Slide[] = [
           {/* Main Card */}
           <motion.rect
             x="50"
-            y="0"
+            y="30"
             width="300"
             height="180"
             rx="10"
@@ -43,7 +43,7 @@ const slides: Slide[] = [
           {/* Card Chip */}
           <motion.rect
             x="70"
-            y="20"
+            y="50"
             width="40"
             height="30"
             rx="4"
@@ -55,7 +55,7 @@ const slides: Slide[] = [
           {/* Card Number */}
           <motion.text
             x="70"
-            y="70"
+            y="100"
             fill="#1a237e"
             fontSize="16"
             fontFamily="Arial"
@@ -68,7 +68,7 @@ const slides: Slide[] = [
           {/* Card Holder */}
           <motion.text
             x="70"
-            y="100"
+            y="130"
             fill="#1a237e"
             fontSize="14"
             fontFamily="Arial"
@@ -81,7 +81,7 @@ const slides: Slide[] = [
           {/* Expiry */}
           <motion.text
             x="70"
-            y="120"
+            y="150"
             fill="#1a237e"
             fontSize="14"
             fontFamily="Arial"
@@ -94,7 +94,7 @@ const slides: Slide[] = [
           {/* Decorative Elements */}
           <motion.circle
             cx="300"
-            cy="20"
+            cy="50"
             r="30"
             fill="#FFD700"
             opacity="0.3"
@@ -104,7 +104,7 @@ const slides: Slide[] = [
           />
           <motion.circle
             cx="320"
-            cy="40"
+            cy="70"
             r="20"
             fill="#FFD700"
             opacity="0.3"
@@ -114,7 +114,7 @@ const slides: Slide[] = [
           />
           {/* Smart Recommendation Icon */}
           <motion.path
-            d="M200,-30 L220,-10 L200,10 L180,-10 Z"
+            d="M200,0 L220,20 L200,40 L180,20 Z"
             fill="#FFD700"
             initial={{ scale: 0, rotate: 0 }}
             animate={{ scale: 1, rotate: 360 }}
@@ -122,7 +122,7 @@ const slides: Slide[] = [
           />
           {/* Recommendation Lines */}
           <motion.path
-            d="M200,30 L200,70"
+            d="M200,60 L200,100"
             stroke="#FFD700"
             strokeWidth="2"
             strokeDasharray="5,5"
