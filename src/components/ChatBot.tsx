@@ -42,6 +42,7 @@ const ChatBot = () => {
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const [isTyping, setIsTyping] = useState(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -56,9 +57,11 @@ const ChatBot = () => {
     setIsOpen(false);
   };
 
-  const handleSendMessage = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     if (!input.trim()) return;
 
+    // Add user message
     const userMessage: Message = {
       text: input,
       isUser: true,
@@ -66,6 +69,10 @@ const ChatBot = () => {
     };
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
+    setIsTyping(true);
+
+    // Simulate AI thinking and typing
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
     // Check for keywords and intent
     const lowerMessage = input.toLowerCase();
@@ -156,6 +163,7 @@ const ChatBot = () => {
       };
       setMessages((prev) => [...prev, aiResponse]);
     }
+    setIsTyping(false);
   };
 
   return (
@@ -193,15 +201,15 @@ const ChatBot = () => {
       <Fab
         color="primary"
         aria-label="chat"
-        onClick={() => setIsOpen(true)}
+        onClick={() => setIsOpen(!isOpen)}
         sx={{
           position: 'fixed',
-          bottom: 20,
-          right: 20,
+          bottom: 16,
+          right: 16,
           bgcolor: '#FFD700',
           '&:hover': {
-            bgcolor: '#FFA500',
-          },
+            bgcolor: '#FFA500'
+          }
         }}
       >
         <ChatIcon />
@@ -210,152 +218,133 @@ const ChatBot = () => {
       <Box
         sx={{
           position: 'fixed',
-          bottom: 20,
-          right: 20,
-          width: 350,
-          height: 500,
-          bgcolor: 'white',
+          bottom: 80,
+          right: 16,
+          width: '300px',
+          height: '400px',
+          bgcolor: 'background.paper',
           borderRadius: 2,
-          boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+          boxShadow: 3,
           display: isOpen ? 'flex' : 'none',
           flexDirection: 'column',
-          overflow: 'hidden',
-          zIndex: 1000,
           border: '4px solid #FFD700',
+          transition: 'border-color 0.3s ease',
           '&:hover': {
-            border: '4px solid #FFA500',
-            transition: 'border-color 0.3s ease-in-out'
+            borderColor: '#FFA500'
           }
         }}
       >
         <Box
           sx={{
             p: 2,
-            background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
-            color: '#1a237e',
+            borderBottom: '3px solid #FFD700',
+            bgcolor: '#1a237e',
+            color: 'white',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            borderBottom: '3px solid #FFD700',
             boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
           }}
         >
-          <Typography variant="h6" sx={{ fontWeight: 600 }}>
-            Card Clarity Assistant
-          </Typography>
-          <IconButton
-            size="small"
-            onClick={() => setIsOpen(false)}
-            sx={{ color: '#1a237e' }}
-          >
+          <Typography variant="h6">AI Assistant</Typography>
+          <IconButton size="small" onClick={() => setIsOpen(false)} sx={{ color: 'white' }}>
             <CloseIcon />
           </IconButton>
         </Box>
 
-        <List
+        <Box
           sx={{
-            flex: 1,
-            overflow: 'auto',
+            flexGrow: 1,
+            overflowY: 'auto',
             p: 2,
             display: 'flex',
             flexDirection: 'column',
-            gap: 2,
-            background: 'linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(184, 134, 11, 0.05) 100%)'
+            gap: 1
           }}
         >
-          <AnimatePresence>
-            {messages.map((message, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
+          {messages.map((message, index) => (
+            <Box
+              key={index}
+              sx={{
+                alignSelf: message.isUser ? 'flex-end' : 'flex-start',
+                maxWidth: '80%',
+                p: 1,
+                bgcolor: message.isUser ? '#1a237e' : '#f5f5f5',
+                color: message.isUser ? 'white' : 'text.primary',
+                borderRadius: 2,
+                boxShadow: 1
+              }}
+            >
+              <Typography variant="body2">{message.text}</Typography>
+            </Box>
+          ))}
+          {isTyping && (
+            <Box
+              sx={{
+                alignSelf: 'flex-start',
+                maxWidth: '80%',
+                p: 1,
+                bgcolor: '#f5f5f5',
+                borderRadius: 2,
+                boxShadow: 1,
+                display: 'flex',
+                gap: 0.5
+              }}
+            >
+              <motion.span
+                animate={{ opacity: [0, 1, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
               >
-                <ListItem
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: message.isUser ? 'flex-end' : 'flex-start',
-                  }}
-                >
-                  <Paper
-                    sx={{
-                      p: 2,
-                      maxWidth: '80%',
-                      background: message.isUser
-                        ? 'linear-gradient(45deg, #2563eb 30%, #60a5fa 90%)'
-                        : 'linear-gradient(135deg, #FFD700 0%, #B8860B 100%)',
-                      color: message.isUser ? 'white' : '#1a237e',
-                    }}
-                  >
-                    <Typography variant="body1">{message.text}</Typography>
-                    <Typography
-                      variant="caption"
-                      sx={{
-                        display: 'block',
-                        mt: 0.5,
-                        color: message.isUser ? '#1a237e' : 'text.secondary',
-                      }}
-                    >
-                      {message.timestamp.toLocaleTimeString()}
-                    </Typography>
-                    {message.link && (
-                      <Box sx={{ mt: 1 }}>
-                        <Link
-                          component="button"
-                          onClick={() => handleLinkClick(message.link!.path)}
-                          sx={{
-                            color: message.isUser ? 'white' : 'primary.main',
-                            textDecoration: 'underline',
-                            '&:hover': {
-                              color: message.isUser ? 'white' : 'primary.dark',
-                            },
-                          }}
-                        >
-                          {message.link.text}
-                        </Link>
-                      </Box>
-                    )}
-                  </Paper>
-                </ListItem>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-          <div ref={messagesEndRef} />
-        </List>
+                •
+              </motion.span>
+              <motion.span
+                animate={{ opacity: [0, 1, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, delay: 0.2 }}
+              >
+                •
+              </motion.span>
+              <motion.span
+                animate={{ opacity: [0, 1, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, delay: 0.4 }}
+              >
+                •
+              </motion.span>
+            </Box>
+          )}
+        </Box>
 
-        <Divider />
-
-        <Box sx={{ p: 2, display: 'flex', gap: 1, background: 'linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(184, 134, 11, 0.05) 100%)' }}>
-          <TextField
-            fullWidth
-            variant="outlined"
-            placeholder="Type your message..."
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+        <form onSubmit={handleSubmit}>
+          <Box
             sx={{
-              '& .MuiOutlinedInput-root': {
-                '&:hover fieldset': {
-                  borderColor: '#FFD700',
-                },
-              },
-            }}
-          />
-          <IconButton
-            color="primary"
-            onClick={handleSendMessage}
-            sx={{
-              background: 'linear-gradient(45deg, #FFD700 30%, #B8860B 90%)',
-              color: '#1a237e',
-              '&:hover': {
-                background: 'linear-gradient(45deg, #B8860B 30%, #FFD700 90%)',
-              },
+              p: 2,
+              borderTop: '1px solid',
+              borderColor: 'divider',
+              display: 'flex',
+              gap: 1
             }}
           >
-            <SendIcon />
-          </IconButton>
-        </Box>
+            <TextField
+              fullWidth
+              size="small"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Type your message..."
+              variant="outlined"
+            />
+            <IconButton 
+              type="submit" 
+              color="primary"
+              sx={{ 
+                bgcolor: '#FFD700',
+                '&:hover': {
+                  bgcolor: '#FFA500'
+                }
+              }}
+            >
+              <SendIcon />
+            </IconButton>
+          </Box>
+        </form>
       </Box>
 
       <Drawer
@@ -468,7 +457,7 @@ const ChatBot = () => {
               placeholder="Type your message..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+              onKeyPress={(e) => e.key === 'Enter' && handleSubmit(e)}
               sx={{
                 '& .MuiOutlinedInput-root': {
                   '&:hover fieldset': {
@@ -479,7 +468,7 @@ const ChatBot = () => {
             />
             <IconButton
               color="primary"
-              onClick={handleSendMessage}
+              onClick={(e) => handleSubmit(e)}
               sx={{
                 background: 'linear-gradient(45deg, #FFD700 30%, #B8860B 90%)',
                 color: '#1a237e',
