@@ -398,32 +398,71 @@ const ChatBot = () => {
               sx={{
                 alignSelf: 'flex-start',
                 maxWidth: '80%',
-                p: 1,
+                p: 1.5,
                 bgcolor: '#f5f5f5',
                 borderRadius: 2,
                 boxShadow: 1,
                 display: 'flex',
-                gap: 0.5
+                gap: 1,
+                alignItems: 'center'
               }}
             >
               <motion.span
-                animate={{ opacity: [0, 1, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              >
-                •
-              </motion.span>
+                style={{
+                  display: 'inline-block',
+                  width: '8px',
+                  height: '8px',
+                  background: '#1a237e',
+                  borderRadius: '50%'
+                }}
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [0.3, 1, 0.3]
+                }}
+                transition={{ 
+                  duration: 1,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
               <motion.span
-                animate={{ opacity: [0, 1, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, delay: 0.2 }}
-              >
-                •
-              </motion.span>
+                style={{
+                  display: 'inline-block',
+                  width: '8px',
+                  height: '8px',
+                  background: '#1a237e',
+                  borderRadius: '50%'
+                }}
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [0.3, 1, 0.3]
+                }}
+                transition={{ 
+                  duration: 1,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.2
+                }}
+              />
               <motion.span
-                animate={{ opacity: [0, 1, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, delay: 0.4 }}
-              >
-                •
-              </motion.span>
+                style={{
+                  display: 'inline-block',
+                  width: '8px',
+                  height: '8px',
+                  background: '#1a237e',
+                  borderRadius: '50%'
+                }}
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [0.3, 1, 0.3]
+                }}
+                transition={{ 
+                  duration: 1,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.4
+                }}
+              />
             </Box>
           )}
         </Box>
