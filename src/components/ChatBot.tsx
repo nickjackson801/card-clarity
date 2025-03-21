@@ -69,11 +69,12 @@ const ChatBot = () => {
     };
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
+    
+    // Show typing indicator immediately
     setIsTyping(true);
 
-    // Simulate AI thinking and typing with a longer delay
-    const thinkingTime = Math.random() * 1000 + 1500; // Random delay between 1.5-2.5 seconds
-    await new Promise(resolve => setTimeout(resolve, thinkingTime));
+    // Ensure typing indicator is visible for at least 1 second
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     // Check for keywords and intent
     const lowerMessage = input.toLowerCase();
@@ -402,29 +403,30 @@ const ChatBot = () => {
               sx={{
                 alignSelf: 'flex-start',
                 maxWidth: '80%',
-                p: 1.5,
-                bgcolor: '#f5f5f5',
+                p: 2,
+                bgcolor: '#f8f9fa',
                 borderRadius: 2,
-                boxShadow: 1,
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
                 display: 'flex',
-                gap: 1,
-                alignItems: 'center'
+                gap: 1.5,
+                alignItems: 'center',
+                margin: '8px 0'
               }}
             >
               <motion.span
                 style={{
                   display: 'inline-block',
-                  width: '8px',
-                  height: '8px',
-                  background: '#1a237e',
+                  width: '10px',
+                  height: '10px',
+                  background: '#000000',
                   borderRadius: '50%'
                 }}
                 animate={{ 
                   scale: [1, 1.2, 1],
-                  opacity: [0.3, 1, 0.3]
+                  opacity: [0.4, 1, 0.4]
                 }}
                 transition={{ 
-                  duration: 1,
+                  duration: 0.8,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
@@ -432,39 +434,39 @@ const ChatBot = () => {
               <motion.span
                 style={{
                   display: 'inline-block',
-                  width: '8px',
-                  height: '8px',
-                  background: '#1a237e',
+                  width: '10px',
+                  height: '10px',
+                  background: '#000000',
                   borderRadius: '50%'
                 }}
                 animate={{ 
                   scale: [1, 1.2, 1],
-                  opacity: [0.3, 1, 0.3]
+                  opacity: [0.4, 1, 0.4]
                 }}
                 transition={{ 
-                  duration: 1,
+                  duration: 0.8,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: 0.2
+                  delay: 0.15
                 }}
               />
               <motion.span
                 style={{
                   display: 'inline-block',
-                  width: '8px',
-                  height: '8px',
-                  background: '#1a237e',
+                  width: '10px',
+                  height: '10px',
+                  background: '#000000',
                   borderRadius: '50%'
                 }}
                 animate={{ 
                   scale: [1, 1.2, 1],
-                  opacity: [0.3, 1, 0.3]
+                  opacity: [0.4, 1, 0.4]
                 }}
                 transition={{ 
-                  duration: 1,
+                  duration: 0.8,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: 0.4
+                  delay: 0.3
                 }}
               />
             </Box>
