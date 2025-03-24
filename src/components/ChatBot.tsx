@@ -265,10 +265,10 @@ const ChatBot = () => {
             position: 'fixed',
             bottom: 80,
             right: 20,
-            background: 'rgba(255, 255, 255, 0.9)',
+            background: '#1d1d1f',
             padding: '12px 20px',
             borderRadius: '16px',
-            boxShadow: '0 4px 24px rgba(0, 0, 0, 0.1)',
+            boxShadow: '0 4px 24px rgba(0, 0, 0, 0.2)',
             backdropFilter: 'blur(10px)',
             zIndex: 1000,
           }}
@@ -276,7 +276,7 @@ const ChatBot = () => {
           <Typography
             variant="body2"
             sx={{
-              color: '#1d1d1f',
+              color: '#ffffff',
               fontWeight: 400,
               fontSize: '14px',
               letterSpacing: '-0.01em'
