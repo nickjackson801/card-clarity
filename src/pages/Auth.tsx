@@ -94,11 +94,8 @@ const Auth = () => {
           sx={{
             fontWeight: 700,
             mb: 2,
-            background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #059669 100%)',
-            backgroundClip: 'text',
-            WebkitBackgroundClip: 'text',
-            color: 'transparent',
-            WebkitTextFillColor: 'transparent',
+            color: '#1d1d1f',
+            letterSpacing: '-0.02em'
           }}
         >
           Welcome to Card Clarity
@@ -107,7 +104,13 @@ const Auth = () => {
           variant="body1"
           color="text.secondary"
           paragraph
-          sx={{ mb: 4, fontSize: '1.1rem' }}
+          sx={{ 
+            mb: 4, 
+            fontSize: '1.1rem',
+            color: 'rgba(0, 0, 0, 0.7)',
+            letterSpacing: '-0.01em',
+            lineHeight: 1.5
+          }}
         >
           Your all-in-one platform for smart credit card management. Compare cards, optimize your points, and take control of your debt.
         </Typography>
