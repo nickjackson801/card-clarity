@@ -1,25 +1,10 @@
-import { useState } from 'react';
-import {
-  Container,
-  Typography,
-  Box,
-  Grid,
-  Paper,
-  Slider,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  Chip,
-  Button,
-} from '@mui/material';
+import { Container, Typography, Grid, Paper, Box, Chip, Select, MenuItem, FormControl, Slider } from '@mui/material';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const CardComparison = () => {
   const [spendingAmount, setSpendingAmount] = useState<number>(1000);
   const [category, setCategory] = useState<string>('');
-  const navigate = useNavigate();
 
   const categories = [
     'Travel',
@@ -126,12 +111,16 @@ const CardComparison = () => {
                   </Typography>
                   <Slider
                     value={spendingAmount}
-                    onChange={(_, value) => setSpendingAmount(value as number)}
+                    onChange={(_: Event, value: number | number[], activeThumb: number) => {
+                      if (typeof value === 'number') {
+                        setSpendingAmount(value);
+                      }
+                    }}
                     min={0}
                     max={30000}
                     step={100}
                     valueLabelDisplay="on"
-                    valueLabelFormat={(value) => `$${value.toLocaleString()}`}
+                    valueLabelFormat={(value: number) => `$${value.toLocaleString()}`}
                     marks={[
                       { value: 0, label: '$0' },
                       { value: 15000, label: '$15K' },

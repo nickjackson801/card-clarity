@@ -1,13 +1,11 @@
 import { Container, Typography, Grid, Paper, Box, Button } from '@mui/material';
 import { CompareArrows, Stars, AccountBalance } from '@mui/icons-material';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import FeatureSlideshow from '../components/FeatureSlideshow';
 import ChatBot from '../components/ChatBot';
 
 const Home = () => {
-  const navigate = useNavigate();
-
   const COLORS = {
     cardComparison: {
       main: '#2563eb',
