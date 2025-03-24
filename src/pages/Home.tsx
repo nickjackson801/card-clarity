@@ -52,71 +52,74 @@ const Home = () => {
       {/* Hero Section */}
       <Box
         sx={{
-          background: `linear-gradient(45deg, ${COLORS.cardComparison.main} 30%, ${COLORS.cardComparison.light} 90%)`,
-          color: 'white',
-          py: { xs: 8, md: 12 },
-          mb: 6,
+          background: '#f5f5f7',
+          color: '#1d1d1f',
+          py: { xs: 12, md: 16 },
+          mb: 8,
+          position: 'relative',
+          overflow: 'hidden',
         }}
       >
         <Container maxWidth="lg">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: [0.215, 0.61, 0.355, 1] }}
           >
             <Grid container spacing={4} alignItems="center">
               <Grid item xs={12} md={6}>
                 <Typography
-                  variant="h2"
+                  variant="h1"
                   component="h1"
                   gutterBottom
                   sx={{
-                    fontWeight: 700,
+                    fontWeight: 600,
                     fontSize: { xs: '2.5rem', md: '3.5rem' },
-                    lineHeight: 1.2,
+                    lineHeight: 1.1,
                     mb: 3,
+                    letterSpacing: '-0.025em'
                   }}
                 >
-                  Make Smarter Credit Card Decisions
+                  Make smarter credit card decisions
                 </Typography>
                 <Typography
                   variant="h5"
-                  color="inherit"
                   paragraph
                   sx={{ 
                     mb: 4, 
                     fontSize: { xs: '1.1rem', md: '1.25rem' },
-                    opacity: 0.9
+                    color: 'rgba(0, 0, 0, 0.65)',
+                    letterSpacing: '-0.01em',
+                    fontWeight: 400
                   }}
                 >
-                  Compare cards, optimize points, and manage debt with our comprehensive suite of tools.
+                  Compare cards, optimize rewards, and manage debt with intelligent tools designed around you.
                 </Typography>
-                <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+                <Box sx={{ display: 'flex', gap: 2 }}>
                   <Button
                     variant="contained"
                     size="large"
-                    onClick={() => navigate('/quiz')}
+                    component={Link}
+                    to="/quiz"
                     sx={{
-                      background: 'white',
-                      color: COLORS.cardComparison.main,
-                      '&:hover': {
-                        background: 'rgba(255, 255, 255, 0.9)',
-                      }
+                      fontSize: '1.125rem',
+                      py: 1.5,
+                      px: 4,
+                      borderRadius: 12,
                     }}
                   >
-                    Take Our Quiz
+                    Get Started
                   </Button>
                   <Button
                     variant="outlined"
                     size="large"
-                    onClick={() => navigate('/compare')}
+                    component={Link}
+                    to="/compare"
                     sx={{
-                      color: 'white',
-                      borderColor: 'white',
-                      '&:hover': {
-                        borderColor: 'rgba(255, 255, 255, 0.9)',
-                        bgcolor: 'rgba(255, 255, 255, 0.1)',
-                      }
+                      fontSize: '1.125rem',
+                      py: 1.5,
+                      px: 4,
+                      borderRadius: 12,
                     }}
                   >
                     Compare Cards
@@ -124,13 +127,9 @@ const Home = () => {
                 </Box>
               </Grid>
               <Grid item xs={12} md={6}>
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                >
+                <Box sx={{ position: 'relative', pl: { md: 4 } }}>
                   <FeatureSlideshow />
-                </motion.div>
+                </Box>
               </Grid>
             </Grid>
           </motion.div>
@@ -311,40 +310,46 @@ const Home = () => {
       {/* Customer Reviews Section */}
       <Box
         sx={{
-          background: `linear-gradient(to bottom, rgba(37, 99, 235, 0.03), rgba(124, 58, 237, 0.05))`,
-          py: { xs: 8, md: 12 },
+          background: '#f5f5f7',
+          py: { xs: 12, md: 16 },
           mb: 8,
         }}
       >
         <Container maxWidth="lg">
           <Typography
-            variant="h3"
+            variant="h2"
             component="h2"
             align="center"
             gutterBottom
             sx={{
-              fontWeight: 700,
-              mb: 6,
+              fontWeight: 600,
+              mb: 8,
               fontSize: { xs: '2rem', md: '2.5rem' },
+              letterSpacing: '-0.025em'
             }}
           >
-            What Our Users Say
+            What our users say
           </Typography>
           <Grid container spacing={4}>
             <Grid item xs={12} md={4}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
               >
                 <Paper
                   elevation={0}
                   sx={{
                     p: 4,
                     height: '100%',
-                    background: 'rgba(255, 255, 255, 0.9)',
-                    backdropFilter: 'blur(10px)',
-                    borderRadius: 2,
+                    background: 'rgba(255, 255, 255, 0.8)',
+                    backdropFilter: 'blur(20px)',
+                    borderRadius: 3,
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      transform: 'translateY(-4px)',
+                      boxShadow: '0 4px 24px rgba(0, 0, 0, 0.12)',
+                    },
                   }}
                 >
                   <Typography
@@ -354,7 +359,9 @@ const Home = () => {
                       fontSize: '1.1rem',
                       fontStyle: 'italic',
                       mb: 3,
-                      color: 'text.secondary',
+                      color: 'rgba(0, 0, 0, 0.65)',
+                      letterSpacing: '-0.01em',
+                      lineHeight: 1.6
                     }}
                   >
                     "I was overwhelmed by all the credit card options out there. This tool helped me find the perfect card that matches my spending habits. Now I'm earning twice the rewards I used to get!"
@@ -365,22 +372,34 @@ const Home = () => {
                         width: 48,
                         height: 48,
                         borderRadius: '50%',
-                        background: `linear-gradient(45deg, ${COLORS.cardComparison.main}, ${COLORS.cardComparison.light})`,
+                        background: '#f5f5f7',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: 'white',
-                        fontWeight: 600,
+                        color: '#1d1d1f',
+                        fontWeight: 500,
                         mr: 2,
                       }}
                     >
                       SM
                     </Box>
                     <Box>
-                      <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                      <Typography 
+                        variant="subtitle1" 
+                        sx={{ 
+                          fontWeight: 600,
+                          letterSpacing: '-0.01em'
+                        }}
+                      >
                         Sarah Mitchell
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography 
+                        variant="body2" 
+                        sx={{ 
+                          color: 'rgba(0, 0, 0, 0.45)',
+                          letterSpacing: '-0.01em'
+                        }}
+                      >
                         New York, NY
                       </Typography>
                     </Box>
@@ -392,16 +411,21 @@ const Home = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <Paper
                   elevation={0}
                   sx={{
                     p: 4,
                     height: '100%',
-                    background: 'rgba(255, 255, 255, 0.9)',
-                    backdropFilter: 'blur(10px)',
-                    borderRadius: 2,
+                    background: 'rgba(255, 255, 255, 0.8)',
+                    backdropFilter: 'blur(20px)',
+                    borderRadius: 3,
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      transform: 'translateY(-4px)',
+                      boxShadow: '0 4px 24px rgba(0, 0, 0, 0.12)',
+                    },
                   }}
                 >
                   <Typography
@@ -411,7 +435,9 @@ const Home = () => {
                       fontSize: '1.1rem',
                       fontStyle: 'italic',
                       mb: 3,
-                      color: 'text.secondary',
+                      color: 'rgba(0, 0, 0, 0.65)',
+                      letterSpacing: '-0.01em',
+                      lineHeight: 1.6
                     }}
                   >
                     "The points optimization feature is a game-changer! It tells me exactly which card to use for different purchases, and I've already booked a free flight using the points I earned."
@@ -422,22 +448,34 @@ const Home = () => {
                         width: 48,
                         height: 48,
                         borderRadius: '50%',
-                        background: `linear-gradient(45deg, ${COLORS.pointsOptimizer.main}, ${COLORS.pointsOptimizer.light})`,
+                        background: '#f5f5f7',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: 'white',
-                        fontWeight: 600,
+                        color: '#1d1d1f',
+                        fontWeight: 500,
                         mr: 2,
                       }}
                     >
                       JR
                     </Box>
                     <Box>
-                      <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                      <Typography 
+                        variant="subtitle1" 
+                        sx={{ 
+                          fontWeight: 600,
+                          letterSpacing: '-0.01em'
+                        }}
+                      >
                         James Rodriguez
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography 
+                        variant="body2" 
+                        sx={{ 
+                          color: 'rgba(0, 0, 0, 0.45)',
+                          letterSpacing: '-0.01em'
+                        }}
+                      >
                         Austin, TX
                       </Typography>
                     </Box>
@@ -449,16 +487,21 @@ const Home = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
               >
                 <Paper
                   elevation={0}
                   sx={{
                     p: 4,
                     height: '100%',
-                    background: 'rgba(255, 255, 255, 0.9)',
-                    backdropFilter: 'blur(10px)',
-                    borderRadius: 2,
+                    background: 'rgba(255, 255, 255, 0.8)',
+                    backdropFilter: 'blur(20px)',
+                    borderRadius: 3,
+                    transition: 'all 0.3s ease',
+                    '&:hover': {
+                      transform: 'translateY(-4px)',
+                      boxShadow: '0 4px 24px rgba(0, 0, 0, 0.12)',
+                    },
                   }}
                 >
                   <Typography
@@ -468,7 +511,9 @@ const Home = () => {
                       fontSize: '1.1rem',
                       fontStyle: 'italic',
                       mb: 3,
-                      color: 'text.secondary',
+                      color: 'rgba(0, 0, 0, 0.65)',
+                      letterSpacing: '-0.01em',
+                      lineHeight: 1.6
                     }}
                   >
                     "The debt management tool gave me a clear path to becoming debt-free. It helped me prioritize my payments and showed me exactly how long it would take. I'm now halfway through my payoff plan!"
@@ -479,22 +524,34 @@ const Home = () => {
                         width: 48,
                         height: 48,
                         borderRadius: '50%',
-                        background: `linear-gradient(45deg, ${COLORS.debtManagement.main}, ${COLORS.debtManagement.light})`,
+                        background: '#f5f5f7',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: 'white',
-                        fontWeight: 600,
+                        color: '#1d1d1f',
+                        fontWeight: 500,
                         mr: 2,
                       }}
                     >
                       EW
                     </Box>
                     <Box>
-                      <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                      <Typography 
+                        variant="subtitle1" 
+                        sx={{ 
+                          fontWeight: 600,
+                          letterSpacing: '-0.01em'
+                        }}
+                      >
                         Emma Wilson
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography 
+                        variant="body2" 
+                        sx={{ 
+                          color: 'rgba(0, 0, 0, 0.45)',
+                          letterSpacing: '-0.01em'
+                        }}
+                      >
                         Seattle, WA
                       </Typography>
                     </Box>
@@ -507,65 +564,94 @@ const Home = () => {
       </Box>
 
       {/* Services Section */}
-      <Container maxWidth="lg" sx={{ mb: 8 }}>
-        <Grid container spacing={4}>
-          {services.map((service, index) => (
-            <Grid item xs={12} md={4} key={service.title}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Paper
-                  sx={{
-                    p: 4,
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    '&:hover': {
-                      transform: 'translateY(-4px)',
-                      transition: 'transform 0.3s ease-in-out',
-                      boxShadow: (theme) => theme.shadows[4],
-                    },
-                  }}
+      <Container maxWidth="lg" sx={{ mb: 12 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <Grid container spacing={4}>
+            {services.map((service, index) => (
+              <Grid item xs={12} md={4} key={service.title}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
-                  <Box
+                  <Paper
                     sx={{
-                      mb: 2,
-                      color: service.color,
-                    }}
-                  >
-                    {service.icon}
-                  </Box>
-                  <Typography variant="h5" component="h2" gutterBottom sx={{ fontWeight: 600 }}>
-                    {service.title}
-                  </Typography>
-                  <Typography color="text.secondary" paragraph sx={{ mb: 3, flexGrow: 1 }}>
-                    {service.description}
-                  </Typography>
-                  <Button
-                    component={Link}
-                    to={service.link}
-                    variant="outlined"
-                    sx={{
-                      alignSelf: 'flex-start',
-                      color: service.color,
-                      borderColor: service.color,
+                      p: 4,
+                      height: '100%',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      position: 'relative',
+                      overflow: 'hidden',
+                      background: 'rgba(255, 255, 255, 0.8)',
+                      backdropFilter: 'blur(20px)',
+                      transition: 'all 0.3s ease',
                       '&:hover': {
-                        borderColor: service.color,
-                        bgcolor: `${service.color}10`,
+                        transform: 'translateY(-4px)',
+                        boxShadow: '0 4px 24px rgba(0, 0, 0, 0.12)',
                       },
                     }}
                   >
-                    Learn More
-                  </Button>
-                </Paper>
-              </motion.div>
-            </Grid>
-          ))}
-        </Grid>
+                    <Box
+                      sx={{
+                        mb: 3,
+                        color: '#1d1d1f',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: 56,
+                        height: 56,
+                        borderRadius: '16px',
+                        background: 'rgba(0, 0, 0, 0.03)',
+                      }}
+                    >
+                      {service.icon}
+                    </Box>
+                    <Typography 
+                      variant="h5" 
+                      component="h2" 
+                      gutterBottom 
+                      sx={{ 
+                        fontWeight: 600,
+                        letterSpacing: '-0.025em',
+                        fontSize: '1.25rem'
+                      }}
+                    >
+                      {service.title}
+                    </Typography>
+                    <Typography 
+                      sx={{ 
+                        color: 'rgba(0, 0, 0, 0.65)',
+                        mb: 3,
+                        flexGrow: 1,
+                        letterSpacing: '-0.01em',
+                        lineHeight: 1.6
+                      }}
+                    >
+                      {service.description}
+                    </Typography>
+                    <Button
+                      component={Link}
+                      to={service.link}
+                      sx={{
+                        alignSelf: 'flex-start',
+                        color: '#06c',
+                        '&:hover': {
+                          backgroundColor: 'rgba(0, 102, 204, 0.05)'
+                        }
+                      }}
+                    >
+                      Learn more →
+                    </Button>
+                  </Paper>
+                </motion.div>
+              </Grid>
+            ))}
+          </Grid>
+        </motion.div>
       </Container>
       <ChatBot />
     </Box>
