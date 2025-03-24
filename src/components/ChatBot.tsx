@@ -20,21 +20,6 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
-// Add floating animation keyframes
-const floatingAnimation = {
-  '@keyframes float': {
-    '0%': {
-      transform: 'translateY(0px)',
-    },
-    '50%': {
-      transform: 'translateY(-10px)',
-    },
-    '100%': {
-      transform: 'translateY(0px)',
-    },
-  },
-};
-
 interface Message {
   text: string;
   isUser: boolean;
