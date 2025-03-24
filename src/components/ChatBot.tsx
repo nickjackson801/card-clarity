@@ -261,12 +261,15 @@ const ChatBot = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ 
             opacity: 1,
-            y: [0, -10, 0]
+            y: [-2, -8, -2]
           }}
           transition={{ 
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
+            opacity: { duration: 0.3 },
+            y: {
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }
           }}
           style={{
             position: 'fixed',
