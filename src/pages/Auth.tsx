@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Container,
   Typography,
@@ -18,6 +18,9 @@ import {
   Alert,
 } from '@mui/material';
 import { motion } from 'framer-motion';
+import { useFirebase } from '../contexts/FirebaseContext';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../config/firebase';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -46,8 +49,16 @@ function TabPanel(props: TabPanelProps) {
 }
 
 const Auth = () => {
+  const { signIn, signUp } = useFirebase();
   const [tabValue, setTabValue] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Add useEffect to log when component mounts
+  useEffect(() => {
+    console.log('Auth component mounted');
+    console.log('Firebase context available:', !!signUp);
+  }, [signUp]);
 
   // Login form state
   const [loginEmail, setLoginEmail] = useState('');
@@ -64,20 +75,62 @@ const Auth = () => {
 
   const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
+    setError(null);
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically handle the login logic
-    setShowSuccess(true);
-    setTimeout(() => setShowSuccess(false), 3000);
+    try {
+      await signIn(loginEmail, loginPassword);
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
+    } catch (err) {
+      setError('Failed to login. Please check your credentials.');
+      console.error('Login error:', err);
+    }
   };
 
-  const handleSignup = (e: React.FormEvent) => {
+  const handleSignup = async (e: React.FormEvent) => {
+    console.log('1. Form submitted');
     e.preventDefault();
-    // Here you would typically handle the signup logic
-    setShowSuccess(true);
-    setTimeout(() => setShowSuccess(false), 3000);
+    setError(null);
+
+    console.log('2. Checking password match');
+    if (password !== confirmPassword) {
+      console.log('Passwords do not match');
+      setError('Passwords do not match');
+      return;
+    }
+
+    try {
+      console.log('3. Starting signup process...');
+      console.log('4. Form data:', { email, name, creditExperience, existingDebt, monthlySpending });
+      
+      console.log('5. Calling Firebase signUp...');
+      const userCredential = await signUp(email, password);
+      console.log('6. User created successfully:', userCredential.user.uid);
+      
+      console.log('7. Preparing Firestore data...');
+      const userData = {
+        name,
+        email,
+        creditExperience,
+        existingDebt,
+        monthlySpending,
+        createdAt: new Date().toISOString(),
+      };
+      console.log('8. User data to store:', userData);
+      
+      console.log('9. Storing data in Firestore...');
+      await setDoc(doc(db, 'users', userCredential.user.uid), userData);
+      console.log('10. User data stored successfully');
+
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 3000);
+    } catch (err) {
+      console.error('Signup error details:', err);
+      setError('Failed to create account. Please try again.');
+    }
   };
 
   return (
@@ -118,6 +171,12 @@ const Auth = () => {
         {showSuccess && (
           <Alert severity="success" sx={{ mb: 2 }}>
             {tabValue === 0 ? 'Successfully logged in!' : 'Account created successfully!'}
+          </Alert>
+        )}
+
+        {error && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {error}
           </Alert>
         )}
 
