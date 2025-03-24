@@ -75,13 +75,16 @@ const ChatBot = () => {
     setIsTyping(true);
 
     try {
+      // Add a small delay to show the typing indicator
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
       // Check for keywords and intent
       const lowerMessage = currentInput.toLowerCase();
-      let contextualResponse = '';
+      let aiResponse: Message | null = null;
 
       // Compare cards keywords
       if (lowerMessage.includes('compare')) {
-        const aiResponse: Message = {
+        aiResponse = {
           text: "I can help you compare different credit cards side by side. Our comparison tool makes it easy to evaluate features, rewards, and benefits of multiple cards.",
           isUser: false,
           timestamp: new Date(),
@@ -90,19 +93,22 @@ const ChatBot = () => {
             path: "/compare"
           }
         };
-        setMessages((prev) => [...prev, aiResponse]);
       }
 
       // Price/Beta related keywords
       else if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('fee') || 
                lowerMessage.includes('subscription') || lowerMessage.includes('paid') || lowerMessage.includes('free')) {
-        contextualResponse = "Great news! During our beta period, all features of Card Clarity are completely free. You can access our full suite of tools including card recommendations, points optimization, debt management, and rewards tracking without any cost. Take advantage of this offer while it lasts!";
+        aiResponse = {
+          text: "Great news! During our beta period, all features of Card Clarity are completely free. You can access our full suite of tools including card recommendations, points optimization, debt management, and rewards tracking without any cost. Take advantage of this offer while it lasts!",
+          isUser: false,
+          timestamp: new Date(),
+        };
       }
 
       // Debt related keywords
       else if (lowerMessage.includes('debt') || lowerMessage.includes('balance') || lowerMessage.includes('pay off') || 
                lowerMessage.includes('interest') || lowerMessage.includes('payment') || lowerMessage.includes('owe')) {
-        const aiResponse: Message = {
+        aiResponse = {
           text: "I can help you with debt management! Our debt management tool can help you create a personalized debt payoff strategy.",
           isUser: false,
           timestamp: new Date(),
@@ -111,13 +117,12 @@ const ChatBot = () => {
             path: "/debt"
           }
         };
-        setMessages((prev) => [...prev, aiResponse]);
       }
 
       // Points related keywords
       else if (lowerMessage.includes('point') || lowerMessage.includes('reward') || lowerMessage.includes('cashback') || 
                lowerMessage.includes('miles') || lowerMessage.includes('travel') || lowerMessage.includes('redemption')) {
-        const aiResponse: Message = {
+        aiResponse = {
           text: "Our points optimization tool can help you maximize your rewards! I can show you how to get the most value from your points and rewards.",
           isUser: false,
           timestamp: new Date(),
@@ -126,13 +131,12 @@ const ChatBot = () => {
             path: "/points"
           }
         };
-        setMessages((prev) => [...prev, aiResponse]);
       }
 
       // Card recommendation keywords
       else if (lowerMessage.includes('card') || lowerMessage.includes('recommend') || lowerMessage.includes('apply') || 
                lowerMessage.includes('credit') || lowerMessage.includes('new card') || lowerMessage.includes('best card')) {
-        const aiResponse: Message = {
+        aiResponse = {
           text: "I can help you find the perfect credit card! Our smart card recommendation tool analyzes your spending habits and preferences to suggest cards that match your needs.",
           isUser: false,
           timestamp: new Date(),
@@ -141,69 +145,25 @@ const ChatBot = () => {
             path: "/quiz"
           }
         };
-        setMessages((prev) => [...prev, aiResponse]);
       }
 
       // General help keywords
       else if (lowerMessage.includes('help') || lowerMessage.includes('how') || lowerMessage.includes('what') || 
                lowerMessage.includes('explain') || lowerMessage.includes('guide') || lowerMessage.includes('tutorial')) {
-        const aiResponse: Message = {
+        aiResponse = {
           text: "I'm here to help! Card Clarity offers several tools to help you manage your credit cards better:\n\n" +
             "1. Smart Card Recommendations - Find the perfect card for your needs\n" +
             "2. Points Optimization - Maximize your rewards\n" +
             "3. Debt Management - Create a personalized debt payoff strategy\n" +
             "4. Rewards Tracking - Monitor and optimize your rewards\n\n" +
-            "Click any of the links below to explore our tools:",
+            "What would you like to learn more about?",
           isUser: false,
           timestamp: new Date(),
-          link: {
-            text: "View All Tools",
-            path: "/"
-          }
         };
-        setMessages((prev) => [...prev, aiResponse]);
-        
-        // Add additional messages with specific links
-        const toolLinks: Message[] = [
-          {
-            text: "Find your perfect credit card with our recommendation tool.",
-            isUser: false,
-            timestamp: new Date(),
-            link: {
-              text: "Card Recommendations",
-              path: "/quiz"
-            }
-          },
-          {
-            text: "Optimize your rewards and points earning.",
-            isUser: false,
-            timestamp: new Date(),
-            link: {
-              text: "Points Optimization",
-              path: "/points"
-            }
-          },
-          {
-            text: "Create a personalized debt payoff strategy.",
-            isUser: false,
-            timestamp: new Date(),
-            link: {
-              text: "Debt Management",
-              path: "/debt"
-            }
-          }
-        ];
-        
-        // Add each tool link with a slight delay
-        toolLinks.forEach((message, index) => {
-          setTimeout(() => {
-            setMessages((prev) => [...prev, message]);
-          }, (index + 1) * 500);
-        });
       }
 
       // If no specific keywords are detected, use the default AI response
-      if (!contextualResponse) {
+      if (!aiResponse) {
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
           method: 'POST',
           headers: {
@@ -227,19 +187,16 @@ const ChatBot = () => {
 
         const data = await response.json();
         if (data.choices && data.choices[0]) {
-          const aiResponse: Message = {
+          aiResponse = {
             text: data.choices[0].message.content,
             isUser: false,
             timestamp: new Date(),
           };
-          setMessages((prev) => [...prev, aiResponse]);
         }
-      } else {
-        const aiResponse: Message = {
-          text: contextualResponse,
-          isUser: false,
-          timestamp: new Date(),
-        };
+      }
+
+      // Add the response to messages
+      if (aiResponse) {
         setMessages((prev) => [...prev, aiResponse]);
       }
     } catch (error) {
