@@ -395,59 +395,84 @@ const ChatBot = () => {
             </Box>
           ))}
           {isTyping && (
-            <Box
-              sx={{
-                alignSelf: 'flex-start',
-                maxWidth: '85%',
-                p: 2,
-                bgcolor: 'rgba(0, 0, 0, 0.03)',
-                borderRadius: '12px',
-                borderBottomLeftRadius: '4px',
-                display: 'flex',
-                gap: 1,
-                alignItems: 'center'
-              }}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
             >
               <Box
                 sx={{
-                  width: '6px',
-                  height: '6px',
-                  bgcolor: '#1d1d1f',
-                  borderRadius: '50%',
-                  animation: 'typing 1s infinite',
-                  '@keyframes typing': {
-                    '0%, 100%': { transform: 'translateY(0)' },
-                    '50%': { transform: 'translateY(-4px)' }
-                  }
+                  alignSelf: 'flex-start',
+                  maxWidth: '85%',
+                  p: 2,
+                  bgcolor: 'rgba(0, 0, 0, 0.03)',
+                  borderRadius: '12px',
+                  borderBottomLeftRadius: '4px',
+                  display: 'flex',
+                  gap: 1,
+                  alignItems: 'center',
+                  margin: '8px 0'
                 }}
-              />
-              <Box
-                sx={{
-                  width: '6px',
-                  height: '6px',
-                  bgcolor: '#1d1d1f',
-                  borderRadius: '50%',
-                  animation: 'typing 1s infinite 0.2s',
-                  '@keyframes typing': {
-                    '0%, 100%': { transform: 'translateY(0)' },
-                    '50%': { transform: 'translateY(-4px)' }
-                  }
-                }}
-              />
-              <Box
-                sx={{
-                  width: '6px',
-                  height: '6px',
-                  bgcolor: '#1d1d1f',
-                  borderRadius: '50%',
-                  animation: 'typing 1s infinite 0.4s',
-                  '@keyframes typing': {
-                    '0%, 100%': { transform: 'translateY(0)' },
-                    '50%': { transform: 'translateY(-4px)' }
-                  }
-                }}
-              />
-            </Box>
+              >
+                <motion.span
+                  style={{
+                    display: 'inline-block',
+                    width: '6px',
+                    height: '6px',
+                    background: '#1d1d1f',
+                    borderRadius: '50%'
+                  }}
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.7, 0.3]
+                  }}
+                  transition={{ 
+                    duration: 1,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <motion.span
+                  style={{
+                    display: 'inline-block',
+                    width: '6px',
+                    height: '6px',
+                    background: '#1d1d1f',
+                    borderRadius: '50%'
+                  }}
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.7, 0.3]
+                  }}
+                  transition={{ 
+                    duration: 1,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.2
+                  }}
+                />
+                <motion.span
+                  style={{
+                    display: 'inline-block',
+                    width: '6px',
+                    height: '6px',
+                    background: '#1d1d1f',
+                    borderRadius: '50%'
+                  }}
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.7, 0.3]
+                  }}
+                  transition={{ 
+                    duration: 1,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.4
+                  }}
+                />
+              </Box>
+            </motion.div>
           )}
         </Box>
 
