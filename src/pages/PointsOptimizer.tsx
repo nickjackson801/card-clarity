@@ -1,200 +1,283 @@
-import { useState } from 'react';
-import {
-  Container,
-  Typography,
-  Paper,
-  Box,
-  Grid,
-  Card,
-  CardContent,
-  Button,
-  LinearProgress,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-} from '@mui/material';
-import {
-  FlightTakeoff,
-  Hotel,
-  Restaurant,
-  ShoppingCart,
-  TrendingUp,
-  Add,
-} from '@mui/icons-material';
+import { Container, Typography, Grid, Paper, Box, Button, TextField, Chip } from '@mui/material';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 const PointsOptimizer = () => {
-  const [linkedCards] = useState([
-    {
-      name: 'Chase Sapphire Reserve',
-      points: 54320,
-      lastUpdate: '2024-03-20',
-      redemptionOptions: [
-        { type: 'Travel', value: 1.5, icon: <FlightTakeoff /> },
-        { type: 'Dining', value: 1.25, icon: <Restaurant /> },
-        { type: 'Shopping', value: 1.0, icon: <ShoppingCart /> },
-      ],
-    },
-    {
-      name: 'Amex Platinum',
-      points: 89750,
-      lastUpdate: '2024-03-19',
-      redemptionOptions: [
-        { type: 'Flights', value: 2.0, icon: <FlightTakeoff /> },
-        { type: 'Hotels', value: 1.75, icon: <Hotel /> },
-        { type: 'Shopping', value: 1.0, icon: <ShoppingCart /> },
-      ],
-    },
-  ]);
+  const [points, setPoints] = useState({
+    chase: '',
+    amex: '',
+    capital_one: '',
+  });
 
-  const recommendations = [
+  const rewardPrograms = [
     {
-      title: 'Book International Flight',
-      description: 'Transfer 50,000 points to United Airlines for best value',
-      value: '2.2cpp',
-      icon: <FlightTakeoff />,
+      name: 'Chase Ultimate Rewards',
+      key: 'chase',
+      color: '#1d1d1f',
     },
     {
-      title: 'Luxury Hotel Booking',
-      description: 'Use Amex points through Fine Hotels & Resorts',
-      value: '2.0cpp',
-      icon: <Hotel />,
+      name: 'American Express Membership Rewards',
+      key: 'amex',
+      color: '#1d1d1f',
     },
     {
-      title: 'Dining Rewards',
-      description: 'Use Chase points for dining purchases',
-      value: '1.5cpp',
-      icon: <Restaurant />,
+      name: 'Capital One Miles',
+      key: 'capital_one',
+      color: '#1d1d1f',
     },
   ];
 
+  const handlePointsChange = (program: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPoints({
+      ...points,
+      [program]: event.target.value,
+    });
+  };
+
   return (
-    <Container maxWidth="lg" sx={{ py: 8 }}>
+    <Container maxWidth="lg" sx={{ py: { xs: 8, md: 12 } }}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.6, ease: [0.215, 0.61, 0.355, 1] }}
       >
-        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 700 }}>
+        <Typography
+          variant="h1"
+          component="h1"
+          gutterBottom
+          sx={{
+            fontWeight: 600,
+            fontSize: { xs: '2rem', md: '2.5rem' },
+            letterSpacing: '-0.025em',
+            mb: 2
+          }}
+        >
           Points Optimizer
         </Typography>
-        <Typography variant="h6" color="text.secondary" paragraph>
-          Track and optimize your credit card rewards across all your accounts.
+        <Typography
+          variant="body1"
+          sx={{
+            color: 'rgba(0, 0, 0, 0.65)',
+            fontSize: '1.125rem',
+            letterSpacing: '-0.01em',
+            mb: 6,
+            maxWidth: '42rem'
+          }}
+        >
+          Maximize the value of your credit card rewards by tracking points across multiple programs and discovering the best redemption options.
         </Typography>
 
         <Grid container spacing={4}>
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} md={5}>
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <Paper sx={{ p: 3, mb: 4 }} elevation={2}>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-                  <Typography variant="h6">Your Linked Cards</Typography>
-                  <Button startIcon={<Add />} variant="outlined">
-                    Link New Card
-                  </Button>
-                </Box>
-                <Grid container spacing={3}>
-                  {linkedCards.map((card) => (
-                    <Grid item xs={12} key={card.name}>
-                      <Card>
-                        <CardContent>
-                          <Typography variant="h6" gutterBottom>
-                            {card.name}
-                          </Typography>
-                          <Typography color="text.secondary" gutterBottom>
-                            {card.points.toLocaleString()} points available
-                          </Typography>
-                          <LinearProgress
-                            variant="determinate"
-                            value={70}
-                            sx={{ mb: 2, height: 8, borderRadius: 4 }}
-                          />
-                          <Typography variant="body2" color="text.secondary">
-                            Last updated: {card.lastUpdate}
-                          </Typography>
-                        </CardContent>
-                      </Card>
-                    </Grid>
-                  ))}
-                </Grid>
-              </Paper>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <Paper sx={{ p: 3 }} elevation={2}>
-                <Typography variant="h6" gutterBottom>
-                  Best Redemption Options
+              <Paper
+                sx={{
+                  p: 4,
+                  background: 'rgba(255, 255, 255, 0.8)',
+                  backdropFilter: 'blur(20px)',
+                  borderRadius: 3,
+                  border: '1px solid rgba(0, 0, 0, 0.05)',
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  gutterBottom
+                  sx={{
+                    fontWeight: 600,
+                    letterSpacing: '-0.025em',
+                    color: '#1d1d1f',
+                    mb: 4
+                  }}
+                >
+                  Your Points Balance
                 </Typography>
-                <List>
-                  {recommendations.map((rec, index) => (
-                    <div key={rec.title}>
-                      {index > 0 && <Box sx={{ my: 2, borderTop: 1, borderColor: 'divider' }} />}
-                      <ListItem>
-                        <ListItemIcon>
-                          {rec.icon}
-                        </ListItemIcon>
-                        <ListItemText
-                          primary={rec.title}
-                          secondary={rec.description}
-                        />
-                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                          <TrendingUp color="success" sx={{ mr: 1 }} />
-                          <Typography color="success.main">
-                            {rec.value}
-                          </Typography>
-                        </Box>
-                      </ListItem>
-                    </div>
+
+                <Box sx={{ mb: 4 }}>
+                  {rewardPrograms.map((program) => (
+                    <Box key={program.key} sx={{ mb: 3 }}>
+                      <Typography
+                        variant="subtitle2"
+                        gutterBottom
+                        sx={{
+                          fontWeight: 500,
+                          letterSpacing: '-0.01em',
+                          color: '#1d1d1f',
+                          mb: 1
+                        }}
+                      >
+                        {program.name}
+                      </Typography>
+                      <TextField
+                        fullWidth
+                        type="number"
+                        value={points[program.key as keyof typeof points]}
+                        onChange={handlePointsChange(program.key)}
+                        placeholder="Enter points balance"
+                        sx={{
+                          '& .MuiOutlinedInput-root': {
+                            backgroundColor: 'rgba(0, 0, 0, 0.03)',
+                            borderRadius: 2,
+                            '& fieldset': {
+                              borderColor: 'transparent',
+                            },
+                            '&:hover fieldset': {
+                              borderColor: 'rgba(0, 0, 0, 0.1)',
+                            },
+                            '&.Mui-focused fieldset': {
+                              borderColor: '#1d1d1f',
+                              borderWidth: '1px',
+                            },
+                          },
+                          '& input': {
+                            fontSize: '0.9375rem',
+                            letterSpacing: '-0.01em',
+                          },
+                        }}
+                      />
+                    </Box>
                   ))}
-                </List>
+                </Box>
+
+                <Button
+                  variant="contained"
+                  fullWidth
+                  sx={{
+                    backgroundColor: '#1d1d1f',
+                    color: '#ffffff',
+                    py: 1.5,
+                    borderRadius: 2,
+                    textTransform: 'none',
+                    fontSize: '0.9375rem',
+                    letterSpacing: '-0.01em',
+                    '&:hover': {
+                      backgroundColor: '#000000',
+                    },
+                  }}
+                >
+                  Find Best Value
+                </Button>
               </Paper>
             </motion.div>
           </Grid>
 
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={7}>
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <Paper sx={{ p: 3 }} elevation={2}>
-                <Typography variant="h6" gutterBottom>
-                  Points Value Calculator
+              <Paper
+                sx={{
+                  p: 4,
+                  background: 'rgba(255, 255, 255, 0.8)',
+                  backdropFilter: 'blur(20px)',
+                  borderRadius: 3,
+                  border: '1px solid rgba(0, 0, 0, 0.05)',
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  gutterBottom
+                  sx={{
+                    fontWeight: 600,
+                    letterSpacing: '-0.025em',
+                    color: '#1d1d1f',
+                    mb: 4
+                  }}
+                >
+                  Redemption Options
                 </Typography>
-                <Typography variant="body2" color="text.secondary" paragraph>
-                  See how much your points are worth across different redemption options.
-                </Typography>
-                {linkedCards.map((card) => (
-                  <Box key={card.name} sx={{ mb: 3 }}>
-                    <Typography variant="subtitle1" gutterBottom>
-                      {card.name}
-                    </Typography>
-                    <List dense>
-                      {card.redemptionOptions.map((option) => (
-                        <ListItem key={option.type}>
-                          <ListItemIcon>
-                            {option.icon}
-                          </ListItemIcon>
-                          <ListItemText
-                            primary={option.type}
-                            secondary={`${option.value}x value`}
-                          />
-                        </ListItem>
-                      ))}
-                    </List>
+
+                <Box sx={{ mb: 4 }}>
+                  <Typography
+                    variant="subtitle2"
+                    gutterBottom
+                    sx={{
+                      fontWeight: 500,
+                      letterSpacing: '-0.01em',
+                      color: '#1d1d1f',
+                      mb: 2
+                    }}
+                  >
+                    Popular Categories
+                  </Typography>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                    {['Travel', 'Hotels', 'Flights', 'Gift Cards', 'Cash Back', 'Shopping'].map((category) => (
+                      <Chip
+                        key={category}
+                        label={category}
+                        sx={{
+                          backgroundColor: 'rgba(0, 0, 0, 0.05)',
+                          borderRadius: '6px',
+                          color: '#1d1d1f',
+                          fontSize: '0.8125rem',
+                          letterSpacing: '-0.01em',
+                          '&:hover': {
+                            backgroundColor: 'rgba(0, 0, 0, 0.08)',
+                          },
+                        }}
+                      />
+                    ))}
                   </Box>
-                ))}
-                <Button variant="contained" fullWidth>
-                  Calculate Total Value
-                </Button>
+                </Box>
+
+                <Box>
+                  <Typography
+                    variant="subtitle2"
+                    gutterBottom
+                    sx={{
+                      fontWeight: 500,
+                      letterSpacing: '-0.01em',
+                      color: '#1d1d1f',
+                      mb: 2
+                    }}
+                  >
+                    Transfer Partners
+                  </Typography>
+                  <Grid container spacing={2}>
+                    {['United Airlines', 'Southwest', 'Marriott', 'Hyatt', 'Delta', 'British Airways'].map((partner) => (
+                      <Grid item xs={12} sm={6} key={partner}>
+                        <Paper
+                          elevation={0}
+                          sx={{
+                            p: 2,
+                            backgroundColor: 'rgba(0, 0, 0, 0.02)',
+                            borderRadius: 2,
+                            transition: 'all 0.3s ease',
+                            cursor: 'pointer',
+                            '&:hover': {
+                              backgroundColor: 'rgba(0, 0, 0, 0.03)',
+                              transform: 'translateX(4px)',
+                            },
+                          }}
+                        >
+                          <Typography
+                            sx={{
+                              fontWeight: 500,
+                              letterSpacing: '-0.01em',
+                              color: '#1d1d1f',
+                            }}
+                          >
+                            {partner}
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: '0.875rem',
+                              color: 'rgba(0, 0, 0, 0.45)',
+                              letterSpacing: '-0.01em',
+                            }}
+                          >
+                            1:1 transfer ratio
+                          </Typography>
+                        </Paper>
+                      </Grid>
+                    ))}
+                  </Grid>
+                </Box>
               </Paper>
             </motion.div>
           </Grid>
