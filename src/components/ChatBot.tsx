@@ -42,6 +42,7 @@ const ChatBot = () => {
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const [isTyping, setIsTyping] = useState(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -69,6 +70,9 @@ const ChatBot = () => {
     setMessages((prev) => [...prev, userMessage]);
     const currentInput = input;
     setInput('');
+    
+    // Show typing indicator
+    setIsTyping(true);
 
     try {
       // Check for keywords and intent
@@ -247,6 +251,9 @@ const ChatBot = () => {
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, errorMessage]);
+    } finally {
+      // Hide typing indicator after response
+      setIsTyping(false);
     }
   };
 
@@ -430,6 +437,61 @@ const ChatBot = () => {
               )}
             </Box>
           ))}
+          {isTyping && (
+            <Box
+              sx={{
+                alignSelf: 'flex-start',
+                maxWidth: '85%',
+                p: 2,
+                bgcolor: 'rgba(0, 0, 0, 0.03)',
+                borderRadius: '12px',
+                borderBottomLeftRadius: '4px',
+                display: 'flex',
+                gap: 1,
+                alignItems: 'center'
+              }}
+            >
+              <Box
+                sx={{
+                  width: '6px',
+                  height: '6px',
+                  bgcolor: '#1d1d1f',
+                  borderRadius: '50%',
+                  animation: 'typing 1s infinite',
+                  '@keyframes typing': {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-4px)' }
+                  }
+                }}
+              />
+              <Box
+                sx={{
+                  width: '6px',
+                  height: '6px',
+                  bgcolor: '#1d1d1f',
+                  borderRadius: '50%',
+                  animation: 'typing 1s infinite 0.2s',
+                  '@keyframes typing': {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-4px)' }
+                  }
+                }}
+              />
+              <Box
+                sx={{
+                  width: '6px',
+                  height: '6px',
+                  bgcolor: '#1d1d1f',
+                  borderRadius: '50%',
+                  animation: 'typing 1s infinite 0.4s',
+                  '@keyframes typing': {
+                    '0%, 100%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-4px)' }
+                  }
+                }}
+              />
+            </Box>
+          )}
         </Box>
 
         <form onSubmit={handleSubmit}>
