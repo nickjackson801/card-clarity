@@ -111,7 +111,7 @@ const CardComparison = () => {
                   </Typography>
                   <Slider
                     value={spendingAmount}
-                    onChange={(_: Event, value: number | number[], activeThumb: number) => {
+                    onChange={(_: Event, value: number | number[]) => {
                       if (typeof value === 'number') {
                         setSpendingAmount(value);
                       }
