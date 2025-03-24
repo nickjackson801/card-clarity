@@ -20,6 +20,21 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
+// Add floating animation keyframes
+const floatingAnimation = {
+  '@keyframes float': {
+    '0%': {
+      transform: 'translateY(0px)',
+    },
+    '50%': {
+      transform: 'translateY(-10px)',
+    },
+    '100%': {
+      transform: 'translateY(0px)',
+    },
+  },
+};
+
 interface Message {
   text: string;
   isUser: boolean;
@@ -259,8 +274,15 @@ const ChatBot = () => {
       {!isOpen && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          animate={{ 
+            opacity: 1,
+            y: [0, -10, 0]
+          }}
+          transition={{ 
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
           style={{
             position: 'fixed',
             bottom: 80,
@@ -270,7 +292,7 @@ const ChatBot = () => {
             borderRadius: '16px',
             boxShadow: '0 4px 24px rgba(0, 0, 0, 0.2)',
             backdropFilter: 'blur(10px)',
-            zIndex: 1000,
+            zIndex: 1000
           }}
         >
           <Typography
@@ -619,9 +641,9 @@ const ChatBot = () => {
                         p: 2,
                         maxWidth: '80%',
                         background: message.isUser
-                          ? 'linear-gradient(45deg, #2563eb 30%, #60a5fa 90%)'
-                          : 'linear-gradient(135deg, #FFD700 0%, #B8860B 100%)',
-                        color: message.isUser ? 'white' : '#1a237e',
+                          ? '#1d1d1f'
+                          : 'rgba(0, 0, 0, 0.03)',
+                        color: message.isUser ? '#ffffff' : '#1d1d1f',
                       }}
                     >
                       <Typography variant="body1">{message.text}</Typography>
@@ -630,7 +652,7 @@ const ChatBot = () => {
                         sx={{
                           display: 'block',
                           mt: 0.5,
-                          color: message.isUser ? '#1a237e' : 'text.secondary',
+                          color: message.isUser ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.5)',
                         }}
                       >
                         {message.timestamp.toLocaleTimeString()}
@@ -641,11 +663,21 @@ const ChatBot = () => {
                             component="button"
                             onClick={() => handleLinkClick(message.link!.path)}
                             sx={{
-                              color: message.isUser ? 'white' : 'primary.main',
-                              textDecoration: 'underline',
+                              color: message.isUser ? '#ffffff' : '#1d1d1f',
+                              textDecoration: 'none',
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: 0.5,
+                              fontSize: '13px',
+                              fontWeight: 500,
+                              bgcolor: message.isUser ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
+                              px: 1.5,
+                              py: 0.75,
+                              borderRadius: '8px',
+                              transition: 'all 0.2s ease',
                               '&:hover': {
-                                color: message.isUser ? 'white' : 'primary.dark',
-                              },
+                                bgcolor: message.isUser ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.08)',
+                              }
                             }}
                           >
                             {message.link.text}
@@ -662,7 +694,7 @@ const ChatBot = () => {
 
           <Divider />
 
-          <Box sx={{ p: 2, display: 'flex', gap: 1, background: 'linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(184, 134, 11, 0.05) 100%)' }}>
+          <Box sx={{ p: 2, display: 'flex', gap: 1, background: 'rgba(0, 0, 0, 0.03)' }}>
             <TextField
               fullWidth
               variant="outlined"
@@ -673,19 +705,21 @@ const ChatBot = () => {
               sx={{
                 '& .MuiOutlinedInput-root': {
                   '&:hover fieldset': {
-                    borderColor: '#FFD700',
+                    borderColor: 'rgba(0, 0, 0, 0.1)',
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#1d1d1f',
                   },
                 },
               }}
             />
             <IconButton
-              color="primary"
               onClick={(e) => handleSubmit(e)}
               sx={{
-                background: 'linear-gradient(45deg, #FFD700 30%, #B8860B 90%)',
-                color: '#1a237e',
+                background: '#1d1d1f',
+                color: '#ffffff',
                 '&:hover': {
-                  background: 'linear-gradient(45deg, #B8860B 30%, #FFD700 90%)',
+                  background: '#2d2d2f',
                 },
               }}
             >
