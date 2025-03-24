@@ -68,25 +68,23 @@ const ChatBot = () => {
       timestamp: new Date(),
     };
     setMessages((prev) => [...prev, userMessage]);
-    const currentInput = input; // Store current input
+    const currentInput = input;
     setInput('');
     
     // Show typing indicator
     setIsTyping(true);
 
-    // Ensure typing indicator is visible before processing
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    // Check for keywords and intent
-    const lowerMessage = currentInput.toLowerCase(); // Use stored input
-    let contextualResponse = '';
-
     try {
-      // Add delay before any response
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Add delay before processing to show typing indicator
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      // Check for keywords and intent
+      const lowerMessage = currentInput.toLowerCase();
+      let contextualResponse = '';
 
       // Compare cards keywords
       if (lowerMessage.includes('compare')) {
+        await new Promise(resolve => setTimeout(resolve, 1500));
         const aiResponse: Message = {
           text: "I can help you compare different credit cards side by side. Our comparison tool makes it easy to evaluate features, rewards, and benefits of multiple cards.",
           isUser: false,
@@ -102,12 +100,14 @@ const ChatBot = () => {
       // Price/Beta related keywords
       else if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('fee') || 
                lowerMessage.includes('subscription') || lowerMessage.includes('paid') || lowerMessage.includes('free')) {
+        await new Promise(resolve => setTimeout(resolve, 1500));
         contextualResponse = "Great news! During our beta period, all features of Card Clarity are completely free. You can access our full suite of tools including card recommendations, points optimization, debt management, and rewards tracking without any cost. Take advantage of this offer while it lasts!";
       }
 
       // Debt related keywords
       else if (lowerMessage.includes('debt') || lowerMessage.includes('balance') || lowerMessage.includes('pay off') || 
                lowerMessage.includes('interest') || lowerMessage.includes('payment') || lowerMessage.includes('owe')) {
+        await new Promise(resolve => setTimeout(resolve, 1500));
         const aiResponse: Message = {
           text: "I can help you with debt management! Our debt management tool can help you create a personalized debt payoff strategy.",
           isUser: false,
@@ -123,6 +123,7 @@ const ChatBot = () => {
       // Points related keywords
       else if (lowerMessage.includes('point') || lowerMessage.includes('reward') || lowerMessage.includes('cashback') || 
                lowerMessage.includes('miles') || lowerMessage.includes('travel') || lowerMessage.includes('redemption')) {
+        await new Promise(resolve => setTimeout(resolve, 1500));
         const aiResponse: Message = {
           text: "Our points optimization tool can help you maximize your rewards! I can show you how to get the most value from your points and rewards.",
           isUser: false,
@@ -138,6 +139,7 @@ const ChatBot = () => {
       // Card recommendation keywords
       else if (lowerMessage.includes('card') || lowerMessage.includes('recommend') || lowerMessage.includes('apply') || 
                lowerMessage.includes('credit') || lowerMessage.includes('new card') || lowerMessage.includes('best card')) {
+        await new Promise(resolve => setTimeout(resolve, 1500));
         const aiResponse: Message = {
           text: "I can help you find the perfect credit card! Our smart card recommendation tool analyzes your spending habits and preferences to suggest cards that match your needs.",
           isUser: false,
@@ -210,6 +212,7 @@ const ChatBot = () => {
 
       // If no specific keywords are detected, use the default AI response
       if (!contextualResponse) {
+        await new Promise(resolve => setTimeout(resolve, 2000));
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
           method: 'POST',
           headers: {
@@ -248,8 +251,17 @@ const ChatBot = () => {
         };
         setMessages((prev) => [...prev, aiResponse]);
       }
+    } catch (error) {
+      console.error('Error:', error);
+      // Add error message to chat
+      const errorMessage: Message = {
+        text: "I apologize, but I'm having trouble processing your request. Please try again.",
+        isUser: false,
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, errorMessage]);
     } finally {
-      // Ensure typing indicator is hidden after response
+      // Hide typing indicator after response
       setIsTyping(false);
     }
   };
@@ -465,10 +477,10 @@ const ChatBot = () => {
                   }}
                   animate={{ 
                     scale: [1, 1.2, 1],
-                    opacity: [0.4, 0.8, 0.4]
+                    opacity: [0.3, 0.7, 0.3]
                   }}
                   transition={{ 
-                    duration: 0.6,
+                    duration: 1,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
@@ -483,10 +495,10 @@ const ChatBot = () => {
                   }}
                   animate={{ 
                     scale: [1, 1.2, 1],
-                    opacity: [0.4, 0.8, 0.4]
+                    opacity: [0.3, 0.7, 0.3]
                   }}
                   transition={{ 
-                    duration: 0.6,
+                    duration: 1,
                     repeat: Infinity,
                     ease: "easeInOut",
                     delay: 0.2
@@ -502,10 +514,10 @@ const ChatBot = () => {
                   }}
                   animate={{ 
                     scale: [1, 1.2, 1],
-                    opacity: [0.4, 0.8, 0.4]
+                    opacity: [0.3, 0.7, 0.3]
                   }}
                   transition={{ 
-                    duration: 0.6,
+                    duration: 1,
                     repeat: Infinity,
                     ease: "easeInOut",
                     delay: 0.4
