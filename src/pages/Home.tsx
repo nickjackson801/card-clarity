@@ -98,7 +98,7 @@ const Home = () => {
                     variant="contained"
                     size="large"
                     component={Link}
-                    to="/quiz"
+                    to="/auth"
                     sx={{
                       fontSize: '1.125rem',
                       py: 1.5,
