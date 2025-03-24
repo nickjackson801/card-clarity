@@ -155,7 +155,7 @@ const Home = () => {
                 left: '50%',
                 width: '200%',
                 height: '100%',
-                background: `radial-gradient(circle at center, rgba(37, 99, 235, 0.08) 0%, rgba(124, 58, 237, 0.05) 50%, rgba(5, 150, 105, 0.03) 100%)`,
+                background: 'rgba(0, 0, 0, 0.02)',
                 transform: 'translateX(-50%)',
                 zIndex: -1,
               }}
@@ -166,15 +166,12 @@ const Home = () => {
               component="h2"
               gutterBottom
               sx={{
-                fontWeight: 800,
+                fontWeight: 600,
                 fontSize: { xs: '2rem', md: '2.75rem' },
                 textAlign: 'center',
                 mb: 6,
-                background: `linear-gradient(135deg, ${COLORS.cardComparison.main} 0%, ${COLORS.pointsOptimizer.main} 50%, ${COLORS.debtManagement.main} 100%)`,
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                color: 'transparent',
-                WebkitTextFillColor: 'transparent',
+                color: '#1d1d1f',
+                letterSpacing: '-0.025em'
               }}
             >
               Empowering Your Financial Journey
@@ -187,8 +184,8 @@ const Home = () => {
                     variant="h5"
                     gutterBottom
                     sx={{
-                      fontWeight: 700,
-                      color: COLORS.cardComparison.main,
+                      fontWeight: 600,
+                      color: '#1d1d1f',
                       mb: 2,
                       position: 'relative',
                       display: 'inline-block',
@@ -198,8 +195,8 @@ const Home = () => {
                         bottom: '-4px',
                         left: 0,
                         width: '40%',
-                        height: '2px',
-                        background: `linear-gradient(to right, ${COLORS.cardComparison.main}, transparent)`,
+                        height: '1px',
+                        background: 'rgba(0, 0, 0, 0.2)',
                       },
                     }}
                   >
@@ -210,7 +207,7 @@ const Home = () => {
                     sx={{
                       fontSize: '1.1rem',
                       lineHeight: 1.7,
-                      color: 'text.secondary',
+                      color: 'rgba(0, 0, 0, 0.65)',
                       mt: 2,
                     }}
                   >
@@ -227,8 +224,8 @@ const Home = () => {
                     variant="h5"
                     gutterBottom
                     sx={{
-                      fontWeight: 700,
-                      color: COLORS.pointsOptimizer.main,
+                      fontWeight: 600,
+                      color: '#1d1d1f',
                       mb: 2,
                       position: 'relative',
                       display: 'inline-block',
@@ -238,8 +235,8 @@ const Home = () => {
                         bottom: '-4px',
                         left: 0,
                         width: '40%',
-                        height: '2px',
-                        background: `linear-gradient(to right, ${COLORS.pointsOptimizer.main}, transparent)`,
+                        height: '1px',
+                        background: 'rgba(0, 0, 0, 0.2)',
                       },
                     }}
                   >
@@ -250,7 +247,7 @@ const Home = () => {
                     sx={{
                       fontSize: '1.1rem',
                       lineHeight: 1.7,
-                      color: 'text.secondary',
+                      color: 'rgba(0, 0, 0, 0.65)',
                       mt: 2,
                     }}
                   >
@@ -267,8 +264,8 @@ const Home = () => {
                     variant="h5"
                     gutterBottom
                     sx={{
-                      fontWeight: 700,
-                      color: COLORS.debtManagement.main,
+                      fontWeight: 600,
+                      color: '#1d1d1f',
                       mb: 2,
                       position: 'relative',
                       display: 'inline-block',
@@ -278,8 +275,8 @@ const Home = () => {
                         bottom: '-4px',
                         left: 0,
                         width: '40%',
-                        height: '2px',
-                        background: `linear-gradient(to right, ${COLORS.debtManagement.main}, transparent)`,
+                        height: '1px',
+                        background: 'rgba(0, 0, 0, 0.2)',
                       },
                     }}
                   >
@@ -290,7 +287,7 @@ const Home = () => {
                     sx={{
                       fontSize: '1.1rem',
                       lineHeight: 1.7,
-                      color: 'text.secondary',
+                      color: 'rgba(0, 0, 0, 0.65)',
                       mt: 2,
                     }}
                   >
