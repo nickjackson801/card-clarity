@@ -12,9 +12,9 @@ const BetaBanner = () => {
       <Box
         sx={{
           width: '100%',
-          background: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)',
-          color: '#1a237e',
-          py: 1,
+          background: 'rgba(0, 0, 0, 0.03)',
+          color: '#1d1d1f',
+          py: 1.5,
           px: 2,
           display: 'flex',
           alignItems: 'center',
@@ -22,29 +22,38 @@ const BetaBanner = () => {
           gap: 2,
           position: 'relative',
           overflow: 'hidden',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+          borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
           margin: 0,
           borderRadius: 0
         }}
       >
-        <Typography variant="body1" sx={{ fontWeight: 500 }}>
-          🎉 Beta Access: All features are free during our beta period!
+        <Typography 
+          variant="body2" 
+          sx={{ 
+            fontWeight: 400,
+            letterSpacing: '-0.01em',
+            fontSize: '14px'
+          }}
+        >
+          Beta Access: Try all features free during our beta period
         </Typography>
         <Button
           variant="contained"
-          color="primary"
           size="small"
           component={Link}
           to="/auth"
           sx={{
-            backgroundColor: '#1a237e',
-            color: '#FFD700',
+            backgroundColor: '#1d1d1f',
+            color: '#ffffff',
+            fontSize: '13px',
+            py: 0.5,
+            px: 2,
             '&:hover': {
-              backgroundColor: '#0d47a1',
+              backgroundColor: '#2d2d2f',
             },
           }}
         >
-          Sign Up Now
+          Try Now
         </Button>
       </Box>
     </motion.div>

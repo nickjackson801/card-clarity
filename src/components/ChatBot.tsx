@@ -265,23 +265,24 @@ const ChatBot = () => {
             position: 'fixed',
             bottom: 80,
             right: 20,
-            background: '#FFD700',
-            padding: '8px 16px',
-            borderRadius: '8px',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+            background: 'rgba(255, 255, 255, 0.9)',
+            padding: '12px 20px',
+            borderRadius: '16px',
+            boxShadow: '0 4px 24px rgba(0, 0, 0, 0.1)',
+            backdropFilter: 'blur(10px)',
             zIndex: 1000,
-            animation: 'float 2.5s ease-in-out infinite'
           }}
         >
           <Typography
             variant="body2"
             sx={{
-              color: '#1a237e',
-              fontWeight: 500,
-              textAlign: 'center'
+              color: '#1d1d1f',
+              fontWeight: 400,
+              fontSize: '14px',
+              letterSpacing: '-0.01em'
             }}
           >
-            Ask me anything about credit cards!
+            Ask me anything about credit cards
           </Typography>
         </motion.div>
       )}
@@ -294,10 +295,12 @@ const ChatBot = () => {
           position: 'fixed',
           bottom: 16,
           right: 16,
-          bgcolor: '#FFD700',
+          bgcolor: '#1d1d1f',
+          color: '#ffffff',
           '&:hover': {
-            bgcolor: '#FFA500'
-          }
+            bgcolor: '#2d2d2f'
+          },
+          boxShadow: '0 4px 14px rgba(0, 0, 0, 0.12)'
         }}
       >
         <ChatIcon />
@@ -308,35 +311,51 @@ const ChatBot = () => {
           position: 'fixed',
           bottom: 80,
           right: 16,
-          width: '300px',
-          height: '400px',
-          bgcolor: 'background.paper',
-          borderRadius: 2,
-          boxShadow: 3,
+          width: '320px',
+          height: '480px',
+          bgcolor: 'rgba(255, 255, 255, 0.95)',
+          borderRadius: '20px',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
           display: isOpen ? 'flex' : 'none',
           flexDirection: 'column',
-          border: '4px solid #FFD700',
-          transition: 'border-color 0.3s ease',
-          '&:hover': {
-            borderColor: '#FFA500'
-          }
+          border: '1px solid rgba(0, 0, 0, 0.1)',
+          backdropFilter: 'blur(20px)',
+          overflow: 'hidden'
         }}
       >
         <Box
           sx={{
-            p: 2,
-            borderBottom: '3px solid #FFD700',
-            bgcolor: '#1a237e',
-            color: 'white',
+            p: 2.5,
+            borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+            bgcolor: 'rgba(255, 255, 255, 0.8)',
+            backdropFilter: 'blur(20px)',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'space-between',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+            justifyContent: 'space-between'
           }}
         >
-          <Typography variant="h6">AI Assistant</Typography>
-          <IconButton size="small" onClick={() => setIsOpen(false)} sx={{ color: 'white' }}>
-            <CloseIcon />
+          <Typography 
+            variant="h6" 
+            sx={{ 
+              fontSize: '16px', 
+              fontWeight: 500,
+              color: '#1d1d1f',
+              letterSpacing: '-0.02em'
+            }}
+          >
+            AI Assistant
+          </Typography>
+          <IconButton 
+            size="small" 
+            onClick={() => setIsOpen(false)} 
+            sx={{ 
+              color: '#1d1d1f',
+              '&:hover': {
+                bgcolor: 'rgba(0, 0, 0, 0.05)'
+              }
+            }}
+          >
+            <CloseIcon sx={{ fontSize: 20 }} />
           </IconButton>
         </Box>
 
@@ -344,10 +363,10 @@ const ChatBot = () => {
           sx={{
             flexGrow: 1,
             overflowY: 'auto',
-            p: 2,
+            p: 2.5,
             display: 'flex',
             flexDirection: 'column',
-            gap: 1
+            gap: 2
           }}
         >
           {messages.map((message, index) => (
@@ -355,35 +374,47 @@ const ChatBot = () => {
               key={index}
               sx={{
                 alignSelf: message.isUser ? 'flex-end' : 'flex-start',
-                maxWidth: '80%',
-                p: 1,
-                bgcolor: message.isUser ? '#1a237e' : '#f5f5f5',
-                color: message.isUser ? 'white' : 'text.primary',
-                borderRadius: 2,
-                boxShadow: 1
+                maxWidth: '85%',
+                p: 2,
+                bgcolor: message.isUser ? '#1d1d1f' : 'rgba(0, 0, 0, 0.05)',
+                color: message.isUser ? '#ffffff' : '#1d1d1f',
+                borderRadius: '16px',
+                borderBottomRightRadius: message.isUser ? '4px' : '16px',
+                borderBottomLeftRadius: message.isUser ? '16px' : '4px',
+                boxShadow: message.isUser ? '0 2px 12px rgba(0, 0, 0, 0.1)' : 'none'
               }}
             >
-              <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>{message.text}</Typography>
+              <Typography 
+                variant="body2" 
+                sx={{ 
+                  whiteSpace: 'pre-line',
+                  fontSize: '14px',
+                  lineHeight: 1.5,
+                  letterSpacing: '-0.01em'
+                }}
+              >
+                {message.text}
+              </Typography>
               {message.link && (
-                <Box sx={{ mt: 1 }}>
+                <Box sx={{ mt: 1.5 }}>
                   <Link
                     component="button"
                     onClick={() => handleLinkClick(message.link!.path)}
                     sx={{
-                      color: message.isUser ? 'white' : '#1a237e',
+                      color: message.isUser ? '#ffffff' : '#1d1d1f',
                       textDecoration: 'none',
                       display: 'flex',
                       alignItems: 'center',
                       gap: 0.5,
-                      fontSize: '0.875rem',
+                      fontSize: '13px',
                       fontWeight: 500,
-                      bgcolor: message.isUser ? 'rgba(255,255,255,0.1)' : '#FFD700',
-                      px: 1,
-                      py: 0.5,
-                      borderRadius: 1,
+                      bgcolor: message.isUser ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
+                      px: 1.5,
+                      py: 0.75,
+                      borderRadius: '8px',
                       transition: 'all 0.2s ease',
                       '&:hover': {
-                        bgcolor: message.isUser ? 'rgba(255,255,255,0.2)' : '#FFA500',
+                        bgcolor: message.isUser ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.1)',
                       }
                     }}
                   >
@@ -403,13 +434,13 @@ const ChatBot = () => {
               <Box
                 sx={{
                   alignSelf: 'flex-start',
-                  maxWidth: '80%',
+                  maxWidth: '85%',
                   p: 2,
-                  bgcolor: '#f8f9fa',
-                  borderRadius: 2,
-                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                  bgcolor: 'rgba(0, 0, 0, 0.05)',
+                  borderRadius: '16px',
+                  borderBottomLeftRadius: '4px',
                   display: 'flex',
-                  gap: 1.5,
+                  gap: 1,
                   alignItems: 'center',
                   margin: '8px 0'
                 }}
@@ -417,14 +448,14 @@ const ChatBot = () => {
                 <motion.span
                   style={{
                     display: 'inline-block',
-                    width: '8px',
-                    height: '8px',
-                    background: '#1a237e',
+                    width: '6px',
+                    height: '6px',
+                    background: '#1d1d1f',
                     borderRadius: '50%'
                   }}
                   animate={{ 
                     scale: [1, 1.2, 1],
-                    opacity: [0.4, 1, 0.4]
+                    opacity: [0.4, 0.8, 0.4]
                   }}
                   transition={{ 
                     duration: 0.6,
@@ -435,14 +466,14 @@ const ChatBot = () => {
                 <motion.span
                   style={{
                     display: 'inline-block',
-                    width: '8px',
-                    height: '8px',
-                    background: '#1a237e',
+                    width: '6px',
+                    height: '6px',
+                    background: '#1d1d1f',
                     borderRadius: '50%'
                   }}
                   animate={{ 
                     scale: [1, 1.2, 1],
-                    opacity: [0.4, 1, 0.4]
+                    opacity: [0.4, 0.8, 0.4]
                   }}
                   transition={{ 
                     duration: 0.6,
@@ -454,14 +485,14 @@ const ChatBot = () => {
                 <motion.span
                   style={{
                     display: 'inline-block',
-                    width: '8px',
-                    height: '8px',
-                    background: '#1a237e',
+                    width: '6px',
+                    height: '6px',
+                    background: '#1d1d1f',
                     borderRadius: '50%'
                   }}
                   animate={{ 
                     scale: [1, 1.2, 1],
-                    opacity: [0.4, 1, 0.4]
+                    opacity: [0.4, 0.8, 0.4]
                   }}
                   transition={{ 
                     duration: 0.6,
@@ -479,10 +510,11 @@ const ChatBot = () => {
           <Box
             sx={{
               p: 2,
-              borderTop: '1px solid',
-              borderColor: 'divider',
+              borderTop: '1px solid rgba(0, 0, 0, 0.1)',
               display: 'flex',
-              gap: 1
+              gap: 1,
+              bgcolor: 'rgba(255, 255, 255, 0.8)',
+              backdropFilter: 'blur(20px)'
             }}
           >
             <TextField
@@ -492,18 +524,37 @@ const ChatBot = () => {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Type your message..."
               variant="outlined"
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: '12px',
+                  bgcolor: 'rgba(0, 0, 0, 0.05)',
+                  '& fieldset': {
+                    borderColor: 'transparent'
+                  },
+                  '&:hover fieldset': {
+                    borderColor: 'rgba(0, 0, 0, 0.1)'
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#1d1d1f',
+                    borderWidth: '1px'
+                  }
+                }
+              }}
             />
             <IconButton 
               type="submit" 
-              color="primary"
               sx={{ 
-                bgcolor: '#FFD700',
+                bgcolor: '#1d1d1f',
+                color: '#ffffff',
                 '&:hover': {
-                  bgcolor: '#FFA500'
-                }
+                  bgcolor: '#2d2d2f'
+                },
+                borderRadius: '10px',
+                width: '40px',
+                height: '40px'
               }}
             >
-              <SendIcon />
+              <SendIcon sx={{ fontSize: 20 }} />
             </IconButton>
           </Box>
         </form>

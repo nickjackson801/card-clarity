@@ -46,31 +46,60 @@ declare module '@mui/material/styles' {
 const appTheme = createTheme({
   palette: {
     primary: {
-      main: '#2563eb',
-      light: '#60a5fa',
-      dark: '#1d4ed8',
+      main: '#1d1d1f',
+      light: '#2d2d2f',
+      dark: '#000000',
     },
     secondary: {
-      main: '#db2777',
-      light: '#ec4899',
-      dark: '#be185d',
+      main: '#06c',
+      light: '#147ce5',
+      dark: '#0055b3',
+    },
+    text: {
+      primary: '#1d1d1f',
+      secondary: 'rgba(0, 0, 0, 0.65)',
+    },
+    background: {
+      default: '#ffffff',
+      paper: '#ffffff',
     },
     gold: {
-      main: '#FFD700',
-      light: '#FFE55C',
-      dark: '#B8860B',
+      main: '#1d1d1f',
+      light: '#2d2d2f',
+      dark: '#000000',
     },
   },
   typography: {
-    fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif',
     h1: {
-      fontWeight: 700,
+      fontWeight: 600,
+      letterSpacing: '-0.025em',
     },
     h2: {
       fontWeight: 600,
+      letterSpacing: '-0.025em',
     },
     h3: {
       fontWeight: 600,
+      letterSpacing: '-0.025em',
+    },
+    h4: {
+      fontWeight: 500,
+      letterSpacing: '-0.025em',
+    },
+    h5: {
+      fontWeight: 500,
+      letterSpacing: '-0.025em',
+    },
+    h6: {
+      fontWeight: 500,
+      letterSpacing: '-0.025em',
+    },
+    body1: {
+      letterSpacing: '-0.01em',
+    },
+    body2: {
+      letterSpacing: '-0.01em',
     },
   },
   components: {
@@ -79,6 +108,22 @@ const appTheme = createTheme({
         root: {
           textTransform: 'none',
           borderRadius: 8,
+          fontWeight: 500,
+          letterSpacing: '-0.01em',
+          padding: '8px 16px',
+        },
+        contained: {
+          boxShadow: 'none',
+          '&:hover': {
+            boxShadow: 'none',
+          },
+        },
+        outlined: {
+          borderColor: 'rgba(0, 0, 0, 0.1)',
+          '&:hover': {
+            borderColor: 'rgba(0, 0, 0, 0.2)',
+            backgroundColor: 'rgba(0, 0, 0, 0.05)',
+          },
         },
       },
     },
@@ -86,6 +131,45 @@ const appTheme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 12,
+          boxShadow: '0 2px 12px rgba(0, 0, 0, 0.08)',
+          border: '1px solid rgba(0, 0, 0, 0.05)',
+        },
+      },
+    },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+          backdropFilter: 'blur(20px)',
+          borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+          boxShadow: 'none',
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 12,
+          boxShadow: '0 2px 12px rgba(0, 0, 0, 0.08)',
+          border: '1px solid rgba(0, 0, 0, 0.05)',
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-root': {
+            borderRadius: 8,
+            '& fieldset': {
+              borderColor: 'rgba(0, 0, 0, 0.1)',
+            },
+            '&:hover fieldset': {
+              borderColor: 'rgba(0, 0, 0, 0.2)',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: '#06c',
+            },
+          },
         },
       },
     },
@@ -143,21 +227,20 @@ function App() {
           <AppBar 
             position="fixed" 
             sx={{ 
-              background: 'linear-gradient(135deg, #1a237e 0%, #0d47a1 100%)',
-              boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-              borderRadius: 0,
-              margin: 0,
-              width: '100%'
+              background: 'rgba(255, 255, 255, 0.8)',
+              backdropFilter: 'blur(20px)',
+              borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+              boxShadow: 'none'
             }}
           >
             <Toolbar>
               {isMobile && (
                 <IconButton
-                  color="inherit"
+                  color="primary"
                   aria-label="open drawer"
                   edge="start"
                   onClick={handleDrawerToggle}
-                  sx={{ mr: 2, color: 'white' }}
+                  sx={{ mr: 2 }}
                 >
                   <MenuIcon />
                 </IconButton>
@@ -168,13 +251,13 @@ function App() {
                 to="/"
                 sx={{
                   flexGrow: 1,
-                  fontWeight: 800,
-                  fontSize: { xs: '1.5rem', md: '1.75rem' },
+                  fontWeight: 600,
+                  fontSize: { xs: '1.25rem', md: '1.5rem' },
                   textDecoration: 'none',
-                  color: 'white',
-                  letterSpacing: '-0.5px',
+                  color: '#1d1d1f',
+                  letterSpacing: '-0.025em',
                   '&:hover': {
-                    opacity: 0.9,
+                    opacity: 0.8,
                   },
                 }}
               >
@@ -187,9 +270,14 @@ function App() {
                       key={item.text}
                       component={Link}
                       to={item.path}
-                      color="inherit"
+                      color="primary"
                       startIcon={item.icon}
-                      sx={{ color: 'white' }}
+                      sx={{ 
+                        color: '#1d1d1f',
+                        '&:hover': {
+                          backgroundColor: 'rgba(0, 0, 0, 0.05)'
+                        }
+                      }}
                     >
                       {item.text}
                     </Button>
