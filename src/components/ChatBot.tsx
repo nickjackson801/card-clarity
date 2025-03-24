@@ -313,8 +313,8 @@ const ChatBot = () => {
           right: 16,
           width: '320px',
           height: '480px',
-          bgcolor: 'rgba(255, 255, 255, 0.95)',
-          borderRadius: '20px',
+          bgcolor: '#ffffff',
+          borderRadius: '16px',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
           display: isOpen ? 'flex' : 'none',
           flexDirection: 'column',
@@ -327,8 +327,7 @@ const ChatBot = () => {
           sx={{
             p: 2.5,
             borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
-            bgcolor: 'rgba(255, 255, 255, 0.8)',
-            backdropFilter: 'blur(20px)',
+            bgcolor: '#ffffff',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between'
@@ -338,7 +337,7 @@ const ChatBot = () => {
             variant="h6" 
             sx={{ 
               fontSize: '16px', 
-              fontWeight: 500,
+              fontWeight: 600,
               color: '#1d1d1f',
               letterSpacing: '-0.02em'
             }}
@@ -366,7 +365,8 @@ const ChatBot = () => {
             p: 2.5,
             display: 'flex',
             flexDirection: 'column',
-            gap: 2
+            gap: 2,
+            bgcolor: '#ffffff'
           }}
         >
           {messages.map((message, index) => (
@@ -376,12 +376,12 @@ const ChatBot = () => {
                 alignSelf: message.isUser ? 'flex-end' : 'flex-start',
                 maxWidth: '85%',
                 p: 2,
-                bgcolor: message.isUser ? '#1d1d1f' : 'rgba(0, 0, 0, 0.05)',
+                bgcolor: message.isUser ? '#1d1d1f' : 'rgba(0, 0, 0, 0.03)',
                 color: message.isUser ? '#ffffff' : '#1d1d1f',
-                borderRadius: '16px',
-                borderBottomRightRadius: message.isUser ? '4px' : '16px',
-                borderBottomLeftRadius: message.isUser ? '16px' : '4px',
-                boxShadow: message.isUser ? '0 2px 12px rgba(0, 0, 0, 0.1)' : 'none'
+                borderRadius: '12px',
+                borderBottomRightRadius: message.isUser ? '4px' : '12px',
+                borderBottomLeftRadius: message.isUser ? '12px' : '4px',
+                boxShadow: 'none'
               }}
             >
               <Typography 
@@ -414,7 +414,7 @@ const ChatBot = () => {
                       borderRadius: '8px',
                       transition: 'all 0.2s ease',
                       '&:hover': {
-                        bgcolor: message.isUser ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.1)',
+                        bgcolor: message.isUser ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.08)',
                       }
                     }}
                   >
@@ -436,8 +436,8 @@ const ChatBot = () => {
                   alignSelf: 'flex-start',
                   maxWidth: '85%',
                   p: 2,
-                  bgcolor: 'rgba(0, 0, 0, 0.05)',
-                  borderRadius: '16px',
+                  bgcolor: 'rgba(0, 0, 0, 0.03)',
+                  borderRadius: '12px',
                   borderBottomLeftRadius: '4px',
                   display: 'flex',
                   gap: 1,
@@ -513,8 +513,7 @@ const ChatBot = () => {
               borderTop: '1px solid rgba(0, 0, 0, 0.1)',
               display: 'flex',
               gap: 1,
-              bgcolor: 'rgba(255, 255, 255, 0.8)',
-              backdropFilter: 'blur(20px)'
+              bgcolor: '#ffffff'
             }}
           >
             <TextField
@@ -527,7 +526,7 @@ const ChatBot = () => {
               sx={{
                 '& .MuiOutlinedInput-root': {
                   borderRadius: '12px',
-                  bgcolor: 'rgba(0, 0, 0, 0.05)',
+                  bgcolor: 'rgba(0, 0, 0, 0.03)',
                   '& fieldset': {
                     borderColor: 'transparent'
                   },
