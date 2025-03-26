@@ -103,25 +103,25 @@ const Auth = () => {
     }
 
     try {
-      console.log('3. Starting signup process...');
-      console.log('4. Form data:', { email, name, creditExperience, existingDebt, monthlySpending });
+      console.log('3. Starting signup process');
+      console.log('4. Form data:', { name, email, creditExperience, existingDebt, monthlySpending });
       
-      console.log('5. Calling Firebase signUp...');
+      console.log('5. Calling Firebase signUp');
       const userCredential = await signUp(email, password);
-      console.log('6. User created successfully:', userCredential.user.uid);
-      
-      console.log('7. Preparing Firestore data...');
+      console.log('6. Firebase signUp successful:', userCredential.user.uid);
+
+      console.log('7. Preparing user data for Firestore');
       const userData = {
         name,
         email,
         creditExperience,
         existingDebt,
         monthlySpending,
-        createdAt: new Date().toISOString(),
+        createdAt: new Date().toISOString()
       };
-      console.log('8. User data to store:', userData);
-      
-      console.log('9. Storing data in Firestore...');
+      console.log('8. User data to be stored:', userData);
+
+      console.log('9. Storing user data in Firestore');
       await setDoc(doc(db, 'users', userCredential.user.uid), userData);
       console.log('10. User data stored successfully');
 

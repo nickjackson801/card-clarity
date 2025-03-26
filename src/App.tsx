@@ -33,7 +33,7 @@ import DebtManagement from './pages/DebtManagement';
 import Auth from './pages/Auth';
 import Quiz from './pages/Quiz';
 import BetaBanner from './components/BetaBanner';
-import { FirebaseProvider, useFirebase } from './contexts/FirebaseContext';
+import { FirebaseProvider } from './contexts/FirebaseContext';
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -181,7 +181,6 @@ function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  const { user, signIn, signUp, logout } = useFirebase();
 
   const menuItems = [
     { text: 'Home', icon: <HomeIcon />, path: '/' },
