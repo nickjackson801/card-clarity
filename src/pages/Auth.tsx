@@ -102,6 +102,13 @@ const Auth = () => {
       return;
     }
 
+    // Add password length validation
+    if (password.length < 6) {
+      console.log('Password too short');
+      setError('Password must be at least 6 characters long');
+      return;
+    }
+
     try {
       console.log('3. Starting signup process');
       console.log('4. Form data:', { name, email, creditExperience, existingDebt, monthlySpending });
@@ -249,8 +256,9 @@ const Auth = () => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                margin="normal"
                 required
+                helperText="Password must be at least 6 characters long"
+                sx={{ mb: 2 }}
               />
               <TextField
                 fullWidth
