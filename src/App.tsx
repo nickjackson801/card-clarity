@@ -15,6 +15,7 @@ import {
   ListItemText,
   useMediaQuery,
   useTheme,
+  Divider,
 } from '@mui/material';
 import {
   Home as HomeIcon,
@@ -33,7 +34,8 @@ import DebtManagement from './pages/DebtManagement';
 import Auth from './pages/Auth';
 import Quiz from './pages/Quiz';
 import BetaBanner from './components/BetaBanner';
-import { FirebaseProvider } from './contexts/FirebaseContext';
+import { FirebaseProvider, useFirebase } from './contexts/FirebaseContext';
+import { UserProfile } from './components/UserProfile';
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -181,15 +183,7 @@ function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-
-  const menuItems = [
-    { text: 'Home', icon: <HomeIcon />, path: '/' },
-    { text: 'Take Quiz', icon: <QuizIcon />, path: '/quiz' },
-    { text: 'Compare Cards', icon: <CompareArrows />, path: '/compare' },
-    { text: 'Points Optimizer', icon: <Stars />, path: '/points' },
-    { text: 'Debt Management', icon: <AccountBalance />, path: '/debt' },
-    { text: 'Login', icon: <Login />, path: '/auth' },
-  ];
+  const { user } = useFirebase();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -197,12 +191,92 @@ function App() {
 
   const drawer = (
     <Box sx={{ width: 250 }}>
+      {user && (
+        <Box sx={{ p: 2 }}>
+          <UserProfile />
+        </Box>
+      )}
+      <Divider />
       <List>
-        {menuItems.map((item) => (
+        <ListItem
+          component={Link}
+          to="/"
+          onClick={handleDrawerToggle}
+          sx={{
+            color: 'inherit',
+            textDecoration: 'none',
+            '&:hover': {
+              backgroundColor: 'rgba(0, 0, 0, 0.04)',
+            },
+          }}
+        >
+          <ListItemIcon><HomeIcon /></ListItemIcon>
+          <ListItemText primary="Home" />
+        </ListItem>
+        <ListItem
+          component={Link}
+          to="/quiz"
+          onClick={handleDrawerToggle}
+          sx={{
+            color: 'inherit',
+            textDecoration: 'none',
+            '&:hover': {
+              backgroundColor: 'rgba(0, 0, 0, 0.04)',
+            },
+          }}
+        >
+          <ListItemIcon><QuizIcon /></ListItemIcon>
+          <ListItemText primary="Take Quiz" />
+        </ListItem>
+        <ListItem
+          component={Link}
+          to="/compare"
+          onClick={handleDrawerToggle}
+          sx={{
+            color: 'inherit',
+            textDecoration: 'none',
+            '&:hover': {
+              backgroundColor: 'rgba(0, 0, 0, 0.04)',
+            },
+          }}
+        >
+          <ListItemIcon><CompareArrows /></ListItemIcon>
+          <ListItemText primary="Compare Cards" />
+        </ListItem>
+        <ListItem
+          component={Link}
+          to="/points"
+          onClick={handleDrawerToggle}
+          sx={{
+            color: 'inherit',
+            textDecoration: 'none',
+            '&:hover': {
+              backgroundColor: 'rgba(0, 0, 0, 0.04)',
+            },
+          }}
+        >
+          <ListItemIcon><Stars /></ListItemIcon>
+          <ListItemText primary="Points Optimizer" />
+        </ListItem>
+        <ListItem
+          component={Link}
+          to="/debt"
+          onClick={handleDrawerToggle}
+          sx={{
+            color: 'inherit',
+            textDecoration: 'none',
+            '&:hover': {
+              backgroundColor: 'rgba(0, 0, 0, 0.04)',
+            },
+          }}
+        >
+          <ListItemIcon><AccountBalance /></ListItemIcon>
+          <ListItemText primary="Debt Management" />
+        </ListItem>
+        {!user && (
           <ListItem
-            key={item.text}
             component={Link}
-            to={item.path}
+            to="/auth"
             onClick={handleDrawerToggle}
             sx={{
               color: 'inherit',
@@ -212,10 +286,10 @@ function App() {
               },
             }}
           >
-            <ListItemIcon>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.text} />
+            <ListItemIcon><Login /></ListItemIcon>
+            <ListItemText primary="Login" />
           </ListItem>
-        ))}
+        )}
       </List>
     </Box>
   );
@@ -247,44 +321,53 @@ function App() {
                 </IconButton>
               )}
               <Typography
-                variant="h5"
+                variant="h6"
                 component={Link}
                 to="/"
                 sx={{
                   flexGrow: 1,
-                  fontWeight: 600,
-                  fontSize: { xs: '1.25rem', md: '1.5rem' },
                   textDecoration: 'none',
-                  color: '#1d1d1f',
-                  letterSpacing: '-0.025em',
-                  '&:hover': {
-                    opacity: 0.8,
-                  },
+                  color: 'text.primary',
+                  fontWeight: 600
                 }}
               >
                 Card Clarity
               </Typography>
-              {!isMobile && (
-                <Box sx={{ display: 'flex', gap: 2 }}>
-                  {menuItems.map((item) => (
-                    <Button
-                      key={item.text}
-                      component={Link}
-                      to={item.path}
-                      color="primary"
-                      startIcon={item.icon}
-                      sx={{ 
-                        color: '#1d1d1f',
-                        '&:hover': {
-                          backgroundColor: 'rgba(0, 0, 0, 0.05)'
-                        }
-                      }}
-                    >
-                      {item.text}
-                    </Button>
-                  ))}
-                </Box>
-              )}
+              <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2, alignItems: 'center' }}>
+                <Button
+                  component={Link}
+                  to="/quiz"
+                  color="primary"
+                  sx={{ textTransform: 'none' }}
+                >
+                  Take Quiz
+                </Button>
+                <Button
+                  component={Link}
+                  to="/compare"
+                  color="primary"
+                  sx={{ textTransform: 'none' }}
+                >
+                  Compare Cards
+                </Button>
+                <Button
+                  component={Link}
+                  to="/points"
+                  color="primary"
+                  sx={{ textTransform: 'none' }}
+                >
+                  Points Optimizer
+                </Button>
+                <Button
+                  component={Link}
+                  to="/debt"
+                  color="primary"
+                  sx={{ textTransform: 'none' }}
+                >
+                  Debt Management
+                </Button>
+                <UserProfile />
+              </Box>
             </Toolbar>
           </AppBar>
 
