@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Container,
   Typography,
@@ -49,6 +50,7 @@ function TabPanel(props: TabPanelProps) {
 }
 
 const Auth = () => {
+  const navigate = useNavigate();
   const { signIn, signUp } = useFirebase();
   const [tabValue, setTabValue] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -90,22 +92,56 @@ const Auth = () => {
     }
   };
 
+  const validateSignupForm = () => {
+    if (!name.trim()) {
+      setError('Please enter your full name');
+      return false;
+    }
+    if (!email.trim()) {
+      setError('Please enter your email address');
+      return false;
+    }
+    if (!email.includes('@')) {
+      setError('Please enter a valid email address');
+      return false;
+    }
+    if (!password) {
+      setError('Please enter a password');
+      return false;
+    }
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long');
+      return false;
+    }
+    if (!confirmPassword) {
+      setError('Please confirm your password');
+      return false;
+    }
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return false;
+    }
+    if (!creditExperience) {
+      setError('Please select your credit card experience');
+      return false;
+    }
+    if (!monthlySpending) {
+      setError('Please select your average monthly spending');
+      return false;
+    }
+    if (!existingDebt) {
+      setError('Please indicate if you have existing credit card debt');
+      return false;
+    }
+    return true;
+  };
+
   const handleSignup = async (e: React.FormEvent) => {
     console.log('1. Form submitted');
     e.preventDefault();
     setError(null);
 
-    console.log('2. Checking password match');
-    if (password !== confirmPassword) {
-      console.log('Passwords do not match');
-      setError('Passwords do not match');
-      return;
-    }
-
-    // Add password length validation
-    if (password.length < 6) {
-      console.log('Password too short');
-      setError('Password must be at least 6 characters long');
+    if (!validateSignupForm()) {
       return;
     }
 
@@ -132,11 +168,29 @@ const Auth = () => {
       await setDoc(doc(db, 'users', userCredential.user.uid), userData);
       console.log('10. User data stored successfully');
 
+      // Show success message
       setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 3000);
-    } catch (err) {
+      
+      // Automatically log in the user
+      console.log('11. Automatically logging in user');
+      await signIn(email, password);
+      
+      // Redirect to home page after a short delay
+      setTimeout(() => {
+        navigate('/');
+      }, 1500);
+    } catch (err: any) {
       console.error('Signup error details:', err);
-      setError('Failed to create account. Please try again.');
+      // Handle specific Firebase errors
+      if (err.code === 'auth/email-already-in-use') {
+        setError('This email address is already registered. Please use a different email or try logging in.');
+      } else if (err.code === 'auth/invalid-email') {
+        setError('Please enter a valid email address.');
+      } else if (err.code === 'auth/weak-password') {
+        setError('Password must be at least 6 characters long.');
+      } else {
+        setError('Failed to create account. Please try again.');
+      }
     }
   };
 
