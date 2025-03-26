@@ -5,6 +5,8 @@ import { getStorage } from 'firebase/storage';
 
 // Debug environment variables
 console.log('Checking Firebase environment variables...');
+console.log('import.meta.env:', import.meta.env);
+
 const config = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,

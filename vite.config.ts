@@ -5,7 +5,11 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/card-clarity/',
+  define: {
+    'process.env': {}
+  },
   build: {
+    sourcemap: true,
     outDir: 'dist',
     rollupOptions: {
       output: {
