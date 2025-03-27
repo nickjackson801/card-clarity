@@ -336,6 +336,15 @@ function App() {
               <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2, alignItems: 'center' }}>
                 <Button
                   component={Link}
+                  to="/"
+                  color="primary"
+                  startIcon={<HomeIcon />}
+                  sx={{ textTransform: 'none' }}
+                >
+                  Home
+                </Button>
+                <Button
+                  component={Link}
                   to="/quiz"
                   color="primary"
                   sx={{ textTransform: 'none' }}
