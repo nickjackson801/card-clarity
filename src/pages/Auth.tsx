@@ -22,6 +22,7 @@ import { motion } from 'framer-motion';
 import { useFirebase } from '../contexts/FirebaseContext';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
+import { useNotification } from '../contexts/NotificationContext';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -52,15 +53,8 @@ function TabPanel(props: TabPanelProps) {
 const Auth = () => {
   const navigate = useNavigate();
   const { signIn, signUp } = useFirebase();
+  const { showSuccess, showError } = useNotification();
   const [tabValue, setTabValue] = useState(0);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  // Add useEffect to log when component mounts
-  useEffect(() => {
-    console.log('Auth component mounted');
-    console.log('Firebase context available:', !!signUp);
-  }, [signUp]);
 
   // Login form state
   const [loginEmail, setLoginEmail] = useState('');
@@ -77,83 +71,74 @@ const Auth = () => {
 
   const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
-    setError(null);
   };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       await signIn(loginEmail, loginPassword);
-      setShowSuccess(true);
+      showSuccess('Successfully logged in!');
       navigate('/');
     } catch (err) {
-      setError('Failed to login. Please check your credentials.');
+      showError('Failed to login. Please check your credentials.');
       console.error('Login error:', err);
     }
   };
 
   const validateSignupForm = () => {
     if (!name.trim()) {
-      setError('Please enter your full name');
+      showError('Please enter your full name');
       return false;
     }
     if (!email.trim()) {
-      setError('Please enter your email address');
+      showError('Please enter your email address');
       return false;
     }
     if (!email.includes('@')) {
-      setError('Please enter a valid email address');
+      showError('Please enter a valid email address');
       return false;
     }
     if (!password) {
-      setError('Please enter a password');
+      showError('Please enter a password');
       return false;
     }
     if (password.length < 6) {
-      setError('Password must be at least 6 characters long');
+      showError('Password must be at least 6 characters long');
       return false;
     }
     if (!confirmPassword) {
-      setError('Please confirm your password');
+      showError('Please confirm your password');
       return false;
     }
     if (password !== confirmPassword) {
-      setError('Passwords do not match');
+      showError('Passwords do not match');
       return false;
     }
     if (!creditExperience) {
-      setError('Please select your credit card experience');
+      showError('Please select your credit card experience');
       return false;
     }
     if (!monthlySpending) {
-      setError('Please select your average monthly spending');
+      showError('Please select your average monthly spending');
       return false;
     }
     if (!existingDebt) {
-      setError('Please indicate if you have existing credit card debt');
+      showError('Please indicate if you have existing credit card debt');
       return false;
     }
     return true;
   };
 
   const handleSignup = async (e: React.FormEvent) => {
-    console.log('1. Form submitted');
     e.preventDefault();
-    setError(null);
 
     if (!validateSignupForm()) {
       return;
     }
 
     try {
-      console.log('3. Starting signup process');
-      console.log('4. Form data:', { name, email, creditExperience, existingDebt, monthlySpending });
-      
-      console.log('5. Calling Firebase signUp');
       const userCredential = await signUp(email, password);
-      console.log('6. Firebase signUp successful:', userCredential.user.uid);
 
-      console.log('7. Preparing user data for Firestore');
       const userData = {
         name,
         email,
@@ -162,34 +147,21 @@ const Auth = () => {
         monthlySpending,
         createdAt: new Date().toISOString()
       };
-      console.log('8. User data to be stored:', userData);
 
-      console.log('9. Storing user data in Firestore');
       await setDoc(doc(db, 'users', userCredential.user.uid), userData);
-      console.log('10. User data stored successfully');
-
-      // Show success message
-      setShowSuccess(true);
       
-      // Automatically log in the user
-      console.log('11. Automatically logging in user');
-      await signIn(email, password);
-      
-      // Redirect to home page after a short delay
-      setTimeout(() => {
-        navigate('/');
-      }, 1500);
+      showSuccess('Account created successfully!');
+      navigate('/');
     } catch (err: any) {
       console.error('Signup error details:', err);
-      // Handle specific Firebase errors
       if (err.code === 'auth/email-already-in-use') {
-        setError('This email address is already registered. Please use a different email or try logging in.');
+        showError('This email address is already registered. Please use a different email or try logging in.');
       } else if (err.code === 'auth/invalid-email') {
-        setError('Please enter a valid email address.');
+        showError('Please enter a valid email address.');
       } else if (err.code === 'auth/weak-password') {
-        setError('Password must be at least 6 characters long.');
+        showError('Password must be at least 6 characters long.');
       } else {
-        setError('Failed to create account. Please try again.');
+        showError('Failed to create account. Please try again.');
       }
     }
   };
@@ -228,18 +200,6 @@ const Auth = () => {
         >
           Your all-in-one platform for smart credit card management. Compare cards, optimize your points, and take control of your debt.
         </Typography>
-
-        {showSuccess && (
-          <Alert severity="success" sx={{ mb: 2 }}>
-            {tabValue === 0 ? 'Successfully logged in!' : 'Account created successfully!'}
-          </Alert>
-        )}
-
-        {error && (
-          <Alert severity="error" sx={{ mb: 2 }}>
-            {error}
-          </Alert>
-        )}
 
         <Paper sx={{ 
           p: 3,

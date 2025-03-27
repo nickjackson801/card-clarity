@@ -37,6 +37,7 @@ import BetaBanner from './components/BetaBanner';
 import { FirebaseProvider, useFirebase } from './contexts/FirebaseContext';
 import { UserProfile } from './components/UserProfile';
 import Profile from './pages/Profile';
+import { NotificationProvider } from './contexts/NotificationContext';
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -312,156 +313,151 @@ function App() {
 
   return (
     <ThemeProvider theme={appTheme}>
-      <CssBaseline />
-      <Router>
-        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-          <AppBar 
-            position="fixed" 
-            sx={{ 
-              background: 'rgba(255, 255, 255, 0.8)',
-              backdropFilter: 'blur(20px)',
-              borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
-              boxShadow: 'none'
-            }}
-          >
-            <Toolbar>
-              {isMobile && (
-                <IconButton
-                  color="primary"
-                  aria-label="open drawer"
-                  edge="start"
-                  onClick={handleDrawerToggle}
-                  sx={{ mr: 2 }}
-                >
-                  <MenuIcon />
-                </IconButton>
-              )}
-              <Typography
-                variant="h6"
-                component={Link}
-                to="/"
-                sx={{
-                  flexGrow: 1,
-                  textDecoration: 'none',
-                  color: 'text.primary',
-                  fontWeight: 600
+      <FirebaseProvider>
+        <NotificationProvider>
+          <CssBaseline />
+          <Router>
+            <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+              <AppBar 
+                position="fixed" 
+                sx={{ 
+                  background: 'rgba(255, 255, 255, 0.8)',
+                  backdropFilter: 'blur(20px)',
+                  borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+                  boxShadow: 'none'
                 }}
               >
-                Card Clarity
-              </Typography>
-              <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2, alignItems: 'center' }}>
-                <Button
-                  component={Link}
-                  to="/"
-                  color="primary"
-                  startIcon={<HomeIcon />}
-                  sx={{ textTransform: 'none' }}
-                >
-                  Home
-                </Button>
-                <Button
-                  component={Link}
-                  to="/quiz"
-                  color="primary"
-                  sx={{ textTransform: 'none' }}
-                >
-                  Take Quiz
-                </Button>
-                <Button
-                  component={Link}
-                  to="/compare"
-                  color="primary"
-                  sx={{ textTransform: 'none' }}
-                >
-                  Compare Cards
-                </Button>
-                <Button
-                  component={Link}
-                  to="/points"
-                  color="primary"
-                  sx={{ textTransform: 'none' }}
-                >
-                  Points Optimizer
-                </Button>
-                <Button
-                  component={Link}
-                  to="/debt"
-                  color="primary"
-                  sx={{ textTransform: 'none' }}
-                >
-                  Debt Management
-                </Button>
-                <Button
-                  component={Link}
-                  to="/profile"
-                  color="primary"
-                  sx={{ textTransform: 'none' }}
-                >
-                  Profile
-                </Button>
-                {!user ? (
-                  <Button
+                <Toolbar>
+                  {isMobile && (
+                    <IconButton
+                      color="primary"
+                      aria-label="open drawer"
+                      edge="start"
+                      onClick={handleDrawerToggle}
+                      sx={{ mr: 2 }}
+                    >
+                      <MenuIcon />
+                    </IconButton>
+                  )}
+                  <Typography
+                    variant="h6"
                     component={Link}
-                    to="/auth"
-                    color="primary"
-                    startIcon={<Login />}
-                    sx={{ textTransform: 'none' }}
+                    to="/"
+                    sx={{
+                      flexGrow: 1,
+                      textDecoration: 'none',
+                      color: 'text.primary',
+                      fontWeight: 600
+                    }}
                   >
-                    Login / Signup
-                  </Button>
-                ) : (
-                  <UserProfile />
-                )}
+                    Card Clarity
+                  </Typography>
+                  <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2, alignItems: 'center' }}>
+                    <Button
+                      component={Link}
+                      to="/"
+                      color="primary"
+                      startIcon={<HomeIcon />}
+                      sx={{ textTransform: 'none' }}
+                    >
+                      Home
+                    </Button>
+                    <Button
+                      component={Link}
+                      to="/quiz"
+                      color="primary"
+                      sx={{ textTransform: 'none' }}
+                    >
+                      Take Quiz
+                    </Button>
+                    <Button
+                      component={Link}
+                      to="/compare"
+                      color="primary"
+                      sx={{ textTransform: 'none' }}
+                    >
+                      Compare Cards
+                    </Button>
+                    <Button
+                      component={Link}
+                      to="/points"
+                      color="primary"
+                      sx={{ textTransform: 'none' }}
+                    >
+                      Points Optimizer
+                    </Button>
+                    <Button
+                      component={Link}
+                      to="/debt"
+                      color="primary"
+                      sx={{ textTransform: 'none' }}
+                    >
+                      Debt Management
+                    </Button>
+                    <Button
+                      component={Link}
+                      to="/profile"
+                      color="primary"
+                      sx={{ textTransform: 'none' }}
+                    >
+                      Profile
+                    </Button>
+                    {!user ? (
+                      <Button
+                        component={Link}
+                        to="/auth"
+                        color="primary"
+                        startIcon={<Login />}
+                        sx={{ textTransform: 'none' }}
+                      >
+                        Login / Signup
+                      </Button>
+                    ) : (
+                      <UserProfile />
+                    )}
+                  </Box>
+                </Toolbar>
+              </AppBar>
+
+              <Box sx={{ pt: { xs: 8, sm: 9 } }}>
+                <BetaBanner />
               </Box>
-            </Toolbar>
-          </AppBar>
 
-          <Box sx={{ pt: { xs: 8, sm: 9 } }}>
-            <BetaBanner />
-          </Box>
+              {isMobile && (
+                <Drawer
+                  variant="temporary"
+                  anchor="left"
+                  open={mobileOpen}
+                  onClose={handleDrawerToggle}
+                  ModalProps={{
+                    keepMounted: true, // Better mobile performance
+                  }}
+                  sx={{
+                    '& .MuiDrawer-paper': { width: 250 },
+                  }}
+                >
+                  {drawer}
+                </Drawer>
+              )}
 
-          {isMobile && (
-            <Drawer
-              variant="temporary"
-              anchor="left"
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
-              ModalProps={{
-                keepMounted: true, // Better mobile performance
-              }}
-              sx={{
-                '& .MuiDrawer-paper': { width: 250 },
-              }}
-            >
-              {drawer}
-            </Drawer>
-          )}
-
-          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/auth" element={<Auth />} />
-              <Route path="/quiz" element={<Quiz />} />
-              <Route path="/compare" element={<CardComparison />} />
-              <Route path="/points" element={<PointsOptimizer />} />
-              <Route path="/debt" element={<DebtManagement />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </Box>
-        </Box>
-      </Router>
+              <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/auth" element={<Auth />} />
+                  <Route path="/quiz" element={<Quiz />} />
+                  <Route path="/compare" element={<CardComparison />} />
+                  <Route path="/points" element={<PointsOptimizer />} />
+                  <Route path="/debt" element={<DebtManagement />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+              </Box>
+            </Box>
+          </Router>
+        </NotificationProvider>
+      </FirebaseProvider>
     </ThemeProvider>
   );
 }
 
-// Wrap the entire app with FirebaseProvider
-function AppWrapper() {
-  return (
-    <FirebaseProvider>
-      <App />
-    </FirebaseProvider>
-  );
-}
-
-export default AppWrapper;
+export default App;
