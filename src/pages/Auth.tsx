@@ -85,7 +85,7 @@ const Auth = () => {
     try {
       await signIn(loginEmail, loginPassword);
       setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 3000);
+      navigate('/');
     } catch (err) {
       setError('Failed to login. Please check your credentials.');
       console.error('Login error:', err);
