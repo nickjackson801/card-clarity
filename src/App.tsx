@@ -36,6 +36,7 @@ import Quiz from './pages/Quiz';
 import BetaBanner from './components/BetaBanner';
 import { FirebaseProvider, useFirebase } from './contexts/FirebaseContext';
 import { UserProfile } from './components/UserProfile';
+import Profile from './pages/Profile';
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -273,6 +274,21 @@ function App() {
           <ListItemIcon><AccountBalance /></ListItemIcon>
           <ListItemText primary="Debt Management" />
         </ListItem>
+        <ListItem
+          component={Link}
+          to="/profile"
+          onClick={handleDrawerToggle}
+          sx={{
+            color: 'inherit',
+            textDecoration: 'none',
+            '&:hover': {
+              backgroundColor: 'rgba(0, 0, 0, 0.04)',
+            },
+          }}
+        >
+          <ListItemIcon><AccountBalance /></ListItemIcon>
+          <ListItemText primary="Profile" />
+        </ListItem>
         {!user && (
           <ListItem
             component={Link}
@@ -375,7 +391,27 @@ function App() {
                 >
                   Debt Management
                 </Button>
-                <UserProfile />
+                <Button
+                  component={Link}
+                  to="/profile"
+                  color="primary"
+                  sx={{ textTransform: 'none' }}
+                >
+                  Profile
+                </Button>
+                {!user ? (
+                  <Button
+                    component={Link}
+                    to="/auth"
+                    color="primary"
+                    startIcon={<Login />}
+                    sx={{ textTransform: 'none' }}
+                  >
+                    Login / Signup
+                  </Button>
+                ) : (
+                  <UserProfile />
+                )}
               </Box>
             </Toolbar>
           </AppBar>
@@ -404,11 +440,12 @@ function App() {
           <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/auth" element={<Auth />} />
               <Route path="/quiz" element={<Quiz />} />
               <Route path="/compare" element={<CardComparison />} />
               <Route path="/points" element={<PointsOptimizer />} />
               <Route path="/debt" element={<DebtManagement />} />
-              <Route path="/auth" element={<Auth />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Box>
