@@ -1,9 +1,9 @@
 {
   "name": "card-clarity",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
-  "homepage": "https://nickjackson801.github.io/card-clarity/",
+  "homepage": "https://card-clarity.com",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
