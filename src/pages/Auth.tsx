@@ -187,9 +187,25 @@ const Auth = () => {
       }
       showSuccess('Successfully logged in with Google!');
       navigate('/');
-    } catch (err) {
-      console.error('Google sign in error:', err);
-      showError('Failed to sign in with Google. Please try again.');
+    } catch (err: any) {
+      console.error('Google sign in error:', {
+        code: err.code,
+        message: err.message,
+        stack: err.stack
+      });
+      
+      let errorMessage = 'Failed to sign in with Google.';
+      if (err.code === 'auth/popup-closed-by-user') {
+        errorMessage = 'Sign-in was cancelled. Please try again.';
+      } else if (err.code === 'auth/popup-blocked') {
+        errorMessage = 'Sign-in popup was blocked. Please allow popups for this site.';
+      } else if (err.code === 'auth/cancelled-popup-request') {
+        errorMessage = 'Sign-in was cancelled. Please try again.';
+      } else if (err.code === 'auth/account-exists-with-different-credential') {
+        errorMessage = 'An account already exists with the same email address but different sign-in credentials.';
+      }
+      
+      showError(errorMessage);
     }
   };
 

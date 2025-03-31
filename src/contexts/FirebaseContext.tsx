@@ -60,8 +60,12 @@ export function FirebaseProvider({ children }: { children: React.ReactNode }) {
       const result = await signInWithPopup(auth, googleProvider);
       console.log('FirebaseContext: Google sign in successful');
       return result;
-    } catch (error) {
-      console.error('FirebaseContext: Google sign in error:', error);
+    } catch (error: any) {
+      console.error('FirebaseContext: Google sign in error:', {
+        code: error.code,
+        message: error.message,
+        stack: error.stack
+      });
       throw error;
     }
   };
