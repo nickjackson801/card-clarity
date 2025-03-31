@@ -24,7 +24,9 @@ const BetaBanner = () => {
           overflow: 'hidden',
           borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
           margin: 0,
-          borderRadius: 0
+          borderRadius: 0,
+          flexDirection: { xs: 'column', sm: 'row' },
+          textAlign: 'center'
         }}
       >
         <Typography 
@@ -32,7 +34,8 @@ const BetaBanner = () => {
           sx={{ 
             fontWeight: 400,
             letterSpacing: '-0.01em',
-            fontSize: '14px'
+            fontSize: '14px',
+            maxWidth: { xs: '100%', sm: 'auto' }
           }}
         >
           Beta Access: Try all features free during our beta period

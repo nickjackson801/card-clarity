@@ -25,6 +25,7 @@ import {
   AccountBalance,
   Login,
   Quiz as QuizIcon,
+  Person,
 } from '@mui/icons-material';
 import { useState } from 'react';
 import Home from './pages/Home';
@@ -287,7 +288,7 @@ function AppContent() {
             },
           }}
         >
-          <ListItemIcon><AccountBalance /></ListItemIcon>
+          <ListItemIcon><Person /></ListItemIcon>
           <ListItemText primary="Profile" />
         </ListItem>
         {!user && (
@@ -322,7 +323,10 @@ function AppContent() {
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              sx={{ mr: 2 }}
+              sx={{ 
+                mr: 2,
+                color: '#1d1d1f'
+              }}
             >
               <MenuIcon />
             </IconButton>
