@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
@@ -35,6 +35,9 @@ console.log('Firebase app initialized');
 console.log('Initializing Firebase services...');
 export const auth = getAuth(app);
 console.log('Auth service initialized');
+
+export const googleProvider = new GoogleAuthProvider();
+console.log('Google Auth Provider initialized');
 
 export const db = getFirestore(app);
 console.log('Firestore service initialized');

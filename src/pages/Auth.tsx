@@ -17,12 +17,14 @@ import {
   FormControlLabel,
   Radio,
   Alert,
+  Divider,
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useFirebase } from '../contexts/FirebaseContext';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { useNotification } from '../contexts/NotificationContext';
+import { Google as GoogleIcon } from '@mui/icons-material';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -52,7 +54,7 @@ function TabPanel(props: TabPanelProps) {
 
 const Auth = () => {
   const navigate = useNavigate();
-  const { signIn, signUp } = useFirebase();
+  const { signIn, signUp, signInWithGoogle } = useFirebase();
   const { showSuccess, showError } = useNotification();
   const [tabValue, setTabValue] = useState(0);
 
@@ -166,8 +168,33 @@ const Auth = () => {
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithGoogle();
+      // Check if this is a new user
+      const userDoc = await getDoc(doc(db, 'users', result.user.uid));
+      if (!userDoc.exists()) {
+        // Create user profile for new Google users
+        const userData = {
+          name: result.user.displayName || '',
+          email: result.user.email,
+          creditExperience: '',
+          existingDebt: '',
+          monthlySpending: '',
+          createdAt: new Date().toISOString()
+        };
+        await setDoc(doc(db, 'users', result.user.uid), userData);
+      }
+      showSuccess('Successfully logged in with Google!');
+      navigate('/');
+    } catch (err) {
+      console.error('Google sign in error:', err);
+      showError('Failed to sign in with Google. Please try again.');
+    }
+  };
+
   return (
-    <Container maxWidth="md" sx={{ py: 8 }}>
+    <Container maxWidth="sm" sx={{ mt: 8 }}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -299,11 +326,11 @@ const Auth = () => {
               </FormControl>
 
               <FormControl fullWidth margin="normal" required>
-                <InputLabel>Average Monthly Spending</InputLabel>
+                <InputLabel>Monthly Spending</InputLabel>
                 <Select
                   value={monthlySpending}
                   onChange={(e) => setMonthlySpending(e.target.value)}
-                  label="Average Monthly Spending"
+                  label="Monthly Spending"
                 >
                   <MenuItem value="0-1000">Less than $1,000</MenuItem>
                   <MenuItem value="1000-3000">$1,000 - $3,000</MenuItem>
@@ -312,19 +339,18 @@ const Auth = () => {
                 </Select>
               </FormControl>
 
-              <FormControl component="fieldset" margin="normal" required>
-                <Typography variant="subtitle1" gutterBottom>
-                  Do you currently have credit card debt?
-                </Typography>
-                <RadioGroup
+              <FormControl fullWidth margin="normal" required>
+                <InputLabel>Existing Credit Card Debt</InputLabel>
+                <Select
                   value={existingDebt}
                   onChange={(e) => setExistingDebt(e.target.value)}
+                  label="Existing Credit Card Debt"
                 >
-                  <FormControlLabel value="no" control={<Radio />} label="No debt" />
-                  <FormControlLabel value="less-5k" control={<Radio />} label="Less than $5,000" />
-                  <FormControlLabel value="5k-10k" control={<Radio />} label="$5,000 - $10,000" />
-                  <FormControlLabel value="more-10k" control={<Radio />} label="More than $10,000" />
-                </RadioGroup>
+                  <MenuItem value="no">No debt</MenuItem>
+                  <MenuItem value="less-5k">Less than $5,000</MenuItem>
+                  <MenuItem value="5k-10k">$5,000 - $10,000</MenuItem>
+                  <MenuItem value="more-10k">More than $10,000</MenuItem>
+                </Select>
               </FormControl>
 
               <Button
@@ -334,10 +360,35 @@ const Auth = () => {
                 size="large"
                 sx={{ mt: 3 }}
               >
-                Create Account
+                Sign Up
               </Button>
             </form>
           </TabPanel>
+
+          <Box sx={{ mt: 3 }}>
+            <Divider sx={{ mb: 2 }}>
+              <Typography variant="body2" color="text.secondary" sx={{ px: 2 }}>
+                Or continue with
+              </Typography>
+            </Divider>
+            <Button
+              fullWidth
+              variant="outlined"
+              size="large"
+              startIcon={<GoogleIcon />}
+              onClick={handleGoogleSignIn}
+              sx={{
+                borderColor: 'rgba(0, 0, 0, 0.1)',
+                color: '#1d1d1f',
+                '&:hover': {
+                  borderColor: 'rgba(0, 0, 0, 0.2)',
+                  backgroundColor: 'rgba(0, 0, 0, 0.05)',
+                },
+              }}
+            >
+              Continue with Google
+            </Button>
+          </Box>
         </Paper>
       </motion.div>
     </Container>
