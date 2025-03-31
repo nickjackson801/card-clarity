@@ -389,16 +389,15 @@ const Auth = () => {
             </Divider>
             <Button
               fullWidth
-              variant="outlined"
+              variant="contained"
               size="large"
               startIcon={<GoogleIcon />}
               onClick={handleGoogleSignIn}
               sx={{
-                borderColor: 'rgba(0, 0, 0, 0.1)',
-                color: '#1d1d1f',
+                backgroundColor: '#1d1d1f',
+                color: '#ffffff',
                 '&:hover': {
-                  borderColor: 'rgba(0, 0, 0, 0.2)',
-                  backgroundColor: 'rgba(0, 0, 0, 0.05)',
+                  backgroundColor: '#2d2d2f',
                 },
               }}
             >
