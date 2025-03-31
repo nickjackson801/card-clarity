@@ -1,11 +1,18 @@
 import { Container, Typography, Grid, Paper, Box, Button } from '@mui/material';
 import { CompareArrows, Stars, AccountBalance } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import FeatureSlideshow from '../components/FeatureSlideshow';
 import ChatBot from '../components/ChatBot';
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const handleLearnMore = (path: string) => {
+    window.scrollTo(0, 0);
+    navigate(path);
+  };
+
   const COLORS = {
     cardComparison: {
       main: '#2563eb',
@@ -566,12 +573,12 @@ const Home = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <Grid container spacing={4}>
-            {services.map((service, index) => (
+            {services.map((service) => (
               <Grid item xs={12} md={4} key={service.title}>
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.5 }}
                 >
                   <Paper
                     sx={{
@@ -579,15 +586,10 @@ const Home = () => {
                       height: '100%',
                       display: 'flex',
                       flexDirection: 'column',
-                      position: 'relative',
-                      overflow: 'hidden',
                       background: 'rgba(255, 255, 255, 0.8)',
                       backdropFilter: 'blur(20px)',
-                      transition: 'all 0.3s ease',
-                      '&:hover': {
-                        transform: 'translateY(-4px)',
-                        boxShadow: '0 4px 24px rgba(0, 0, 0, 0.12)',
-                      },
+                      borderRadius: 3,
+                      border: '1px solid rgba(0, 0, 0, 0.05)',
                     }}
                   >
                     <Box
@@ -629,17 +631,19 @@ const Home = () => {
                       {service.description}
                     </Typography>
                     <Button
-                      component={Link}
-                      to={service.link}
+                      variant="contained"
+                      onClick={() => handleLearnMore(service.link)}
                       sx={{
-                        alignSelf: 'flex-start',
-                        color: '#06c',
+                        mt: 'auto',
+                        backgroundColor: service.color,
+                        color: '#ffffff',
                         '&:hover': {
-                          backgroundColor: 'rgba(0, 102, 204, 0.05)'
-                        }
+                          backgroundColor: service.color,
+                          opacity: 0.9,
+                        },
                       }}
                     >
-                      Learn more →
+                      Learn More
                     </Button>
                   </Paper>
                 </motion.div>
