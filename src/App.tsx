@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link, Navigate, useLocation } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {
   AppBar,
@@ -27,7 +27,7 @@ import {
   Quiz as QuizIcon,
   Person,
 } from '@mui/icons-material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Home from './pages/Home';
 import CardComparison from './pages/CardComparison';
 import PointsOptimizer from './pages/PointsOptimizer';
@@ -187,9 +187,17 @@ function AppContent() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const { user } = useFirebase();
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+    if (mobileOpen) {
+      window.scrollTo(0, 0);
+    }
   };
 
   const drawer = (
