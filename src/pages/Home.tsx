@@ -653,6 +653,43 @@ const Home = () => {
         </motion.div>
       </Container>
       <ChatBot />
+
+      {/* Customer Support Section */}
+      <Box 
+        sx={{ 
+          bgcolor: 'background.paper',
+          py: 3,
+          borderTop: 1,
+          borderColor: 'divider',
+          mt: 'auto'
+        }}
+      >
+        <Container maxWidth="lg">
+          <Typography 
+            variant="body2" 
+            align="center" 
+            color="text.secondary"
+            sx={{ mb: 1 }}
+          >
+            Need assistance? Contact our customer support team:
+          </Typography>
+          <Typography 
+            variant="body2" 
+            align="center" 
+            color="primary"
+            component="a"
+            href="mailto:customersupport@card-clarity.com"
+            sx={{ 
+              textDecoration: 'none',
+              '&:hover': {
+                textDecoration: 'underline'
+              }
+            }}
+          >
+            customersupport@card-clarity.com
+          </Typography>
+        </Container>
+      </Box>
     </Box>
   );
 };

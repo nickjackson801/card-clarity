@@ -25,6 +25,10 @@ import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { useNotification } from '../contexts/NotificationContext';
 import { Google as GoogleIcon } from '@mui/icons-material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+// Create a theme instance
+const theme = createTheme();
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -210,203 +214,242 @@ const Auth = () => {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ mt: 8 }}>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <Typography
-          variant="h4"
-          component="h1"
-          gutterBottom
-          sx={{
-            fontWeight: 700,
-            mb: 2,
-            color: '#1d1d1f',
-            letterSpacing: '-0.02em'
-          }}
+    <ThemeProvider theme={theme}>
+      <Container maxWidth="sm" sx={{ mt: 8 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
         >
-          Welcome to Card Clarity
-        </Typography>
-        <Typography
-          variant="body1"
-          color="text.secondary"
-          paragraph
-          sx={{ 
-            mb: 4, 
-            fontSize: '1.1rem',
-            color: 'rgba(0, 0, 0, 0.7)',
-            letterSpacing: '-0.01em',
-            lineHeight: 1.5
-          }}
-        >
-          Your all-in-one platform for smart credit card management. Compare cards, optimize your points, and take control of your debt.
-        </Typography>
+          <Typography
+            variant="h4"
+            component="h1"
+            gutterBottom
+            sx={{
+              fontWeight: 700,
+              mb: 2,
+              color: '#1d1d1f',
+              letterSpacing: '-0.02em'
+            }}
+          >
+            Welcome to Card Clarity
+          </Typography>
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            paragraph
+            sx={{ 
+              mb: 4, 
+              fontSize: '1.1rem',
+              color: 'rgba(0, 0, 0, 0.7)',
+              letterSpacing: '-0.01em',
+              lineHeight: 1.5
+            }}
+          >
+            Your all-in-one platform for smart credit card management. Compare cards, optimize your points, and take control of your debt.
+          </Typography>
 
-        <Paper sx={{ 
-          p: 3,
-          background: 'linear-gradient(to bottom right, #ffffff, #f8fafc)',
-          boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-        }}>
-          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={tabValue} onChange={handleTabChange} centered>
-              <Tab label="Login" />
-              <Tab label="Sign Up" />
-            </Tabs>
-          </Box>
+          <Paper sx={{ 
+            p: 3,
+            background: 'linear-gradient(to bottom right, #ffffff, #f8fafc)',
+            boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+          }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+              <Tabs value={tabValue} onChange={handleTabChange} centered>
+                <Tab label="Login" />
+                <Tab label="Sign Up" />
+              </Tabs>
+            </Box>
 
-          <TabPanel value={tabValue} index={0}>
-            <form onSubmit={handleLogin}>
-              <TextField
-                fullWidth
-                label="Email"
-                type="email"
-                value={loginEmail}
-                onChange={(e) => setLoginEmail(e.target.value)}
-                margin="normal"
-                required
-              />
-              <TextField
-                fullWidth
-                label="Password"
-                type="password"
-                value={loginPassword}
-                onChange={(e) => setLoginPassword(e.target.value)}
-                margin="normal"
-                required
-              />
+            <TabPanel value={tabValue} index={0}>
+              <form onSubmit={handleLogin}>
+                <TextField
+                  fullWidth
+                  label="Email"
+                  type="email"
+                  value={loginEmail}
+                  onChange={(e) => setLoginEmail(e.target.value)}
+                  margin="normal"
+                  required
+                />
+                <TextField
+                  fullWidth
+                  label="Password"
+                  type="password"
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
+                  margin="normal"
+                  required
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  size="large"
+                  sx={{ mt: 3 }}
+                >
+                  Login
+                </Button>
+              </form>
+            </TabPanel>
+
+            <TabPanel value={tabValue} index={1}>
+              <form onSubmit={handleSignup}>
+                <TextField
+                  fullWidth
+                  label="Full Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  margin="normal"
+                  required
+                />
+                <TextField
+                  fullWidth
+                  label="Email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  margin="normal"
+                  required
+                />
+                <TextField
+                  fullWidth
+                  label="Password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  helperText="Password must be at least 6 characters long"
+                  sx={{ mb: 2 }}
+                />
+                <TextField
+                  fullWidth
+                  label="Confirm Password"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  margin="normal"
+                  required
+                />
+
+                <FormControl fullWidth margin="normal" required>
+                  <InputLabel>Credit Card Experience</InputLabel>
+                  <Select
+                    value={creditExperience}
+                    onChange={(e) => setCreditExperience(e.target.value)}
+                    label="Credit Card Experience"
+                  >
+                    <MenuItem value="none">No experience</MenuItem>
+                    <MenuItem value="beginner">Beginner (1-2 years)</MenuItem>
+                    <MenuItem value="intermediate">Intermediate (3-5 years)</MenuItem>
+                    <MenuItem value="advanced">Advanced (5+ years)</MenuItem>
+                  </Select>
+                </FormControl>
+
+                <FormControl fullWidth margin="normal" required>
+                  <InputLabel>Monthly Spending</InputLabel>
+                  <Select
+                    value={monthlySpending}
+                    onChange={(e) => setMonthlySpending(e.target.value)}
+                    label="Monthly Spending"
+                  >
+                    <MenuItem value="0-1000">Less than $1,000</MenuItem>
+                    <MenuItem value="1000-3000">$1,000 - $3,000</MenuItem>
+                    <MenuItem value="3000-5000">$3,000 - $5,000</MenuItem>
+                    <MenuItem value="5000+">More than $5,000</MenuItem>
+                  </Select>
+                </FormControl>
+
+                <FormControl fullWidth margin="normal" required>
+                  <InputLabel>Existing Credit Card Debt</InputLabel>
+                  <Select
+                    value={existingDebt}
+                    onChange={(e) => setExistingDebt(e.target.value)}
+                    label="Existing Credit Card Debt"
+                  >
+                    <MenuItem value="no">No debt</MenuItem>
+                    <MenuItem value="less-5k">Less than $5,000</MenuItem>
+                    <MenuItem value="5k-10k">$5,000 - $10,000</MenuItem>
+                    <MenuItem value="more-10k">More than $10,000</MenuItem>
+                  </Select>
+                </FormControl>
+
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  size="large"
+                  sx={{ mt: 3 }}
+                >
+                  Sign Up
+                </Button>
+              </form>
+            </TabPanel>
+
+            <Box sx={{ mt: 3 }}>
+              <Divider sx={{ mb: 2 }}>
+                <Typography variant="body2" color="text.secondary" sx={{ px: 2 }}>
+                  Or continue with
+                </Typography>
+              </Divider>
               <Button
-                type="submit"
                 fullWidth
                 variant="contained"
                 size="large"
-                sx={{ mt: 3 }}
+                startIcon={<GoogleIcon />}
+                onClick={handleGoogleSignIn}
+                sx={{
+                  backgroundColor: '#1d1d1f',
+                  color: '#ffffff',
+                  '&:hover': {
+                    backgroundColor: '#2d2d2f',
+                  },
+                }}
               >
-                Login
+                Continue with Google
               </Button>
-            </form>
-          </TabPanel>
+            </Box>
+          </Paper>
 
-          <TabPanel value={tabValue} index={1}>
-            <form onSubmit={handleSignup}>
-              <TextField
-                fullWidth
-                label="Full Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                margin="normal"
-                required
-              />
-              <TextField
-                fullWidth
-                label="Email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                margin="normal"
-                required
-              />
-              <TextField
-                fullWidth
-                label="Password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                helperText="Password must be at least 6 characters long"
-                sx={{ mb: 2 }}
-              />
-              <TextField
-                fullWidth
-                label="Confirm Password"
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                margin="normal"
-                required
-              />
-
-              <FormControl fullWidth margin="normal" required>
-                <InputLabel>Credit Card Experience</InputLabel>
-                <Select
-                  value={creditExperience}
-                  onChange={(e) => setCreditExperience(e.target.value)}
-                  label="Credit Card Experience"
-                >
-                  <MenuItem value="none">No experience</MenuItem>
-                  <MenuItem value="beginner">Beginner (1-2 years)</MenuItem>
-                  <MenuItem value="intermediate">Intermediate (3-5 years)</MenuItem>
-                  <MenuItem value="advanced">Advanced (5+ years)</MenuItem>
-                </Select>
-              </FormControl>
-
-              <FormControl fullWidth margin="normal" required>
-                <InputLabel>Monthly Spending</InputLabel>
-                <Select
-                  value={monthlySpending}
-                  onChange={(e) => setMonthlySpending(e.target.value)}
-                  label="Monthly Spending"
-                >
-                  <MenuItem value="0-1000">Less than $1,000</MenuItem>
-                  <MenuItem value="1000-3000">$1,000 - $3,000</MenuItem>
-                  <MenuItem value="3000-5000">$3,000 - $5,000</MenuItem>
-                  <MenuItem value="5000+">More than $5,000</MenuItem>
-                </Select>
-              </FormControl>
-
-              <FormControl fullWidth margin="normal" required>
-                <InputLabel>Existing Credit Card Debt</InputLabel>
-                <Select
-                  value={existingDebt}
-                  onChange={(e) => setExistingDebt(e.target.value)}
-                  label="Existing Credit Card Debt"
-                >
-                  <MenuItem value="no">No debt</MenuItem>
-                  <MenuItem value="less-5k">Less than $5,000</MenuItem>
-                  <MenuItem value="5k-10k">$5,000 - $10,000</MenuItem>
-                  <MenuItem value="more-10k">More than $10,000</MenuItem>
-                </Select>
-              </FormControl>
-
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                size="large"
-                sx={{ mt: 3 }}
+          {/* Customer Support Section */}
+          <Box 
+            sx={{ 
+              bgcolor: 'background.paper',
+              py: 3,
+              borderTop: 1,
+              borderColor: 'divider',
+              mt: 4
+            }}
+          >
+            <Container maxWidth="sm">
+              <Typography 
+                variant="body2" 
+                align="center" 
+                color="text.secondary"
+                sx={{ mb: 1 }}
               >
-                Sign Up
-              </Button>
-            </form>
-          </TabPanel>
-
-          <Box sx={{ mt: 3 }}>
-            <Divider sx={{ mb: 2 }}>
-              <Typography variant="body2" color="text.secondary" sx={{ px: 2 }}>
-                Or continue with
+                Having trouble? Our support team is here to help:
               </Typography>
-            </Divider>
-            <Button
-              fullWidth
-              variant="contained"
-              size="large"
-              startIcon={<GoogleIcon />}
-              onClick={handleGoogleSignIn}
-              sx={{
-                backgroundColor: '#1d1d1f',
-                color: '#ffffff',
-                '&:hover': {
-                  backgroundColor: '#2d2d2f',
-                },
-              }}
-            >
-              Continue with Google
-            </Button>
+              <Typography 
+                variant="body2" 
+                align="center" 
+                color="primary"
+                component="a"
+                href="mailto:customersupport@card-clarity.com"
+                sx={{ 
+                  textDecoration: 'none',
+                  '&:hover': {
+                    textDecoration: 'underline'
+                  }
+                }}
+              >
+                customersupport@card-clarity.com
+              </Typography>
+            </Container>
           </Box>
-        </Paper>
-      </motion.div>
-    </Container>
+        </motion.div>
+      </Container>
+    </ThemeProvider>
   );
 };
 
