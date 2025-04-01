@@ -17,4 +17,10 @@ export default defineConfig({
       },
     },
   },
+  server: {
+    https: {
+      key: undefined,
+      cert: undefined
+    }
+  }
 })
